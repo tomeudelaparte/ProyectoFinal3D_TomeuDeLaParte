@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanonBehaviour : MonoBehaviour
 {
-    private Player player;
+    private PlayerController player;
     public GameObject ballPrefab;
 
     private bool shootTrigger = true;
@@ -12,7 +12,7 @@ public class CanonBehaviour : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerController>();
     }
     void Update()
     {

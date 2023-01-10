@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2563918375388046486}
   m_Layer: 0
   m_Name: Blast
-  m_TagString: Untagged
+  m_TagString: Blast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed76c0080da91a48a32c023dc22e4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastHitPrefab: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
+  damage: 1
+  blastExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
     type: 3}
 --- !u!114 &3522516621106287146
 MonoBehaviour:

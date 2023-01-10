@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanonBall : MonoBehaviour
+public class Canonball : MonoBehaviour
 {
-    private Player player;
+    private PlayerController player;
     private Rigidbody rb;
 
     private float timer = 2f;
@@ -15,13 +15,13 @@ public class CanonBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerController>();
 
         rb.AddRelativeForce(Vector3.forward * 30000, ForceMode.Impulse);
         rb.AddRelativeForce(Vector3.up * 2000, ForceMode.Impulse);
 
 
-        float distance = Vector3.Distance(player.transform.position, transform.position);
+        float distance = Vector3.Distance(player.planeCore.position, transform.position);
         timer = distance / 190;
 
         if(timer > 3)
