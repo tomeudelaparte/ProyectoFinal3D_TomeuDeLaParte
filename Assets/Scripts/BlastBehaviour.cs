@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BlastBehaviour : MonoBehaviour
 {
-    public int damage = 1;
+    public int blastID = 0;
+
+    private int damage = 2;
+
 
     public GameObject blastExplosion;
 
@@ -24,8 +27,7 @@ public class BlastBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
-
-        if (transform.parent.tag == "Player")
+        if (blastID == 0)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
@@ -37,7 +39,7 @@ public class BlastBehaviour : MonoBehaviour
             }
         }
 
-        if (transform.parent.tag == "Enemy")
+        if (blastID == 1)
         {
             if (other.gameObject.CompareTag("Player"))
             {

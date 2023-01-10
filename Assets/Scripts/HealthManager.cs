@@ -8,9 +8,6 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private int currentHealth;
 
-    [Header("Trigger Fix")]
-    public bool isTriggering = false;
-
     private void Start()
     {
         UpdateMaxHealth(maxHealth);
@@ -38,27 +35,7 @@ public class HealthManager : MonoBehaviour
 
     public void UpdateMaxHealth(int newMaxHealth)
     {
-        if (!isTriggering)
-        {
-            maxHealth = newMaxHealth;
-            currentHealth = maxHealth;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Blast"))
-        {
-            if (isTriggering) return;
-            isTriggering = true;
-
-            StartCoroutine(TriggerEnterOn());
-        }
-    }
-
-    private IEnumerator TriggerEnterOn()
-    {
-        yield return new WaitForEndOfFrame();
-        isTriggering = false;
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth;
     }
 }
