@@ -6,7 +6,7 @@ public class BlastBehaviour : MonoBehaviour
 {
     public int blastID = 0;
 
-    private int damage = 2;
+    private int damage = 5;
 
 
     public GameObject blastExplosion;
