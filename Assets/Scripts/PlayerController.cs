@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKey(KeyCode.Space) && gunnerSystem.shootTrigger)
+        if (Input.GetAxisRaw("Shoot") > 0 && gunnerSystem.shootTrigger)
         {
             gunnerSystem.Shoot();
         }

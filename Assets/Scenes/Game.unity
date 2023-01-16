@@ -1704,9 +1704,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 912771078222368987}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1421964842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2739612522720834891, guid: 2042032eaea12fd44a7baf52a0848f45,
+--- !u!198 &1421964844 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
     type: 3}
   m_PrefabInstance: {fileID: 912771078222368987}
   m_PrefabAsset: {fileID: 0}
@@ -2001,6 +2001,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8100780138197919138, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: SubModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: emitterVelocityMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: TriggerModule.primitives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8989484920000902529, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
       propertyPath: a
@@ -2020,7 +2055,7 @@ PrefabInstance:
         type: 3}
       propertyPath: smokeParticles
       value: 
-      objectReference: {fileID: 1421964842}
+      objectReference: {fileID: 1421964844}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2042032eaea12fd44a7baf52a0848f45, type: 3}
 --- !u!1001 &7020976610055688854
@@ -2034,6 +2069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020976610269647778, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7020976610269647790, guid: 7672e7e93aedf7f45b701611cb0612ff,
         type: 3}

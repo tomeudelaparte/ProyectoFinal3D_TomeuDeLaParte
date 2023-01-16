@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmokeBehaviour : MonoBehaviour
 {
-    public GameObject smokeParticles;
+    public ParticleSystem smokeParticles;
 
     private HealthManager healthManager;
 
@@ -17,6 +17,12 @@ public class SmokeBehaviour : MonoBehaviour
     {
         float value = float.Parse(healthManager.GetCurrentHealth().ToString()) * 255f / 100f;
 
-        smokeParticles.GetComponent<ParticleSystem>().startColor = new Color(value, value, value, 64);
+        var ps = new ParticleSystem.EmitParams();
+
+        ps.startColor = new Color(value, value, value, 64);
+
+
+
+        smokeParticles.Emit(ps,200);
     }
 }
