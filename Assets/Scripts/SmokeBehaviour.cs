@@ -15,6 +15,7 @@ public class SmokeBehaviour : MonoBehaviour
 
     void Update()
     {
+        /*
         float value = float.Parse(healthManager.GetCurrentHealth().ToString()) * 255f / 100f;
 
         var ps = new ParticleSystem.EmitParams();
@@ -23,6 +24,6 @@ public class SmokeBehaviour : MonoBehaviour
 
 
 
-        smokeParticles.Emit(ps,200);
+        smokeParticles.Emit(ps,200);*/
     }
 }

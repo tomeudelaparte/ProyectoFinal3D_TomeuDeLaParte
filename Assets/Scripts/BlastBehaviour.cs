@@ -11,7 +11,7 @@ public class BlastBehaviour : MonoBehaviour
 
     public GameObject blastExplosion;
 
-    private float speed = 400f;
+    private float speed = 800f;
 
     void Update()
     {

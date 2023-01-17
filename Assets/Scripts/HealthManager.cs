@@ -30,7 +30,6 @@ public class HealthManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
-
         }
     }
 

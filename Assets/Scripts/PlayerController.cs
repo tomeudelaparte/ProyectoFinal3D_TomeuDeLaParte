@@ -29,26 +29,39 @@ public class PlayerController : MonoBehaviour
     [Header("Control Inputs")]
     private float horizontalInput, verticalInput;
 
-    [Header("Acceleration")]
+    [Header("Thrust")]
     private bool accelerateTrigger = true;
-    private float thrustCooldownTime = 0.01f;
+    private float thrustCooldownTime = 0.001f;
 
     [Header("Repair")]
     private bool repairTrigger = true;
-    private float repairCooldownTime = 0.5f;
+    private float repairCooldownTime = 1f;
+
+    [Header("Conditionals")]
+    private bool isRepairing = false;
+
+    [Header("Visuals")]
+    private VisualEffects visualEffects;
+
+    public float axisThrust = 0;
+
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
         gunnerSystem = GetComponent<GunnerBehaviour>();
         healthManager = GetComponent<HealthManager>();
+
+        visualEffects = FindObjectOfType<VisualEffects>();
     }
 
     void Update()
     {
+        axisThrust = Input.GetAxisRaw("Thrust");
+
         Shoot();
-        Accelerate();
-        Repair();
+        ThrustSystem();
+        RepairSystem();
     }
 
     private void FixedUpdate()
@@ -58,68 +71,88 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetAxisRaw("Shoot") > 0 && gunnerSystem.shootTrigger)
+        if (Input.GetAxisRaw("Shoot") > 0)
         {
             gunnerSystem.Shoot();
         }
     }
+
     private void Movement()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        pitch = verticalInput;
-        roll = horizontalInput;
-
-        yaw = 0;
-
-        if (Input.GetKey(KeyCode.Q))
+        if (!isRepairing)
         {
-            yaw = -1f;
-        }
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            yaw = 1f;
+            pitch = verticalInput;
+            roll = horizontalInput;
+
+            yaw = 0;
+
+            if (Input.GetKey(KeyCode.Q))
+            {
+                yaw = -1f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                yaw = 1f;
+            }
+
+            playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
         }
 
         playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
-        playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
     }
 
-    private void Accelerate()
+    private void ThrustSystem()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && accelerateTrigger)
+
+        if (Input.GetAxisRaw("Thrust") < 0  && accelerateTrigger)
         {
-            if (thrust < 250)
+            if (thrust < 300)
             {
                 thrust += 1;
 
+                visualEffects.IncreaseFOV(0.1f);
+
                 StartCoroutine(ThrustCooldown());
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftControl) && accelerateTrigger)
+        if (Input.GetAxisRaw("Thrust") >= 0 && accelerateTrigger)
         {
-            if (thrust > 100)
+            if (thrust > 150)
             {
                 thrust -= 1;
+
+                visualEffects.DecreaseFOV(0.1f);
 
                 StartCoroutine(ThrustCooldown());
             }
         }
     }
 
-    private void Repair()
+    private void RepairSystem()
     {
-        if (Input.GetKey(KeyCode.X) && repairTrigger)
+        if ((Input.GetButton("Repair") || Input.GetKey(KeyCode.X)) && repairTrigger)
         {
             if (healthManager.GetCurrentHealth() < 100)
             {
-                healthManager.AddToCurrentHealth(2);
-
                 StartCoroutine(ReapairCooldown());
+
+                healthManager.AddToCurrentHealth(5);
+
+                isRepairing = true;
             }
+            else
+            {
+                isRepairing = false;
+            }
+        }
+        else
+        {
+            isRepairing = false;
         }
     }
 
@@ -135,5 +168,10 @@ public class PlayerController : MonoBehaviour
         repairTrigger = false;
         yield return new WaitForSeconds(repairCooldownTime);
         repairTrigger = true;
+    }
+
+    public float GetCurrentThrust()
+    {
+        return thrust;
     }
 }

@@ -10,23 +10,34 @@ public class GunnerBehaviour : MonoBehaviour
     public bool shootTrigger = true;
     private float shootCooldown = 0.05f;
 
+    private int currentAmmo = 100;
+    private int wastedAmmo = 0;
+
     private bool sequence = true;
+
+    public bool canShoot = true;
 
     public void Shoot()
     {
-        if (sequence)
+        if (shootTrigger)
         {
-            Instantiate(blastPrefab, weaponPosition[0].transform.position, weaponPosition[0].transform.rotation);
-            sequence = false;
+            if (sequence)
+            {
+                Instantiate(blastPrefab, weaponPosition[0].transform.position, weaponPosition[0].transform.rotation);
+                sequence = false;
 
-        }
-        else
-        {
-            Instantiate(blastPrefab, weaponPosition[1].transform.position, weaponPosition[1].transform.rotation);
-            sequence = true;
-        }
+                WastingAmmo();
+            }
+            else
+            {
+                Instantiate(blastPrefab, weaponPosition[1].transform.position, weaponPosition[1].transform.rotation);
+                sequence = true;
 
-        StartCoroutine(Cooldown());
+                WastingAmmo();
+            }
+
+            StartCoroutine(Cooldown());
+        }
     }
 
     private IEnumerator Cooldown()
@@ -34,5 +45,20 @@ public class GunnerBehaviour : MonoBehaviour
         shootTrigger = false;
         yield return new WaitForSeconds(shootCooldown);
         shootTrigger = true;
+    }
+
+    public int GetCurrentAmmo()
+    {
+        return wastedAmmo;
+    }
+
+    private void WastingAmmo()
+    {
+        wastedAmmo++;
+
+        if (wastedAmmo >= currentAmmo)
+        {
+            wastedAmmo = 0;
+        }
     }
 }
