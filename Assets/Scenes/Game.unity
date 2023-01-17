@@ -3448,6 +3448,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7020976610269647777, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020976610269647777, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7020976610269647778, guid: 7672e7e93aedf7f45b701611cb0612ff,
         type: 3}
       propertyPath: m_Name

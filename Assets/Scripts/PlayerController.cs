@@ -43,9 +43,6 @@ public class PlayerController : MonoBehaviour
     [Header("Visuals")]
     private VisualEffects visualEffects;
 
-    public float axisThrust = 0;
-
-
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -57,8 +54,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        axisThrust = Input.GetAxisRaw("Thrust");
-
         Shoot();
         ThrustSystem();
         RepairSystem();
@@ -107,26 +102,25 @@ public class PlayerController : MonoBehaviour
 
     private void ThrustSystem()
     {
-
-        if (Input.GetAxisRaw("Thrust") < 0  && accelerateTrigger)
+        if (Input.GetAxisRaw("Thrust") > 0  && accelerateTrigger)
         {
             if (thrust < 300)
             {
                 thrust += 1;
 
-                visualEffects.IncreaseFOV(0.1f);
+                visualEffects.IncreaseFOV(0.08f);
 
                 StartCoroutine(ThrustCooldown());
             }
         }
 
-        if (Input.GetAxisRaw("Thrust") >= 0 && accelerateTrigger)
+        if (Input.GetAxisRaw("Thrust") <= 0 && accelerateTrigger)
         {
             if (thrust > 150)
             {
                 thrust -= 1;
 
-                visualEffects.DecreaseFOV(0.1f);
+                visualEffects.DecreaseFOV(0.08f);
 
                 StartCoroutine(ThrustCooldown());
             }
@@ -135,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     private void RepairSystem()
     {
-        if ((Input.GetButton("Repair") || Input.GetKey(KeyCode.X)) && repairTrigger)
+        if (Input.GetButton("Repair") && repairTrigger)
         {
             if (healthManager.GetCurrentHealth() < 100)
             {
