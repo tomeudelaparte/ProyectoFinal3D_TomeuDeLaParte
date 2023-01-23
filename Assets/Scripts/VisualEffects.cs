@@ -9,12 +9,8 @@ public class VisualEffects : MonoBehaviour
     void Start()
     {
         cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        cinemachineVirtualCamera.m_Lens.FieldOfView = 75;
     }
 
     public void IncreaseFOV(float value)
