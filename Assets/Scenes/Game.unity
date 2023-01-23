@@ -3690,11 +3690,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2739612522720834891, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046234637065197887, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3046234637065197887, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046234637065197887, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_UseCustomVertexStreams
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3046234637065197887, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8100780138197919136, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
       propertyPath: m_Name
@@ -3722,6 +3742,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
+      propertyPath: UVModule.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
       propertyPath: SubModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -3742,9 +3772,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
       propertyPath: TriggerModule.primitives.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489668844991080905, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 846498d9ae2e68e4cbcbedd8e8862e86,
+        type: 3}
     - target: {fileID: 8989484920000902529, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
       propertyPath: a
@@ -3774,6 +3825,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2264084442849436279, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: UVModule.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 846498d9ae2e68e4cbcbedd8e8862e86,
+        type: 3}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByParticleSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264084442849436280, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByParticleSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7020976610269647777, guid: 7672e7e93aedf7f45b701611cb0612ff,
         type: 3}
       propertyPath: m_Interpolate
@@ -3794,6 +3901,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7020976610269647788, guid: 7672e7e93aedf7f45b701611cb0612ff,
+        type: 3}
+      propertyPath: planeExplosion
+      value: 
+      objectReference: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
+        type: 3}
     - target: {fileID: 7020976610269647790, guid: 7672e7e93aedf7f45b701611cb0612ff,
         type: 3}
       propertyPath: m_RootOrder

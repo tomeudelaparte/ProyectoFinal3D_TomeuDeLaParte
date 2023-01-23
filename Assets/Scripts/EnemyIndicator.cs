@@ -39,23 +39,23 @@ public class EnemyIndicator : MonoBehaviour
 
         GameObject point = transform.GetChild(1).gameObject;
 
-        text.fontSize = 0.01f * distance;
+        float value = 0.01f * distance;
 
-        point.transform.localScale = new Vector3(text.fontSize, text.fontSize, 0);
-
-        if (text.fontSize >= 15)
+        if (value >= 20)
         {
-            text.fontSize = 15;
-            point.transform.localScale = new Vector3(10, 10, 0);
+            text.fontSize = 20;
+            point.transform.localScale = new Vector3(15, 15, 0);
         }
-
-        if (text.fontSize <= 0)
+        else if (value <= 0)
         {
             text.fontSize = 0;
-
             point.transform.localScale = new Vector3(0, 0, 0);
         }
-
+        else
+        {
+            text.fontSize = value;
+            point.transform.localScale = new Vector3(value, value, 0);
+        }
     }
 }
 

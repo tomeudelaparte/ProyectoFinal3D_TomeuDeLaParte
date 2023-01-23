@@ -8,6 +8,8 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private int currentHealth;
 
+    public GameObject planeExplosion;
+
     private void Start()
     {
         UpdateMaxHealth(maxHealth);
@@ -29,6 +31,8 @@ public class HealthManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+
             gameObject.SetActive(false);
         }
     }
