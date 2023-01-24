@@ -5,56 +5,58 @@ using TMPro;
 
 public class EnemyIndicator : MonoBehaviour
 {
-    private GameObject mainCamera;
+    public GameObject enemy;
 
-    private GameObject enemy;
+    private GameObject mainCamera;
+    private TextMeshProUGUI textIndicator;
+    private GameObject pointIndicator;
+
+    private float distanceFromCamera, valueFromDistance;
 
     void Start()
     {
-        mainCamera = GameObject.Find("Virtual Camera");
-        enemy = GameObject.Find("Enemy");
+        mainCamera = GameObject.Find("==== VIRTUAL CAMERA ====");
     }
 
     void Update()
     {
-        Vector3 offset = new Vector3(0, 0, 0);
+        LookAtCamera();
+        ResizeToDistance();
+    }
 
-        transform.position = enemy.transform.position + offset;
+    private void LookAtCamera()
+    {
+        transform.position = enemy.transform.position;
 
         transform.LookAt(mainCamera.transform.position);
 
         transform.rotation = mainCamera.transform.rotation;
-
-
-        FontSize();
-
     }
 
-
-    private void FontSize()
+    private void ResizeToDistance()
     {
-        float distance = Vector3.Distance(mainCamera.transform.position, transform.position);
+        distanceFromCamera = Vector3.Distance(mainCamera.transform.position, transform.position);
 
-        TextMeshProUGUI text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        textIndicator = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-        GameObject point = transform.GetChild(1).gameObject;
+        pointIndicator = transform.GetChild(1).gameObject;
 
-        float value = 0.01f * distance;
+        valueFromDistance = 0.01f * distanceFromCamera;
 
-        if (value >= 20)
+        if (valueFromDistance >= 20)
         {
-            text.fontSize = 20;
-            point.transform.localScale = new Vector3(15, 15, 0);
+            textIndicator.fontSize = 20;
+            pointIndicator.transform.localScale = new Vector3(15, 15, 0);
         }
-        else if (value <= 0)
+        else if (valueFromDistance <= 0)
         {
-            text.fontSize = 0;
-            point.transform.localScale = new Vector3(0, 0, 0);
+            textIndicator.fontSize = 0;
+            pointIndicator.transform.localScale = new Vector3(0, 0, 0);
         }
         else
         {
-            text.fontSize = value;
-            point.transform.localScale = new Vector3(value, value, 0);
+            textIndicator.fontSize = valueFromDistance;
+            pointIndicator.transform.localScale = new Vector3(valueFromDistance, valueFromDistance, 0);
         }
     }
 }

@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private HealthManager healthManager;
 
     [Header("Control Inputs")]
-    private float horizontalInput, verticalInput;
+    private float horizontalInput, verticalInput, yawInput;
 
     [Header("Thrust")]
     private bool accelerateTrigger = true;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetAxisRaw("Shoot") > 0)
+        if (Input.GetAxisRaw("Shoot") > 0 || Input.GetKey(KeyCode.Space))
         {
             gunnerSystem.Shoot();
         }
@@ -78,21 +78,11 @@ public class PlayerController : MonoBehaviour
         {
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
+            yawInput = Input.GetAxis("Yaw");
 
             pitch = verticalInput;
             roll = horizontalInput;
-
-            yaw = 0;
-
-            if (Input.GetKey(KeyCode.Q))
-            {
-                yaw = -1f;
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                yaw = 1f;
-            }
+            yaw = yawInput;
 
             playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
         }
@@ -102,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void ThrustSystem()
     {
-        if (Input.GetAxisRaw("Thrust") > 0  && accelerateTrigger)
+        if ((Input.GetAxisRaw("Thrust") > 0 || Input.GetKey(KeyCode.LeftShift)) && accelerateTrigger)
         {
             if (thrust < 300)
             {
@@ -114,7 +104,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetAxisRaw("Thrust") <= 0 && accelerateTrigger)
+        if ((Input.GetAxisRaw("Thrust") <= 0 || Input.GetKey(KeyCode.LeftShift)) && accelerateTrigger)
         {
             if (thrust > 150)
             {
@@ -129,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
     private void RepairSystem()
     {
-        if (Input.GetButton("Repair") && repairTrigger)
+        if ((Input.GetButton("Repair") || Input.GetKey(KeyCode.X)) && repairTrigger)
         {
             if (healthManager.GetCurrentHealth() < 100)
             {

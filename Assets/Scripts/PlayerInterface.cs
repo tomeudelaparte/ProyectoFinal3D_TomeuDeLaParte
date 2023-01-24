@@ -16,11 +16,19 @@ public class PlayerInterface : MonoBehaviour
     public Slider sliderThrust;
     public Slider sliderAmmo;
 
+    public GameObject enemyIndicatorPrefab;
+    private GameObject[] enemyIndicators = new GameObject[4];
+    private GameObject[] enemies = new GameObject[4];
+ 
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         playerHealthManager = playerController.GetComponent<HealthManager>();
         playerGunner = playerController.GetComponent<GunnerBehaviour>();
+
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        PutIndicators();
 
         UpdateHealth();
         UpdateAcceleration();
@@ -32,6 +40,8 @@ public class PlayerInterface : MonoBehaviour
         UpdateHealth();
         UpdateAcceleration();
         UpdateAmmunation();
+
+        CheckEnemyIndicators();
     }
 
     public void UpdateHealth()
@@ -49,4 +59,33 @@ public class PlayerInterface : MonoBehaviour
     {
         sliderAmmo.value = playerGunner.GetCurrentAmmo();
     }
+
+    public void PutIndicators()
+    {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            {
+                GameObject d = Instantiate(enemyIndicatorPrefab);
+
+                d.GetComponent<EnemyIndicator>().enemy = enemies[i];
+
+                enemyIndicators[i] = d;
+            }
+        }
+    }
+
+    private void CheckEnemyIndicators()
+    {
+        for (int i = 0; i < enemyIndicators.Length; i++)
+        {
+            if (enemyIndicators[i] != null)
+            {
+                if (enemyIndicators[i].GetComponent<EnemyIndicator>().enemy == null)
+                {
+                    Destroy(enemyIndicators[i]);
+                }
+            }
+        }
+    }
+
 }

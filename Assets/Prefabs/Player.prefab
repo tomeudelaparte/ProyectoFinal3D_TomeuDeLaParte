@@ -3794,7 +3794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4125486125481634101
 Transform:
   m_ObjectHideFlags: 0
@@ -3827,7 +3827,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4000,7 +4000,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4062,7 +4062,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5149,8 +5149,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -5268,7 +5268,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 846498d9ae2e68e4cbcbedd8e8862e86, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -8547,7 +8547,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8589,7 +8589,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -8654,7 +8654,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &8100780138197919142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8669,7 +8669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planeCore: {fileID: 912771079391599254}
   thrust: 150
-  turnTorque: {x: 25, y: 10, z: 25}
+  turnTorque: {x: 30, y: 10, z: 25}
   forceMult: 100
   pitch: 0
   yaw: 0
@@ -8688,6 +8688,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
+    type: 3}
 --- !u!114 &8100780138197919141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8706,6 +8708,7 @@ MonoBehaviour:
   - {fileID: 912771078737706577}
   - {fileID: 912771079394172486}
   shootTrigger: 1
+  canShoot: 1
 --- !u!65 &8100780138197919140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8717,8 +8720,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 10, z: 15}
-  m_Center: {x: 0, y: 0, z: -1.8932972}
+  m_Size: {x: 13, y: 4, z: 9.250704}
+  m_Center: {x: 0, y: 0.5, z: -2}
 --- !u!114 &8989484920000902529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8731,4 +8734,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c7997f1cba3b048bddad9b29461287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeParticles: {fileID: 8489668844991080905}
+  smokeParticles: {fileID: 2739612522720834891}

@@ -27,13 +27,17 @@ public class HealthManager : MonoBehaviour
 
     public void DamageCharacter(int damage)
     {
-        currentHealth -= damage;
+
+        if (currentHealth > 0)
+        {
+            currentHealth -= damage;
+        }
 
         if (currentHealth <= 0)
         {
             Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
