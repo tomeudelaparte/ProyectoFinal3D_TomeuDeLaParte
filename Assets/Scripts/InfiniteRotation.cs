@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InfiniteRotation : MonoBehaviour
 {
-    private float speed = 2000f;
+    private float speed = 3000f;
 
     void Update()
     {

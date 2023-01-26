@@ -37,6 +37,8 @@ public class HealthManager : MonoBehaviour
         {
             Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
+            FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
+
             Destroy(gameObject);
         }
     }
