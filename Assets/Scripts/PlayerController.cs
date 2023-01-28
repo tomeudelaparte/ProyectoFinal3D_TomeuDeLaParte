@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void ThrustSystem()
     {
-        if ((Input.GetAxisRaw("Thrust") > 0 || Input.GetKey(KeyCode.LeftShift)) && accelerateTrigger)
+        if ((Input.GetAxisRaw("Thrust") > 0 || Input.GetKey(KeyCode.W)) && accelerateTrigger)
         {
             if (thrust < 300)
             {
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if ((Input.GetAxisRaw("Thrust") <= 0 || Input.GetKey(KeyCode.LeftShift)) && accelerateTrigger)
+        if ((Input.GetAxisRaw("Thrust") <= 0 || Input.GetKey(KeyCode.W)) && accelerateTrigger)
         {
             if (thrust > 150)
             {
