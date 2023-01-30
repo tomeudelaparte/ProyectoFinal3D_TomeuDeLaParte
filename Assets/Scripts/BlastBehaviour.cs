@@ -6,11 +6,10 @@ public class BlastBehaviour : MonoBehaviour
 {
     public int blastID = 0;
 
-    private int damage = 5;
+    public GameObject blastPlaneExplosion;
+    public GameObject blastGroundExplosion;
 
-
-    public GameObject blastExplosion;
-
+    private int damage = 0;
     private float speed = 800f;
 
     void Update()
@@ -22,7 +21,7 @@ public class BlastBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Instantiate(blastExplosion, transform.position, transform.rotation);
+            Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
             Destroy(gameObject);
         }
@@ -31,11 +30,16 @@ public class BlastBehaviour : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<HealthManager>().DamageCharacter(damage);
+                damage = 5;
 
-                Instantiate(blastExplosion, transform.position, transform.rotation);
+                DamagePlane(other);
+            }
 
-                Destroy(gameObject);
+            if (other.gameObject.CompareTag("Boss"))
+            {
+                damage = 1;
+
+                DamageZeppelin(other);
             }
         }
 
@@ -43,13 +47,26 @@ public class BlastBehaviour : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                other.gameObject.GetComponent<HealthManager>().DamageCharacter(damage);
-
-                Instantiate(blastExplosion, transform.position, transform.rotation);
-
-                Destroy(gameObject);
+                DamagePlane(other);
             }
         }
+    }
 
+    private void DamagePlane(Collider other)
+    {
+        other.gameObject.GetComponent<HealthManager>().DamageCharacter(damage);
+
+        Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
+
+        Destroy(gameObject);
+    }
+
+    private void DamageZeppelin(Collider other)
+    {
+        other.gameObject.GetComponent<ZeppelinStuff>().DamageCharacter(damage);
+
+        Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

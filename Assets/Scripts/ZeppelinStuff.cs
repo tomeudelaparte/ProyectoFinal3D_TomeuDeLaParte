@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class ZeppelinStuff : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    private Zeppelin zeppelin;
+
+
+
+    [SerializeField] private int maxHealth = 500;
 
     [SerializeField] private int currentHealth;
 
@@ -12,6 +16,8 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
+        zeppelin = FindObjectOfType<Zeppelin>();
+
         UpdateMaxHealth(maxHealth);
     }
 
@@ -35,6 +41,7 @@ public class HealthManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+
             DestroyPlane();
         }
     }
@@ -45,17 +52,9 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            DestroyPlane();
-        }
-    }
-
     private void DestroyPlane()
     {
-        Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+        //Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
         FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
 

@@ -17,12 +17,12 @@ public class CanonBall : MonoBehaviour
 
         player = FindObjectOfType<PlayerController>();
 
-        rb.AddRelativeForce(Vector3.forward * 30000, ForceMode.Impulse);
+        rb.AddRelativeForce(Vector3.forward * 10000*3, ForceMode.Impulse);
         rb.AddRelativeForce(Vector3.up * 2000, ForceMode.Impulse);
 
 
         float distance = Vector3.Distance(player.planeCore.position, transform.position);
-        timer = distance / 190;
+        timer = distance / 1000;
 
         if(timer > 3)
         {

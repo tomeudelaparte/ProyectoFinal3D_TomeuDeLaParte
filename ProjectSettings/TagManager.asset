@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Enemy
   - Blast
+  - Boss
   layers:
   - Default
   - TransparentFX

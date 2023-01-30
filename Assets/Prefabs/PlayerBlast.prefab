@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blastID: 0
-  blastExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
+  blastPlaneExplosion: {fileID: 2827983410564270571, guid: 4d1e81fff2b2c1644b15b9e6f4f10a3e,
+    type: 3}
+  blastGroundExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
     type: 3}
 --- !u!114 &3522516621106287146
 MonoBehaviour:
