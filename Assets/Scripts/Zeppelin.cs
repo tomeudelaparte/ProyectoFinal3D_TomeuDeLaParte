@@ -7,14 +7,12 @@ public class Zeppelin : MonoBehaviour
     public GameObject control;
     public GameObject motor01;
     public GameObject motor02;
-    public GameObject canon01;
-    public GameObject canon02;
+    public GameObject turret;
 
     [SerializeField] public bool isControlDestroyed = false;
     [SerializeField] public bool isMotor01Destroyed = false;
     [SerializeField] public bool isMotor02Destroyed = false;
-    [SerializeField] public bool isCanon01Destroyed = false;
-    [SerializeField] public bool isCanon02Destroyed = false;
+    [SerializeField] public bool isTurretDestroyed = false;
 
     private GameManager gameManager;
 
@@ -33,10 +31,9 @@ public class Zeppelin : MonoBehaviour
         CheckControl();
         CheckMotor01();
         CheckMotor02();
-        CheckCanon01();
-        CheckCanon02();
+        CheckTurret();
 
-        if (isControlDestroyed && isMotor01Destroyed && isMotor02Destroyed && isCanon01Destroyed && isCanon02Destroyed)
+        if (isControlDestroyed && isMotor01Destroyed && isMotor02Destroyed && isTurretDestroyed)
         {
             gameManager.CompleteObjective01();
         }
@@ -66,19 +63,11 @@ public class Zeppelin : MonoBehaviour
         }
     }
 
-    private void CheckCanon01()
+    private void CheckTurret()
     {
-        if (canon01.gameObject == null && !isCanon01Destroyed)
+        if (turret.gameObject == null && !isTurretDestroyed)
         {
-            Canon01Destroyed();
-        }
-    }
-
-    private void CheckCanon02()
-    {
-        if (canon02.gameObject == null && !isCanon02Destroyed)
-        {
-            Canon02Destroyed();
+            TurretDestroyed();
         }
     }
 
@@ -97,13 +86,9 @@ public class Zeppelin : MonoBehaviour
         isMotor02Destroyed = true;
     }
 
-    private void Canon01Destroyed()
+    private void TurretDestroyed()
     {
-        isCanon01Destroyed = true;
+        isTurretDestroyed = true;
     }
 
-    private void Canon02Destroyed()
-    {
-        isCanon02Destroyed = true;
-    }
 }

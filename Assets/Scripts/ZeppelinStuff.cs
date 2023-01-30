@@ -8,7 +8,7 @@ public class ZeppelinStuff : MonoBehaviour
 
 
 
-    [SerializeField] private int maxHealth = 500;
+    [SerializeField] private int maxHealth = 200;
 
     [SerializeField] private int currentHealth;
 
