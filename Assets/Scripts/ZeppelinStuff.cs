@@ -7,12 +7,17 @@ public class ZeppelinStuff : MonoBehaviour
     private Zeppelin zeppelin;
 
 
-
+    [SerializeField] private int id;
     [SerializeField] private int maxHealth = 200;
 
     [SerializeField] private int currentHealth;
 
     public GameObject planeExplosion;
+
+    public GameObject smoke01;
+    public GameObject smoke02;
+
+    private bool destroyed = false;
 
     private void Start()
     {
@@ -33,7 +38,6 @@ public class ZeppelinStuff : MonoBehaviour
 
     public void DamageCharacter(int damage)
     {
-
         if (currentHealth > 0)
         {
             currentHealth -= damage;
@@ -41,7 +45,6 @@ public class ZeppelinStuff : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-
             DestroyPlane();
         }
     }
@@ -54,10 +57,52 @@ public class ZeppelinStuff : MonoBehaviour
 
     private void DestroyPlane()
     {
-        //Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+        if (!destroyed)
+        {
+            Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
-        FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
+            SmokeActive();
+            IsDestroyed();
 
-        Destroy(gameObject);
+            FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
+        }
+    }
+
+    private void SmokeActive()
+    {
+        if (smoke01 != null)
+        {
+            smoke01.gameObject.SetActive(true);
+        }
+
+        if (smoke02 != null)
+        {
+            smoke02.gameObject.SetActive(true);
+        }
+    }
+
+    private void IsDestroyed()
+    {
+        if (id == 1)
+        {
+            zeppelin.ControlDestroyed();
+        }
+
+        if (id == 2)
+        {
+            zeppelin.TurretDestroyed();
+        }
+        if (id == 3)
+        {
+            zeppelin.Motor01Destroyed();
+        }
+        if (id == 4)
+        {
+            zeppelin.Motor02Destroyed();
+        }
+
+        destroyed = true;
     }
 }
+
+
