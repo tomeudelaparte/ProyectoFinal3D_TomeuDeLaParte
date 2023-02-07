@@ -60,9 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d4ceb149188c45a2c87bf33343e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  id: 3
+  maxHealth: 100
   currentHealth: 0
-  planeExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
+  planeExplosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
     type: 3}
   smoke01: {fileID: 6455013721288899232}
   smoke02: {fileID: 2391840494842928871}
@@ -325,9 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d4ceb149188c45a2c87bf33343e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  id: 1
+  maxHealth: 100
   currentHealth: 0
-  planeExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
+  planeExplosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
     type: 3}
   smoke01: {fileID: 8078422958639656355}
   smoke02: {fileID: 0}
@@ -1076,6 +1078,7 @@ GameObject:
   - component: {fileID: 4401363300652713549}
   - component: {fileID: 1055536309693273889}
   - component: {fileID: 8815937282218880109}
+  - component: {fileID: 1012043514}
   m_Layer: 0
   m_Name: Gunner
   m_TagString: Untagged
@@ -1164,6 +1167,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1532155807541134762, guid: f69400c943c0d1b4a876fa5867d00f3f, type: 3}
+--- !u!114 &1012043514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385027057107938454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a40173c000d3a4e8a6bfa1e1ec4fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  blastPrefab: {fileID: 8394655113297379209, guid: 63d07650e03181e479e238b3e70b401a,
+    type: 3}
+  weaponPosition:
+  - {fileID: 8207093539004357643}
+  - {fileID: 5984023458865519003}
 --- !u!1 &4604208101204938236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,10 +1671,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5984023458865519003}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1226817584057097758, guid: f69400c943c0d1b4a876fa5867d00f3f, type: 3}
 --- !u!1 &6319578918010974867
@@ -1945,9 +1968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d4ceb149188c45a2c87bf33343e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  id: 2
+  maxHealth: 100
   currentHealth: 0
-  planeExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
+  planeExplosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
     type: 3}
   smoke01: {fileID: 2391840493495250994}
   smoke02: {fileID: 2391840494623223858}
@@ -2043,10 +2067,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8207093539004357643}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8211372540250625004, guid: f69400c943c0d1b4a876fa5867d00f3f, type: 3}
 --- !u!1 &8253245462073376329
@@ -2476,9 +2500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d4ceb149188c45a2c87bf33343e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  id: 4
+  maxHealth: 100
   currentHealth: 0
-  planeExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
+  planeExplosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
     type: 3}
   smoke01: {fileID: 7625949242607115621}
   smoke02: {fileID: 0}
@@ -2661,6 +2686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586803070114605918, guid: 477363763a2315d40ba115e04a255cca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6656683726478996125, guid: 477363763a2315d40ba115e04a255cca,
         type: 3}
@@ -2934,6 +2964,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke
       objectReference: {fileID: 0}
+    - target: {fileID: 6586803070114605918, guid: 477363763a2315d40ba115e04a255cca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6656683726478996125, guid: 477363763a2315d40ba115e04a255cca,
         type: 3}
       propertyPath: lengthInSec
@@ -3069,6 +3104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586803070114605918, guid: 477363763a2315d40ba115e04a255cca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6656683726478996125, guid: 477363763a2315d40ba115e04a255cca,
         type: 3}

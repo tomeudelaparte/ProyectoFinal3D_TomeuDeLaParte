@@ -15,8 +15,6 @@ public class GunnerBehaviour : MonoBehaviour
 
     private bool sequence = true;
 
-    public bool canShoot = true;
-
     public void Shoot()
     {
         if (shootTrigger)

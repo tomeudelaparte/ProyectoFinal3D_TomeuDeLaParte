@@ -756,7 +756,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 200000
-  field of view: 75
+  field of view: 84.20021
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -2463,7 +2463,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1255344717}
   m_Follow: {fileID: 1255344717}
   m_Lens:
-    FieldOfView: 75
+    FieldOfView: 84.20021
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 200000
@@ -2916,6 +2916,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ==== PLAYER ====
       objectReference: {fileID: 0}
+    - target: {fileID: 8100780138197919136, guid: 2042032eaea12fd44a7baf52a0848f45,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2042032eaea12fd44a7baf52a0848f45, type: 3}
 --- !u!1001 &7020976610055688854
@@ -2994,90 +2999,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 14814457}
     m_Modifications:
-    - target: {fileID: 2391840494842928871, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6455013721288899232, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7625949242607115621, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8546118978135304048, guid: 3ce2933261c6e054294ff3517fe80db6,
         type: 3}
       propertyPath: m_Name
       value: Zeppelin
       objectReference: {fileID: 0}
-    - target: {fileID: 8815937280958465932, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: id
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937280958465932, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937280958465932, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: planeExplosion
-      value: 
-      objectReference: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
-        type: 3}
-    - target: {fileID: 8815937281308013097, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: id
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937281308013097, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937281308013097, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: planeExplosion
-      value: 
-      objectReference: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
-        type: 3}
-    - target: {fileID: 8815937282226342001, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: id
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937282226342001, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937282226342001, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: planeExplosion
-      value: 
-      objectReference: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
-        type: 3}
-    - target: {fileID: 8815937282726794483, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937282726794483, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815937282726794483, guid: 3ce2933261c6e054294ff3517fe80db6,
-        type: 3}
-      propertyPath: planeExplosion
-      value: 
-      objectReference: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
-        type: 3}
     - target: {fileID: 9066371959529078218, guid: 3ce2933261c6e054294ff3517fe80db6,
         type: 3}
       propertyPath: m_RootOrder

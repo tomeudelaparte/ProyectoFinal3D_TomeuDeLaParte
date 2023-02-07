@@ -7,7 +7,7 @@ public class CanonBall : MonoBehaviour
     private PlayerController player;
     private Rigidbody rb;
 
-    private float timer = 2f;
+    private float timer = 5f;
 
     public GameObject canonballExplosion;
 
@@ -17,20 +17,17 @@ public class CanonBall : MonoBehaviour
 
         player = FindObjectOfType<PlayerController>();
 
-        rb.AddRelativeForce(Vector3.forward * 10000*3, ForceMode.Impulse);
-        rb.AddRelativeForce(Vector3.up * 2000, ForceMode.Impulse);
-
+        rb.AddRelativeForce(Vector3.forward * 10000 * 10, ForceMode.Impulse);
 
         float distance = Vector3.Distance(player.planeCore.position, transform.position);
-        timer = distance / 1000;
+        timer = distance / 1200;
 
-        if(timer > 3)
+        if (timer > 5)
         {
-            timer = 3;
+            timer = 5;
         }
 
         StartCoroutine(ExplosionTimer());
-
     }
 
     private IEnumerator ExplosionTimer()
@@ -39,6 +36,12 @@ public class CanonBall : MonoBehaviour
 
         Instantiate(canonballExplosion, transform.position, transform.rotation);
 
-        Destroy(gameObject);
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+
+        gameObject.GetComponent<Renderer>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+
+        Destroy(gameObject, 3);
     }
 }
