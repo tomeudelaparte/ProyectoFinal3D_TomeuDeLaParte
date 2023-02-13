@@ -20,6 +20,7 @@ public class PlayerInterface : MonoBehaviour
     private GameObject[] enemyIndicators = new GameObject[4];
     private GameObject[] enemies = new GameObject[4];
  
+    private int lastHealthValue = 100;
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -46,8 +47,14 @@ public class PlayerInterface : MonoBehaviour
 
     public void UpdateHealth()
     {
-        sliderHealth.value = playerHealthManager.GetCurrentHealth();
-        textHealth.text = playerHealthManager.GetCurrentHealth().ToString();
+        if (playerHealthManager.GetCurrentHealth() != lastHealthValue)
+        {
+            sliderHealth.value = playerHealthManager.GetCurrentHealth();
+
+            textHealth.text = playerHealthManager.GetCurrentHealth().ToString();
+        }
+
+        lastHealthValue = playerHealthManager.GetCurrentHealth();
     }
 
     public void UpdateAcceleration()
@@ -87,5 +94,4 @@ public class PlayerInterface : MonoBehaviour
             }
         }
     }
-
 }

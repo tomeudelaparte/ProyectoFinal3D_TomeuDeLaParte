@@ -15,6 +15,11 @@ public class HealthManager : MonoBehaviour
         UpdateMaxHealth(maxHealth);
     }
 
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public int GetCurrentHealth()
     {
         return currentHealth;

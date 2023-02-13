@@ -756,13 +756,13 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 200000
-  field of view: 75
+  field of view: 75.88002
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2045,7 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.7160446, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2463,7 +2463,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1255344717}
   m_Follow: {fileID: 1255344717}
   m_Lens:
-    FieldOfView: 75
+    FieldOfView: 75.88002
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 200000

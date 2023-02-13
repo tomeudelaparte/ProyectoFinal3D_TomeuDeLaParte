@@ -38,13 +38,13 @@ public class Turret : MonoBehaviour
         if (!negativeRotation)
         {
             rotationClampX = (transform.localEulerAngles.x <= 0) ? 0 : transform.localEulerAngles.x;
-            rotationClampX = (transform.localEulerAngles.x >= 40) ? 40 : transform.localEulerAngles.x;
+            rotationClampX = (transform.localEulerAngles.x >= 45) ? 45 : transform.localEulerAngles.x;
         }
 
         if (negativeRotation)
         {
-            rotationClampX = (transform.localEulerAngles.x >= 0) ? 0 : transform.localEulerAngles.x;
-            rotationClampX = (transform.localEulerAngles.x <= -40) ? transform.localEulerAngles.x - 270 : transform.localEulerAngles.x;
+            rotationClampX = (transform.localEulerAngles.x >= 360) ? 360 : transform.localEulerAngles.x;
+            rotationClampX = (transform.localEulerAngles.x <= 315) ? 315 : transform.localEulerAngles.x;
         }
 
         transform.localEulerAngles = new Vector3(rotationClampX, transform.localEulerAngles.y, 0);

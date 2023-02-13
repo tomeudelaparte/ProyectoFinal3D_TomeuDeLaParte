@@ -47,6 +47,8 @@ public class BlastBehaviour : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                damage = 5;
+
                 DamagePlane(other);
             }
         }
