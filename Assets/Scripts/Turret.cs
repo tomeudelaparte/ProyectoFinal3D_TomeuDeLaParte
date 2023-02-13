@@ -9,6 +9,8 @@ public class Turret : MonoBehaviour
     public GameObject blastPrefab;
     public GameObject[] weaponPosition;
 
+    public bool negativeRotation = false;
+
     private bool shootTrigger = true;
     private float shootCooldown = 2f;
 
@@ -33,7 +35,17 @@ public class Turret : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
 
-        rotationClampX = Mathf.Clamp(transform.localEulerAngles.x, 0, 40f);
+        if (!negativeRotation)
+        {
+            rotationClampX = (transform.localEulerAngles.x <= 0) ? 0 : transform.localEulerAngles.x;
+            rotationClampX = (transform.localEulerAngles.x >= 40) ? 40 : transform.localEulerAngles.x;
+        }
+
+        if (negativeRotation)
+        {
+            rotationClampX = (transform.localEulerAngles.x >= 0) ? 0 : transform.localEulerAngles.x;
+            rotationClampX = (transform.localEulerAngles.x <= -40) ? transform.localEulerAngles.x - 270 : transform.localEulerAngles.x;
+        }
 
         transform.localEulerAngles = new Vector3(rotationClampX, transform.localEulerAngles.y, 0);
     }
@@ -47,11 +59,17 @@ public class Turret : MonoBehaviour
                 if (sequence)
                 {
                     Instantiate(blastPrefab, weaponPosition[0].transform.position, weaponPosition[0].transform.rotation);
+
+                    weaponPosition[0].GetComponentInParent<Animator>().Play("CanonShoot");
+
                     sequence = false;
                 }
                 else
                 {
                     Instantiate(blastPrefab, weaponPosition[1].transform.position, weaponPosition[1].transform.rotation);
+
+                    weaponPosition[1].GetComponentInParent<Animator>().Play("CanonShoot");
+
                     sequence = true;
                 }
 
