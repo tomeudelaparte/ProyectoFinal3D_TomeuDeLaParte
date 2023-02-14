@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8394655113297379206}
   - component: {fileID: 8394655113297379207}
   - component: {fileID: 8394655113297379208}
-  - component: {fileID: 4094209667956009279}
   - component: {fileID: -5231889941837891294}
   - component: {fileID: 2054187239629403001}
+  - component: {fileID: 3823863768450410673}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -200,20 +200,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &4094209667956009279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8394655113297379209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5a1f6330735a14c993131d8a2ef749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canonballExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
-    type: 3}
 --- !u!54 &-5231889941837891294
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -243,3 +229,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3823863768450410673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394655113297379209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5a1f6330735a14c993131d8a2ef749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canonballExplosion: {fileID: 2827983410564270571, guid: 1c732d794e7564b47bf239346e86879d,
+    type: 3}

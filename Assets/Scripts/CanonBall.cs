@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Canonball : MonoBehaviour
+public class CanonBall : MonoBehaviour
 {
     private PlayerController player;
     private Rigidbody rb;
