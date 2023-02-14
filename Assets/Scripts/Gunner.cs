@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunnerBehaviour : MonoBehaviour
+public class Gunner : MonoBehaviour
 {
     public GameObject blastPrefab;
     public GameObject[] weaponPosition;
@@ -10,8 +10,8 @@ public class GunnerBehaviour : MonoBehaviour
     public bool shootTrigger = true;
     private float shootCooldown = 0.05f;
 
-    private int maxAmmo = 100;
-    private int currentAmmo = 100;
+    private int maxAmmo = 200;
+    private int currentAmmo = 200;
     private float reloadingTime = 5;
     private bool isReloading = false;
 
@@ -65,7 +65,12 @@ public class GunnerBehaviour : MonoBehaviour
 
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reloading());
+            Reload();
         }
+    }
+
+    public void Reload()
+    {
+        StartCoroutine(Reloading());
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlastBehaviour : MonoBehaviour
+public class Blast : MonoBehaviour
 {
     public int blastID = 0;
 
@@ -65,7 +65,7 @@ public class BlastBehaviour : MonoBehaviour
 
     private void DamageZeppelin(Collider other)
     {
-        other.gameObject.GetComponent<ZeppelinStuff>().DamageCharacter(damage);
+        other.gameObject.GetComponent<ZeppelinObjective>().DamageCharacter(damage);
 
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 

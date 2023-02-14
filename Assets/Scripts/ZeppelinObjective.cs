@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZeppelinStuff : MonoBehaviour
+public class ZeppelinObjective : MonoBehaviour
 {
     private Zeppelin zeppelin;
-
 
     [SerializeField] private int id;
     [SerializeField] private int maxHealth = 200;
 
     [SerializeField] private int currentHealth;
 
-    public GameObject planeExplosion;
+    public GameObject explosion;
 
     public GameObject smoke01;
     public GameObject smoke02;
@@ -59,7 +58,7 @@ public class ZeppelinStuff : MonoBehaviour
     {
         if (!destroyed)
         {
-            Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+            Instantiate(explosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
             SmokeActive();
             IsDestroyed();

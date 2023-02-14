@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public TextMeshProUGUI textObjective01, textObjective02;
+
     [SerializeField] private bool isObjective01Completed = false;
     [SerializeField] private bool isObjective02Completed = false;
 

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanonBall : MonoBehaviour
+public class Canonball : MonoBehaviour
 {
     private PlayerController player;
     private Rigidbody rb;
 
+    private int damage = 10;
     private float timer = 5f;
 
     public GameObject canonballExplosion;
@@ -40,8 +41,28 @@ public class CanonBall : MonoBehaviour
         rb.velocity = Vector3.zero;
 
         gameObject.GetComponent<Renderer>().enabled = false;
-        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponents<Collider>()[0].enabled = false;
+
+        StartCoroutine(Damage());
 
         Destroy(gameObject, 3);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<HealthManager>().DamageCharacter(damage);
+        }
+    }
+
+    private IEnumerator Damage()
+    {
+        gameObject.GetComponents<Collider>()[1].enabled = true;
+
+        yield return new WaitForSeconds(0.1f);
+
+        gameObject.GetComponents<Collider>()[1].enabled = false;
     }
 }

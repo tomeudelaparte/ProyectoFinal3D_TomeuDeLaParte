@@ -8,7 +8,7 @@ public class PlayerInterface : MonoBehaviour
 {
     private PlayerController playerController;
     private HealthManager playerHealthManager;
-    private GunnerBehaviour playerGunner;
+    private Gunner playerGunner;
 
     public Slider sliderHealth;
     public TextMeshProUGUI textHealth;
@@ -25,7 +25,7 @@ public class PlayerInterface : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         playerHealthManager = playerController.GetComponent<HealthManager>();
-        playerGunner = playerController.GetComponent<GunnerBehaviour>();
+        playerGunner = playerController.GetComponent<Gunner>();
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 

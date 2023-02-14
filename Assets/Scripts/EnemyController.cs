@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private float forceMult = 100f;
 
     [Header("Gunner System")]
-    private GunnerBehaviour gunnerSystem;
+    private Gunner gunnerSystem;
 
     [Header("Player Position")]
     private Transform playerCore;
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
-        gunnerSystem = GetComponent<GunnerBehaviour>();
+        gunnerSystem = GetComponent<Gunner>();
 
         playerCore = FindObjectOfType<PlayerController>().planeCore;
     }
@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
-        if (gunnerSystem.shootTrigger && enemyRaycast.GetComponent<RaycastSystem>().isColliding)
+        if (gunnerSystem.shootTrigger && enemyRaycast.GetComponent<RaycastCustom>().isColliding)
         {
             gunnerSystem.Shoot();
         }

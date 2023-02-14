@@ -5425,7 +5425,6 @@ GameObject:
   - component: {fileID: 7020976609398746053}
   - component: {fileID: 7020976609398746048}
   - component: {fileID: 7020976609398746051}
-  - component: {fileID: 7020976609398746050}
   m_Layer: 0
   m_Name: Aleta (4)
   m_TagString: Untagged
@@ -5498,18 +5497,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7020976609398746050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7020976609398746052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2e1afe814d9f1a48b714ae5cc3ae3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7020976609444815010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,9 +6617,9 @@ GameObject:
   - component: {fileID: 7020976610269647777}
   - component: {fileID: 7020976610269647779}
   - component: {fileID: 7020976610269647788}
-  - component: {fileID: 7020976610269647791}
   - component: {fileID: 7020976610269647789}
   - component: {fileID: 1587687788}
+  - component: {fileID: 358228765602920219}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -6709,25 +6696,6 @@ MonoBehaviour:
   currentHealth: 0
   planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
     type: 3}
---- !u!114 &7020976610269647791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7020976610269647778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3bebc2f8327c34a870b184c37e527d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blastPrefab: {fileID: 3425775583419513724, guid: 43b24e432df3de64690134c30576fb06,
-    type: 3}
-  weaponPosition:
-  - {fileID: 7020976610726320330}
-  - {fileID: 7020976609389310941}
-  shootTrigger: 1
-  canShoot: 1
 --- !u!65 &7020976610269647789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6754,6 +6722,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeParticles: {fileID: 2264084442849436277}
+--- !u!114 &358228765602920219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020976610269647778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947fe25992c454248ac39081873bca5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blastPrefab: {fileID: 3425775583419513724, guid: 43b24e432df3de64690134c30576fb06,
+    type: 3}
+  weaponPosition:
+  - {fileID: 7020976610726320330}
+  - {fileID: 7020976609389310941}
+  shootTrigger: 1
 --- !u!1 &7020976610275120134
 GameObject:
   m_ObjectHideFlags: 0
@@ -7510,6 +7496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7020976610686923000}
+  - component: {fileID: 8205004552622345584}
   m_Layer: 0
   m_Name: Propeller
   m_TagString: Untagged
@@ -7534,6 +7521,26 @@ Transform:
   m_Father: {fileID: 7020976609227257784}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8205004552622345584
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020976610686923003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f2901c558815314f9bd72cc91bb79df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7020976610714321701
 GameObject:
   m_ObjectHideFlags: 0

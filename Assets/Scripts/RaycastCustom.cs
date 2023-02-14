@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastSystem : MonoBehaviour
+public class RaycastCustom : MonoBehaviour
 {
     public bool isColliding;
 

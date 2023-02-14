@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(-1f, 1f)] private float roll = 0f;
 
     [Header("Gunner System")]
-    private GunnerBehaviour gunnerSystem;
+    private Gunner gunnerSystem;
 
     [Header("Rigidbody")]
     private Rigidbody playerRigidbody;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        gunnerSystem = GetComponent<GunnerBehaviour>();
+        gunnerSystem = GetComponent<Gunner>();
         healthManager = GetComponent<HealthManager>();
 
         visualEffects = FindObjectOfType<VisualEffects>();
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
         Shoot();
         ThrustSystem();
         RepairSystem();
+        ReloadingSystem();
     }
 
     private void FixedUpdate()
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetAxisRaw("Shoot") > 0 || Input.GetKey(KeyCode.Space))
+        if (Input.GetAxisRaw("Shoot") > 0 || Input.GetKey(KeyCode.Space) && repairTrigger)
         {
             gunnerSystem.Shoot();
         }
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        if (!isRepairing)
+        if (repairTrigger)
         {
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
@@ -126,17 +127,15 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ReapairCooldown());
 
                 healthManager.AddToCurrentHealth(5);
-
-                isRepairing = true;
-            }
-            else
-            {
-                isRepairing = false;
             }
         }
-        else
+    }
+
+    private void ReloadingSystem()
+    {
+        if ((Input.GetButton("Reloading") || Input.GetKey(KeyCode.R)))
         {
-            isRepairing = false;
+            gunnerSystem.Reload();
         }
     }
 
