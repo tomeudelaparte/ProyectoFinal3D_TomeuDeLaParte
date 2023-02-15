@@ -15,12 +15,12 @@ public class PlayerInterface : MonoBehaviour
 
     public Slider sliderThrust;
     public Slider sliderAmmo;
+    public TextMeshProUGUI textAmmo;
 
     public GameObject enemyIndicatorPrefab;
     private GameObject[] enemyIndicators = new GameObject[4];
     private GameObject[] enemies = new GameObject[4];
- 
-    private int lastHealthValue = 100;
+
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -47,14 +47,9 @@ public class PlayerInterface : MonoBehaviour
 
     public void UpdateHealth()
     {
-        if (playerHealthManager.GetCurrentHealth() != lastHealthValue)
-        {
-            sliderHealth.value = playerHealthManager.GetCurrentHealth();
+        sliderHealth.value = playerHealthManager.GetCurrentHealth();
 
-            textHealth.text = playerHealthManager.GetCurrentHealth().ToString();
-        }
-
-        lastHealthValue = playerHealthManager.GetCurrentHealth();
+        textHealth.text = playerHealthManager.GetCurrentHealth() + "%";
     }
 
     public void UpdateAcceleration()
@@ -65,6 +60,8 @@ public class PlayerInterface : MonoBehaviour
     public void UpdateAmmunation()
     {
         sliderAmmo.value = playerGunner.GetCurrentAmmo();
+
+        textAmmo.text = playerGunner.GetCurrentAmmo().ToString();
     }
 
     public void PutIndicators()
