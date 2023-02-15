@@ -16,6 +16,8 @@ public class PlayerInterface : MonoBehaviour
     public Slider sliderThrust;
     public Slider sliderAmmo;
     public TextMeshProUGUI textAmmo;
+    public Image reloadingImage;
+    public TextMeshProUGUI repairingMessage;
 
     public GameObject enemyIndicatorPrefab;
     private GameObject[] enemyIndicators = new GameObject[4];
@@ -34,6 +36,9 @@ public class PlayerInterface : MonoBehaviour
         UpdateHealth();
         UpdateAcceleration();
         UpdateAmmunation();
+
+        StopReloading();
+        StopRepairing();
     }
 
     private void Update()
@@ -63,6 +68,30 @@ public class PlayerInterface : MonoBehaviour
 
         textAmmo.text = playerGunner.GetCurrentAmmo().ToString();
     }
+
+    public void StartReloading()
+    {
+        textAmmo.gameObject.SetActive(false);
+
+        reloadingImage.gameObject.SetActive(true);
+    }
+
+    public void StopReloading()
+    {
+        textAmmo.gameObject.SetActive(true);
+        reloadingImage.gameObject.SetActive(false);
+    }
+
+    public void StartRepairing()
+    {
+        repairingMessage.gameObject.SetActive(true);
+    }
+
+    public void StopRepairing()
+    {
+        repairingMessage.gameObject.SetActive(false);
+    }
+
 
     public void PutIndicators()
     {

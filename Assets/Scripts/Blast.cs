@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Blast : MonoBehaviour
 {
-    public int blastID = 0;
+    public bool isPlayer = false;
 
     public GameObject blastPlaneExplosion;
     public GameObject blastGroundExplosion;
 
+    private VisualEffects visualEffects;
+
     private int damage = 0;
     private float speed = 800f;
+
+    [Header("Sounds")]
+    private SoundEffects soundEffects;
+
+    private void Start()
+    {
+        visualEffects = FindObjectOfType<VisualEffects>();
+        soundEffects = FindObjectOfType<SoundEffects>();
+
+    }
 
     void Update()
     {
@@ -26,11 +38,13 @@ public class Blast : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (blastID == 0)
+        if (isPlayer)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
                 damage = 5;
+
+                soundEffects.PlaytHit();
 
                 DamagePlane(other);
             }
@@ -39,15 +53,21 @@ public class Blast : MonoBehaviour
             {
                 damage = 1;
 
+                soundEffects.PlaytHit();
+
                 DamageZeppelin(other);
             }
         }
 
-        if (blastID == 1)
+        if (!isPlayer)
         {
             if (other.gameObject.CompareTag("Player"))
             {
                 damage = 5;
+
+                soundEffects.PlayImpact();
+
+                visualEffects.GetComponent<Animator>().Play("Hit");
 
                 DamagePlane(other);
             }

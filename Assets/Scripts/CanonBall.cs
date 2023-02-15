@@ -7,16 +7,23 @@ public class CanonBall : MonoBehaviour
     private PlayerController player;
     private Rigidbody rb;
 
+    private VisualEffects visualEffects;
+
     private int damage = 10;
     private float timer = 5f;
 
     public GameObject canonballExplosion;
+
+    [Header("Sounds")]
+    private SoundEffects soundEffects;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         player = FindObjectOfType<PlayerController>();
+        visualEffects = FindObjectOfType<VisualEffects>();
+        soundEffects = FindObjectOfType<SoundEffects>();
 
         rb.AddRelativeForce(Vector3.forward * 10000 * 10, ForceMode.Impulse);
 
@@ -53,6 +60,10 @@ public class CanonBall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            visualEffects.GetComponent<Animator>().Play("Hit");
+            
+            soundEffects.PlayImpact();
+
             other.GetComponent<HealthManager>().DamageCharacter(damage);
         }
     }

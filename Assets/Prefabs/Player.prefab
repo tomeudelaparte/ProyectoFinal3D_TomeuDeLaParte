@@ -4093,9 +4093,9 @@ GameObject:
   - component: {fileID: 8100780138197919138}
   - component: {fileID: 8100780138197919142}
   - component: {fileID: 8100780138197919067}
-  - component: {fileID: 7789341315295117969}
+  - component: {fileID: 1754345092}
   - component: {fileID: 1974591516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4181,11 +4181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7e4eac245da84f9a32c404c9e0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   maxHealth: 100
   currentHealth: 0
   planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
     type: 3}
---- !u!114 &7789341315295117969
+--- !u!114 &1754345092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4197,6 +4198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947fe25992c454248ac39081873bca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   blastPrefab: {fileID: 3425775583419513724, guid: 9b8248f081769c84dbb9bd90e8823c47,
     type: 3}
   weaponPosition:

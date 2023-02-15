@@ -37,11 +37,14 @@ public class PlayerController : MonoBehaviour
     private bool repairTrigger = true;
     private float repairCooldownTime = 1f;
 
-    [Header("Conditionals")]
-    private bool isRepairing = false;
-
     [Header("Visuals")]
     private VisualEffects visualEffects;
+
+    [Header("Sounds")]
+    private SoundEffects soundEffects;
+
+    [Header("Interface")]
+    private PlayerInterface playerInterface;
 
     private void Awake()
     {
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
         healthManager = GetComponent<HealthManager>();
 
         visualEffects = FindObjectOfType<VisualEffects>();
+        soundEffects = FindObjectOfType<SoundEffects>();
+        playerInterface = FindObjectOfType<PlayerInterface>();
     }
 
     void Update()
@@ -120,20 +125,26 @@ public class PlayerController : MonoBehaviour
 
     private void RepairSystem()
     {
+        IEnumerator co = ReapairCooldown();
+
         if ((Input.GetButton("Repair") || Input.GetKey(KeyCode.X)) && repairTrigger)
         {
+
             if (healthManager.GetCurrentHealth() < 100)
             {
-                StartCoroutine(ReapairCooldown());
-
-                healthManager.AddToCurrentHealth(5);
+                StartCoroutine(co);
             }
+        }
+
+        if ((Input.GetButtonUp("Repair") || Input.GetKeyUp(KeyCode.X)) && repairTrigger)
+        {
+            StopCoroutine(co);
         }
     }
 
     private void ReloadingSystem()
     {
-        if ((Input.GetButton("Reloading") || Input.GetKey(KeyCode.R)))
+        if ((Input.GetButtonDown("Reloading") || Input.GetKeyDown(KeyCode.R)))
         {
             gunnerSystem.Reload();
         }
@@ -148,9 +159,17 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ReapairCooldown()
     {
+        soundEffects.StartReapairing();
+        playerInterface.StartRepairing();
+
         repairTrigger = false;
         yield return new WaitForSeconds(repairCooldownTime);
         repairTrigger = true;
+
+        healthManager.AddToCurrentHealth(5);
+
+        soundEffects.StopReapairing();
+        playerInterface.StopRepairing();
     }
 
     public float GetCurrentThrust()

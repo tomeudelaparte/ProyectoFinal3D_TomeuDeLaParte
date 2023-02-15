@@ -6734,6 +6734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947fe25992c454248ac39081873bca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idGunner: 1
   blastPrefab: {fileID: 3425775583419513724, guid: 43b24e432df3de64690134c30576fb06,
     type: 3}
   weaponPosition:
@@ -7609,7 +7610,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 800
+  MaxDistance: 1000
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

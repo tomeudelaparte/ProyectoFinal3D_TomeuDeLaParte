@@ -40,9 +40,9 @@ public class EnemyIndicator : MonoBehaviour
 
         valueFromDistance = 0.1f * distanceFromCamera;
 
-        if (valueFromDistance >= 100)
+        if (valueFromDistance >= 60)
         {
-            pointIndicator.transform.localScale = new Vector3(100, 100, 0);
+            pointIndicator.transform.localScale = new Vector3(60, 60, 0);
         }
         else if (valueFromDistance <= 20)
         {
@@ -50,13 +50,18 @@ public class EnemyIndicator : MonoBehaviour
         }
         else
         {
-            /*pointIndicator.GetComponent<Image>().color = new Vector4(
-    pointIndicator.GetComponent<Image>().color.r,
-    pointIndicator.GetComponent<Image>().color.g,
-    pointIndicator.GetComponent<Image>().color.b, valueFromDistance);*/
-
             pointIndicator.transform.localScale = new Vector3(valueFromDistance, valueFromDistance, 0);
         }
+
+        ChangeTransparency(valueFromDistance / 200);
+    }
+
+    private void ChangeTransparency(float value)
+    {
+        pointIndicator.GetComponent<Image>().color = new Vector4(
+       pointIndicator.GetComponent<Image>().color.r,
+       pointIndicator.GetComponent<Image>().color.g,
+       pointIndicator.GetComponent<Image>().color.b, value);
     }
 }
 

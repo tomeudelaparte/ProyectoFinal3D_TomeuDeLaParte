@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gunner : MonoBehaviour
 {
+    public bool isPlayer = false;
+
     public GameObject blastPrefab;
     public GameObject[] weaponPosition;
 
@@ -16,6 +18,19 @@ public class Gunner : MonoBehaviour
     private bool isReloading = false;
 
     private bool sequence = true;
+
+    [Header("Sounds")]
+    private SoundEffects soundEffects;
+
+    [Header("Interface")]
+    private PlayerInterface playerInterface;
+
+    private void Start()
+    {
+        soundEffects = FindObjectOfType<SoundEffects>();
+        playerInterface = FindObjectOfType<PlayerInterface>();
+
+    }
 
     public void Shoot()
     {
@@ -47,9 +62,24 @@ public class Gunner : MonoBehaviour
 
     private IEnumerator Reloading()
     {
+
+        if (isPlayer)
+        {
+            soundEffects.StartReloading();
+
+            playerInterface.StartReloading();
+        }
+
         isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
         isReloading = false;
+
+        if (isPlayer)
+        {
+            soundEffects.StopReloading();
+
+            playerInterface.StopReloading();
+        }
 
         currentAmmo = maxAmmo;
     }
