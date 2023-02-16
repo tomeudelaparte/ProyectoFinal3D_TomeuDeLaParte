@@ -101,6 +101,9 @@ public class Gunner : MonoBehaviour
 
     public void Reload()
     {
-        StartCoroutine(Reloading());
+        if (currentAmmo < maxAmmo)
+        {
+            StartCoroutine(Reloading());
+        }
     }
 }

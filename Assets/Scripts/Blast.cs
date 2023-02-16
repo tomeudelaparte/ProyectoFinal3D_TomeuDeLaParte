@@ -71,6 +71,11 @@ public class Blast : MonoBehaviour
 
                 DamagePlane(other);
             }
+
+            if (other.gameObject.CompareTag("Boss"))
+            {
+                DamageZeppelin(other);
+            }
         }
     }
 
@@ -85,7 +90,10 @@ public class Blast : MonoBehaviour
 
     private void DamageZeppelin(Collider other)
     {
-        other.gameObject.GetComponent<ZeppelinObjective>().DamageCharacter(damage);
+        if (isPlayer)
+        {
+            other.gameObject.GetComponent<ZeppelinObjective>().DamageCharacter(damage);
+        }
 
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 
