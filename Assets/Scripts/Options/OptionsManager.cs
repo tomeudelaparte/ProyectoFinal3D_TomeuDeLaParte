@@ -6,8 +6,7 @@ using System.Linq;
 
 public class OptionsManager : MonoBehaviour
 {
-    public GameObject framerateCounterUI;
-    public TextMeshProUGUI frameLimitUI;
+    public TextMeshProUGUI frameLimitText;
 
     private Resolution[] resolutions;
 
@@ -105,15 +104,9 @@ public class OptionsManager : MonoBehaviour
         Application.targetFrameRate = frames;
     }
 
-    // Activa el contador de frames
-    public void SetFramerateShow(bool isOn)
+    // Actualiza el número de frames límite del slider
+    public void UpdateFrameSliderText(float frames)
     {
-        framerateCounterUI.SetActive(isOn);
-    }
-
-    // Actualiza el numero de frames limite del slider
-    public void UpdateFramerateSlider(float frames)
-    {
-        frameLimitUI.text = frames.ToString();
+        frameLimitText.text = frames.ToString();
     }
 }

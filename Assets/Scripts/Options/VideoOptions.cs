@@ -17,14 +17,12 @@ public class VideoOptions : MonoBehaviour
     public TMP_Dropdown dropdownResolutionsUI;
     public Toggle toggleVerticalSyncUI;
     public Slider sliderFramerateLimitUI;
-    public Toggle toggleFramerateShowUI;
 
     [Header("DEFAULT SETTINGS")]
     private int displayModeIndex = 0;
     private int resolutionIndex = 0;
     private bool verticalSyncOn = false;
     private float framesLimitSize = 60f;
-    private bool showFramesOn = false;
 
     void Start()
     {
@@ -45,7 +43,6 @@ public class VideoOptions : MonoBehaviour
         GetResolutionsList();
         GetVerticalSync();
         GetFramerateLimit();
-        GetFramerateShow();
     }
 
     // Obtiene la opcion DisplayMode
@@ -100,22 +97,6 @@ public class VideoOptions : MonoBehaviour
         sliderFramerateLimitUI.value = dataPersistence.GetInt("FPS LIMIT");
     }
 
-    // Obtiene la opcion FramerateShow
-    private void GetFramerateShow()
-    {
-        // Si no existe, guarda un valor predeterminado
-        if (!dataPersistence.HasKey("SHOW FPS"))
-        {
-            SetFramerateShow(showFramesOn);
-        }
-
-        // Obtiene el valor guardado
-        toggleFramerateShowUI.isOn = dataPersistence.GetBool("SHOW FPS");
-
-        // Activa la opcion segun el valor
-        settingsManager.SetFramerateShow(toggleFramerateShowUI.isOn);
-    }
-
     // Setea la opcion DisplayMode
     public void SetDisplayModeList(int index)
     {
@@ -160,15 +141,5 @@ public class VideoOptions : MonoBehaviour
 
         // Guarda la opcion
         dataPersistence.SetInt("FPS LIMIT", (int)size);
-    }
-
-    // Setea la opcion FramerateShow
-    public void SetFramerateShow(bool isOn)
-    {
-        // Activa la opcion
-        settingsManager.SetFramerateShow(isOn);
-
-        // Guarda la opcion
-        dataPersistence.SetBool("SHOW FPS", isOn);
     }
 }

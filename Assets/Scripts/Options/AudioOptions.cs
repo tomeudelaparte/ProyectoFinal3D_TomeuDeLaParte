@@ -11,7 +11,7 @@ public class AudioOptions : MonoBehaviour
     private DataPersistence dataPersistence;
 
     [Header("AUDIO SETTINGS")]
-    public Slider generalSlider;
+    public Slider masterSlider;
     public Slider musicSlider;
     public Slider effectSlider;
 
@@ -19,7 +19,7 @@ public class AudioOptions : MonoBehaviour
     public AudioMixer audioMixer;
 
     [Header("DEFAULT AUDIO SETTINGS")]
-    private float DefaultGeneralVolume = 1f;
+    private float DefaultMasterVolume = 1f;
     private float DefaultMusicVolume = 1f;
     private float DefaultEffectsVolume = 1f;
 
@@ -34,22 +34,22 @@ public class AudioOptions : MonoBehaviour
     // Load the settings
     private void LoadSavedSettings()
     {
-        GetGeneralVolume();
+        GetMasterVolume();
         GetMusicVolume();
         GetEffectsVolume();
     }
 
     // Gets the General Volume option
-    public void GetGeneralVolume()
+    public void GetMasterVolume()
     {
         // If it does not exist, stores a default value
-        if (!dataPersistence.HasKey("General Volume"))
+        if (!dataPersistence.HasKey("Master Volume"))
         {
-            SetGeneralVolume(DefaultGeneralVolume);
+            SetMasterVolume(DefaultMasterVolume);
         }
 
         // Gets the saved value
-        generalSlider.value = dataPersistence.GetFloat("General Volume");
+        masterSlider.value = dataPersistence.GetFloat("Master Volume");
     }
 
     // Gets the Music Volume option.
@@ -79,13 +79,13 @@ public class AudioOptions : MonoBehaviour
     }
 
     // Sets the General Volume option.
-    public void SetGeneralVolume(float volume)
+    public void SetMasterVolume(float volume)
     {
         // Change the volume in the AudioMixer
-        audioMixer.SetFloat("General Volume", Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat("Master Volume", Mathf.Log10(volume) * 20);
 
         // Save the option
-        dataPersistence.SetFloat("General Volume", volume);
+        dataPersistence.SetFloat("Master Volume", volume);
     }
 
     // Set the Music Volume option.
