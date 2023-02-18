@@ -4205,6 +4205,7 @@ MonoBehaviour:
   - {fileID: 912771078737706577}
   - {fileID: 912771079394172486}
   shootTrigger: 1
+  isReloading: 0
 --- !u!82 &1974591516
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4214,7 +4215,8 @@ AudioSource:
   m_GameObject: {fileID: 8100780138197919136}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8416200463572561939, guid: 4f566859d84ff2f4da90200477f0ecee,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7c2d946868df40d408b9e6c6d035c1b5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

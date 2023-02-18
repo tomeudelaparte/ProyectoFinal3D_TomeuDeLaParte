@@ -15,7 +15,7 @@ public class Gunner : MonoBehaviour
     private int maxAmmo = 200;
     private int currentAmmo = 200;
     private float reloadingTime = 5;
-    private bool isReloading = false;
+    public bool isReloading = false;
 
     private bool sequence = true;
 
@@ -63,25 +63,28 @@ public class Gunner : MonoBehaviour
     private IEnumerator Reloading()
     {
 
-        if (isPlayer)
+        if (!isReloading)
         {
-            soundEffects.StartReloading();
+            if (isPlayer)
+            {
+                soundEffects.StartReloading();
 
-            playerInterface.StartReloading();
+                playerInterface.StartReloading();
+            }
+
+            isReloading = true;
+            yield return new WaitForSeconds(reloadingTime);
+            isReloading = false;
+
+            if (isPlayer)
+            {
+                soundEffects.StopReloading();
+
+                playerInterface.StopReloading();
+            }
+
+            currentAmmo = maxAmmo;
         }
-
-        isReloading = true;
-        yield return new WaitForSeconds(reloadingTime);
-        isReloading = false;
-
-        if (isPlayer)
-        {
-            soundEffects.StopReloading();
-
-            playerInterface.StopReloading();
-        }
-
-        currentAmmo = maxAmmo;
     }
 
     public int GetCurrentAmmo()

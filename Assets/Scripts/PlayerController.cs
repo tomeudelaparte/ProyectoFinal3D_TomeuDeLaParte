@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingSystem()
     {
-        if ((Input.GetButtonDown("Reloading") || Input.GetKeyDown(KeyCode.R)))
+        if (Input.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
         {
             gunnerSystem.Reload();
         }

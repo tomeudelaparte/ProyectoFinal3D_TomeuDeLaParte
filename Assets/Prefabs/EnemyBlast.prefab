@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed76c0080da91a48a32c023dc22e4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastID: 1
+  isPlayer: 0
   blastPlaneExplosion: {fileID: 2827983410564270571, guid: 4d1e81fff2b2c1644b15b9e6f4f10a3e,
     type: 3}
   blastGroundExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
@@ -156,7 +156,8 @@ AudioSource:
   m_GameObject: {fileID: 3425775583419513724}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8416200463572561939, guid: 4f566859d84ff2f4da90200477f0ecee,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 2ce2c40027f13a446b1e3a23bf343b37, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8

@@ -6692,6 +6692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7e4eac245da84f9a32c404c9e0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   maxHealth: 100
   currentHealth: 0
   planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
@@ -6734,13 +6735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947fe25992c454248ac39081873bca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idGunner: 1
+  isPlayer: 0
   blastPrefab: {fileID: 3425775583419513724, guid: 43b24e432df3de64690134c30576fb06,
     type: 3}
   weaponPosition:
   - {fileID: 7020976610726320330}
   - {fileID: 7020976609389310941}
   shootTrigger: 1
+  isReloading: 0
 --- !u!1 &7020976610275120134
 GameObject:
   m_ObjectHideFlags: 0
@@ -7598,7 +7600,8 @@ AudioSource:
   m_GameObject: {fileID: 7020976610714321701}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8416200463572561939, guid: 4f566859d84ff2f4da90200477f0ecee,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7c2d946868df40d408b9e6c6d035c1b5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5

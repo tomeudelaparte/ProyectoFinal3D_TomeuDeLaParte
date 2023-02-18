@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isObjective01Completed = false;
     [SerializeField] private bool isObjective02Completed = false;
 
+    public bool isPaused = false;
+
     private void Update()
     {
         MissionComplete();
