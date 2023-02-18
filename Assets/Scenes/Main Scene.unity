@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 201763533}
   - component: {fileID: 201763535}
   - component: {fileID: 201763534}
+  - component: {fileID: 201763536}
   m_Layer: 5
   m_Name: LOGO
   m_TagString: Untagged
@@ -199,6 +200,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201763532}
   m_CullTransparentMesh: 1
+--- !u!95 &201763536
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201763532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a88f68fbb96b0847a9fb18472ffedc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &202690254
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb2afadea869dc64d80a73f83e297863, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d11d5f3cd3668c4c9b880d329a2d506, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2869,7 +2890,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3458,7 +3479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f17d14ea170b5d64d8f831153fa7036e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f499c1cc3c3c3d49bb21fc5d20d1a38, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3534,7 +3555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7011b6566473749449672a2dbd2e941c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b18a689c20664544dbeba97902b399a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
