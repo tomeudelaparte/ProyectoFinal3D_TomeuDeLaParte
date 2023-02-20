@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     private HealthManager healthManager;
 
     [Header("Control Inputs")]
-    private float horizontalInput, verticalInput, yawInput;
+    [SerializeField] private float horizontalInput, verticalInput, yawInput;
+    private PlayerInput playerInput;
 
     [Header("Thrust")]
     private bool accelerateTrigger = true;
@@ -56,23 +57,28 @@ public class PlayerController : MonoBehaviour
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
     }
+    private void OnShoot(InputValue value)
+    {
+        Shoot();
+    }
 
     void Update()
     {
-        Shoot();
+        /*
         ThrustSystem();
         RepairSystem();
         ReloadingSystem();
+        */
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        //Movement();
     }
 
     private void Shoot()
     {
-        if (Input.GetAxisRaw("Shoot") > 0 || Input.GetKey(KeyCode.Space) && repairTrigger)
+        if (repairTrigger)
         {
             gunnerSystem.Shoot();
         }
