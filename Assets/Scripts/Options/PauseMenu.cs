@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,17 +11,19 @@ public class PauseMenu : MonoBehaviour
     public Button returnButtonPause;
 
     private GameManager gameManager;
+    private PlayerInput playerInput;
 
     private AudioSource[] audioSources;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        playerInput = FindObjectOfType<PlayerInput>();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.Escape))
+        if (playerInput.actions["Pause"].IsPressed())
         {
             if (!gameManager.isPaused)
             {
@@ -31,6 +34,7 @@ public class PauseMenu : MonoBehaviour
                 UnpauseGame();
             }
         }
+        
     }
 
     private void PauseGame()

@@ -8,6 +8,7 @@ public class Blast : MonoBehaviour
 
     public GameObject blastPlaneExplosion;
     public GameObject blastGroundExplosion;
+    public GameObject hitmarkerAudio;
 
     private VisualEffects visualEffects;
 
@@ -21,7 +22,6 @@ public class Blast : MonoBehaviour
     {
         visualEffects = FindObjectOfType<VisualEffects>();
         soundEffects = FindObjectOfType<SoundEffects>();
-
     }
 
     void Update()
@@ -42,18 +42,18 @@ public class Blast : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                damage = 5;
+                Instantiate(hitmarkerAudio, transform.position, transform.rotation);
 
-                soundEffects.PlaytHit();
+                damage = 5;
 
                 DamagePlane(other);
             }
 
             if (other.gameObject.CompareTag("Boss"))
             {
-                damage = 1;
+                Instantiate(hitmarkerAudio, transform.position, transform.rotation);
 
-                soundEffects.PlaytHit();
+                damage = 1;
 
                 DamageZeppelin(other);
             }

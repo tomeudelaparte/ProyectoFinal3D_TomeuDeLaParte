@@ -105,6 +105,8 @@ MonoBehaviour:
     type: 3}
   blastGroundExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
     type: 3}
+  hitmarkerAudio: {fileID: 3246174423874449630, guid: 5e27e3b25b5316d4f935f3a72279dda0,
+    type: 3}
 --- !u!114 &3522516621106287146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48afd1619c17c7448976322c829b28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 5
 --- !u!54 &2563918375388046486
 Rigidbody:
   m_ObjectHideFlags: 0

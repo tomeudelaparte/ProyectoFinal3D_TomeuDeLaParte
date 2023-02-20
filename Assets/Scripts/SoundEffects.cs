@@ -41,13 +41,8 @@ public class SoundEffects : MonoBehaviour
     ////////////////////////////////////////////////////
 
 
-    public void PlaytHit()
-    {
-        soundEffects[2].Play();
-    }
-
     public void PlayImpact()
     {
-        soundEffects[3].Play();
+        soundEffects[2].Play();
     }
 }

@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     private HealthManager healthManager;
 
     [Header("Control Inputs")]
-    [SerializeField] private float horizontalInput, verticalInput, yawInput;
     private PlayerInput playerInput;
 
     [Header("Thrust")]
@@ -49,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        playerInput = FindObjectOfType<PlayerInput>();
+
         playerRigidbody = GetComponent<Rigidbody>();
         gunnerSystem = GetComponent<Gunner>();
         healthManager = GetComponent<HealthManager>();
@@ -57,28 +58,23 @@ public class PlayerController : MonoBehaviour
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
     }
-    private void OnShoot(InputValue value)
-    {
-        Shoot();
-    }
 
     void Update()
     {
-        /*
+        Shoot();
         ThrustSystem();
         RepairSystem();
         ReloadingSystem();
-        */
     }
 
     private void FixedUpdate()
     {
-        //Movement();
+        Movement();
     }
 
     private void Shoot()
     {
-        if (repairTrigger)
+        if (playerInput.actions["Shoot"].IsPressed() && repairTrigger)
         {
             gunnerSystem.Shoot();
         }
@@ -88,13 +84,9 @@ public class PlayerController : MonoBehaviour
     {
         if (repairTrigger)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-            yawInput = Input.GetAxis("Yaw");
-
-            pitch = verticalInput;
-            roll = horizontalInput;
-            yaw = yawInput;
+            roll = playerInput.actions["Horizontal"].ReadValue<float>();
+            pitch = playerInput.actions["Vertical"].ReadValue<float>();
+            yaw = playerInput.actions["Yaw"].ReadValue<float>();;
 
             playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
         }
@@ -104,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     private void ThrustSystem()
     {
-        if ((Input.GetAxisRaw("Thrust") > 0 || Input.GetKey(KeyCode.W)) && accelerateTrigger)
+        if (playerInput.actions["Thrust"].IsPressed() && accelerateTrigger)
         {
             if (thrust < 300)
             {
@@ -115,8 +107,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ThrustCooldown());
             }
         }
-
-        if ((Input.GetAxisRaw("Thrust") <= 0 || Input.GetKey(KeyCode.W)) && accelerateTrigger)
+        else
         {
             if (thrust > 150)
             {
@@ -133,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         IEnumerator co = ReapairCooldown();
 
-        if ((Input.GetButton("Repair") || Input.GetKey(KeyCode.X)) && repairTrigger)
+        if (playerInput.actions["Repair"].IsPressed() && repairTrigger)
         {
 
             if (healthManager.GetCurrentHealth() < 100)
@@ -142,7 +133,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if ((Input.GetButtonUp("Repair") || Input.GetKeyUp(KeyCode.X)) && repairTrigger)
+        if (!playerInput.actions["Repair"].IsPressed() && repairTrigger)
         {
             StopCoroutine(co);
         }
@@ -150,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingSystem()
     {
-        if (Input.GetButtonDown("Reload") || Input.GetKeyDown(KeyCode.R))
+        if (playerInput.actions["Reload"].IsPressed())
         {
             gunnerSystem.Reload();
         }
