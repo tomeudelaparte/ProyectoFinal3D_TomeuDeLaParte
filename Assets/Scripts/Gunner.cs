@@ -29,7 +29,6 @@ public class Gunner : MonoBehaviour
     {
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
-
     }
 
     public void Shoot()

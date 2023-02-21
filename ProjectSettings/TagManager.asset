@@ -7,7 +7,6 @@ TagManager:
   - Ground
   - Enemy
   - Blast
-  - Boss
   - Zeppelin
   layers:
   - Default

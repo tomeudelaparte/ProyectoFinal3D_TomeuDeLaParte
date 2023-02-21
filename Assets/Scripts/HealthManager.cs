@@ -95,9 +95,21 @@ public class HealthManager : MonoBehaviour
         {
             gameManager.StormCrowDestroyed();
 
+            UnparentSmoke();
+
             FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
         }
 
         Destroy(gameObject);
+    }
+
+    private void UnparentSmoke()
+    {
+        GameObject smoke = gameObject.transform.Find("Smoke").gameObject;
+
+        smoke.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        smoke.transform.parent = null;
+
+        Destroy(smoke, 20f);
     }
 }

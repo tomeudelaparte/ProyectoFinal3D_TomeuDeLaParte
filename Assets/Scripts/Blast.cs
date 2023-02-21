@@ -18,10 +18,14 @@ public class Blast : MonoBehaviour
     [Header("Sounds")]
     private SoundEffects soundEffects;
 
+    [Header("Feedback")]
+    private PlayerInterface playerInterface;
+
     private void Start()
     {
         visualEffects = FindObjectOfType<VisualEffects>();
         soundEffects = FindObjectOfType<SoundEffects>();
+        playerInterface = FindObjectOfType<PlayerInterface>();
     }
 
     void Update()
@@ -33,7 +37,7 @@ public class Blast : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Instantiate(blastGroundExplosion, transform.position, transform.rotation);
+            Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 
             Destroy(gameObject);
         }
@@ -44,16 +48,23 @@ public class Blast : MonoBehaviour
             {
                 Instantiate(hitmarkerAudio, transform.position, transform.rotation);
 
+                playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
+
                 damage = 5;
 
                 DamagePlane(other);
             }
 
-            if (other.gameObject.CompareTag("Boss"))
+            if (other.gameObject.CompareTag("Zeppelin"))
             {
-                Instantiate(hitmarkerAudio, transform.position, transform.rotation);
+                if (!other.gameObject.GetComponent<Zeppelin>().isDestroyed)
+                {
+                    Instantiate(hitmarkerAudio, transform.position, transform.rotation);
 
-                damage = 1;
+                    playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
+
+                    damage = 1;
+                }
 
                 DamageZeppelin(other);
             }
@@ -72,7 +83,7 @@ public class Blast : MonoBehaviour
                 DamagePlane(other);
             }
 
-            if (other.gameObject.CompareTag("Boss"))
+            if (other.gameObject.CompareTag("Zeppelin"))
             {
                 DamageZeppelin(other);
             }

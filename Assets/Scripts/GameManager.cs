@@ -18,53 +18,64 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    private PlayerInterface playerInterface;
+
     private SceneManagement sceneManagement;
 
     private void Start()
     {
         sceneManagement = FindObjectOfType<SceneManagement>();
+        playerInterface = FindObjectOfType<PlayerInterface>();
 
         totalZeppelingObjectives = FindObjectsOfType<EnemyController>().Length;
         totalStormCrows = FindObjectsOfType<Zeppelin>().Length;
-    }
-
-    public void ZeppelinObjectiveDestroyed()
-    {
-        destroyedZeppelingObjectives++;
-
-        CheckZeppelinObjectives();
     }
 
     public void StormCrowDestroyed()
     {
         destroyedStowmCrows++;
 
+        playerInterface.Objective01();
+
         CheckStormCrows();
+    }
+
+    public void ZeppelinObjectiveDestroyed()
+    {
+        destroyedZeppelingObjectives++;
+
+        playerInterface.Objective02();
+
+        CheckZeppelinObjectives();
     }
 
     private void CheckStormCrows()
     {
-        textObjective01.text = destroyedStowmCrows + "/" + totalStormCrows;
+        textObjective01.text = "Eliminate the Storm Crows " + destroyedStowmCrows + "/" + totalStormCrows;
 
         if (totalStormCrows == destroyedStowmCrows)
         {
+            playerInterface.Objective01Complete();
+
             CompleteObjective01();
         }
     }
 
     private void CheckZeppelinObjectives()
     {
-        textObjective02.text = destroyedZeppelingObjectives + "/" + totalZeppelingObjectives;
+        textObjective02.text = "Destroy the Baron's Zeppelin " + destroyedZeppelingObjectives + "/" + totalZeppelingObjectives;
 
         if (totalZeppelingObjectives == destroyedZeppelingObjectives)
         {
+            playerInterface.Objective02Complete();
+
             CompleteObjective02();
         }
     }
 
     private void CheckMission()
     {
-        if(isObjective01Completed && isObjective02Completed)
+        if (isObjective01Completed && isObjective02Completed)
         {
             MissionComplete();
         }

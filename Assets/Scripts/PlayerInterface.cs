@@ -6,10 +6,6 @@ using TMPro;
 
 public class PlayerInterface : MonoBehaviour
 {
-    private PlayerController playerController;
-    private HealthManager playerHealthManager;
-    private Gunner playerGunner;
-
     public Slider sliderHealth;
     public TextMeshProUGUI textHealth;
 
@@ -20,8 +16,15 @@ public class PlayerInterface : MonoBehaviour
     public TextMeshProUGUI repairingMessage;
 
     public GameObject enemyIndicatorPrefab;
+
+    public GameObject objective01Text, objective02Text;
+
     private GameObject[] enemyIndicators = new GameObject[4];
     private GameObject[] enemies = new GameObject[4];
+
+    private PlayerController playerController;
+    private HealthManager playerHealthManager;
+    private Gunner playerGunner;
 
     void Start()
     {
@@ -92,6 +95,25 @@ public class PlayerInterface : MonoBehaviour
         repairingMessage.gameObject.SetActive(false);
     }
 
+    public void Objective01()
+    {
+        objective01Text.GetComponent<Animator>().Play("Objective", -1, 0.0f);
+    }
+
+    public void Objective02()
+    {
+        objective02Text.GetComponent<Animator>().Play("Objective", -1, 0.0f);
+    }
+
+    public void Objective01Complete()
+    {
+        objective01Text.GetComponent<Animator>().Play("ObjectiveComplete");
+    }
+
+    public void Objective02Complete()
+    {
+        objective02Text.GetComponent<Animator>().Play("ObjectiveComplete");
+    }
 
     public void PutIndicators()
     {

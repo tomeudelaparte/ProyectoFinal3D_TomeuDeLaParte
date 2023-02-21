@@ -23,11 +23,10 @@ public class SmokeBehaviour : MonoBehaviour
 
         var main = smokePs.main;
 
-        if(value<1)
+        if (value < 1)
         {
             smokeParticles.SetActive(true);
         }
-
 
         main.startColor = new Color(value, value, value);
     }
