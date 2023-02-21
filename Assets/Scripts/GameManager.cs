@@ -10,25 +10,77 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isObjective01Completed = false;
     [SerializeField] private bool isObjective02Completed = false;
 
+    private int totalStormCrows;
+    private int destroyedStowmCrows = 0;
+
+    private int totalZeppelingObjectives;
+    private int destroyedZeppelingObjectives = 0;
+
     public bool isPaused = false;
 
-    private void Update()
+    private SceneManagement sceneManagement;
+
+    private void Start()
     {
-        MissionComplete();
-        MissionFailed();
+        sceneManagement = FindObjectOfType<SceneManagement>();
+
+        totalZeppelingObjectives = FindObjectsOfType<EnemyController>().Length;
+        totalStormCrows = FindObjectsOfType<Zeppelin>().Length;
+    }
+
+    public void ZeppelinObjectiveDestroyed()
+    {
+        destroyedZeppelingObjectives++;
+
+        CheckZeppelinObjectives();
+    }
+
+    public void StormCrowDestroyed()
+    {
+        destroyedStowmCrows++;
+
+        CheckStormCrows();
+    }
+
+    private void CheckStormCrows()
+    {
+        textObjective01.text = destroyedStowmCrows + "/" + totalStormCrows;
+
+        if (totalStormCrows == destroyedStowmCrows)
+        {
+            CompleteObjective01();
+        }
+    }
+
+    private void CheckZeppelinObjectives()
+    {
+        textObjective02.text = destroyedZeppelingObjectives + "/" + totalZeppelingObjectives;
+
+        if (totalZeppelingObjectives == destroyedZeppelingObjectives)
+        {
+            CompleteObjective02();
+        }
+    }
+
+    private void CheckMission()
+    {
+        if(isObjective01Completed && isObjective02Completed)
+        {
+            MissionComplete();
+        }
     }
 
     private void MissionComplete()
     {
         if (isObjective01Completed & isObjective02Completed)
         {
-            Debug.Log("MISSION COMPLETE");
+            sceneManagement.LoadScene("Mission Complete");
         }
     }
 
-    private void MissionFailed()
+    public void MissionFailed()
     {
-
+        sceneManagement.LoadScene("Mission Failed");
     }
 
     public void CompleteObjective01()
@@ -36,6 +88,8 @@ public class GameManager : MonoBehaviour
         if (!isObjective01Completed)
         {
             isObjective01Completed = true;
+
+            CheckMission();
         }
     }
 
@@ -44,6 +98,8 @@ public class GameManager : MonoBehaviour
         if (!isObjective02Completed)
         {
             isObjective02Completed = true;
+
+            CheckMission();
         }
     }
 }

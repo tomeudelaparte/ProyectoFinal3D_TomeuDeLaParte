@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingSystem()
     {
-        if (playerInput.actions["Reload"].IsPressed())
+        if (playerInput.actions["Reload"].triggered)
         {
             gunnerSystem.Reload();
         }

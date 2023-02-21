@@ -4,55 +4,88 @@ using UnityEngine;
 
 public class Zeppelin : MonoBehaviour
 {
-    public GameObject control;
-    public GameObject motor01;
-    public GameObject motor02;
-    public GameObject turret;
+    [SerializeField] private int id;
+    [SerializeField] private int maxHealth = 200;
 
-    [SerializeField] public bool isControlDestroyed = false;
-    [SerializeField] public bool isMotor01Destroyed = false;
-    [SerializeField] public bool isMotor02Destroyed = false;
-    [SerializeField] public bool isTurretDestroyed = false;
+    [SerializeField] private int currentHealth;
+
+    public GameObject explosion;
+
+    public GameObject smoke01;
+    public GameObject smoke02;
+
+    public bool isDestroyed = false;
 
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        
+        UpdateMaxHealth(maxHealth);
     }
 
-    private void Update()
+    public int GetCurrentHealth()
     {
-        CheckStatus();
+        return currentHealth;
     }
 
-    private void CheckStatus()
+    public void AddToCurrentHealth(int value)
     {
-        if (isControlDestroyed && isMotor01Destroyed && isMotor02Destroyed && isTurretDestroyed)
+        currentHealth += value;
+    }
+
+    public void DamageCharacter(int damage)
+    {
+        if (currentHealth > 0)
         {
-            gameManager.CompleteObjective01();
+            currentHealth -= damage;
+        }
+
+        if (currentHealth <= 0)
+        {
+            DestroyPlane();
         }
     }
 
-
-    public void ControlDestroyed()
+    public void UpdateMaxHealth(int newMaxHealth)
     {
-        isControlDestroyed = true;
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth;
     }
 
-    public void Motor01Destroyed()
+    private void DestroyPlane()
     {
-        isMotor01Destroyed = true;
+        if (!isDestroyed)
+        {
+            Instantiate(explosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+
+            SmokeActive();
+            IsDestroyed();
+
+            FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
+        }
     }
 
-    public void Motor02Destroyed()
+    private void SmokeActive()
     {
-        isMotor02Destroyed = true;
+        if (smoke01 != null)
+        {
+            smoke01.gameObject.SetActive(true);
+        }
+
+        if (smoke02 != null)
+        {
+            smoke02.gameObject.SetActive(true);
+        }
     }
 
-    public void TurretDestroyed()
+    private void IsDestroyed()
     {
-        isTurretDestroyed = true;
-    }
+        isDestroyed = true;
 
+        gameManager.ZeppelinObjectiveDestroyed();
+    }
 }
+
+

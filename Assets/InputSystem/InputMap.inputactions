@@ -74,7 +74,7 @@
                     "id": "af5257c6-9f57-4bf2-8dd7-75441bf11634",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(pressPoint=1.401298E-45,behavior=1)",
+                    "interactions": "Press(pressPoint=1.401298E-45)",
                     "initialStateCheck": false
                 }
             ],
@@ -83,6 +83,17 @@
                     "name": "",
                     "id": "763c40f1-d935-4569-a73f-30ce5aff9693",
                     "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca93a0de-ca87-4f7b-b8ed-8cb41d8f502c",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -103,8 +114,30 @@
                 },
                 {
                     "name": "",
+                    "id": "476596e2-4bf3-43a2-8048-a4d27d6052dd",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2fbf9dc3-1b59-42f0-abab-24e6896efdcb",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "812a90f1-951d-4bba-abdf-6a119b860844",
+                    "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -125,8 +158,30 @@
                 },
                 {
                     "name": "",
+                    "id": "5f30b66a-136e-4dc0-9666-7966b4b9f7ef",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Repair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6d2fb4df-cb1f-484b-b7eb-f84d1ea63ff7",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "223cc714-0dcf-45b4-91cd-1084c22968eb",
+                    "path": "<XInputController>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -168,6 +223,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Gamepad",
+                    "id": "c6cc69ea-2dae-481b-9aba-7bafcd7a7c1d",
+                    "path": "1DAxis",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "54235d99-0a2e-4430-bcea-e36c3f6be828",
+                    "path": "<XInputController>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "e1d4f3e8-544d-49a1-95fc-cbbd5dfbaf74",
+                    "path": "<XInputController>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Keyboard",
                     "id": "3ec6d0a2-5a1e-4b0f-93ef-c2457c9e342d",
                     "path": "1DAxis",
@@ -201,6 +289,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Gamepad",
+                    "id": "4602af23-e939-4447-ad96-0c3f6562830e",
+                    "path": "1DAxis",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "7c20f1b0-9cfb-43f4-ab1f-b7fb43df3866",
+                    "path": "<XInputController>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "2f366429-4673-46c2-b06a-b3f746746f4b",
+                    "path": "<XInputController>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Keyboard",
                     "id": "3b7175ae-4d13-45f5-bbbd-e47a701cb445",
                     "path": "1DAxis",
@@ -226,6 +347,39 @@
                     "name": "positive",
                     "id": "9f041bd8-43ea-4bdd-9f67-8bc26d75f818",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad",
+                    "id": "3a092dd6-1982-4f39-bdf8-e54667987ec6",
+                    "path": "1DAxis",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "feed9cd8-1d98-4e13-bfde-81bbd8654f19",
+                    "path": "<XInputController>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "bfab71c2-9355-4ee8-bb36-95006ba1aff3",
+                    "path": "<XInputController>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -527,6 +681,17 @@
                     "name": "",
                     "id": "9f4b3734-9ea7-4e42-8368-ddb2179116df",
                     "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accept",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4d153a8-4bb2-4597-8e88-999db13b260e",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

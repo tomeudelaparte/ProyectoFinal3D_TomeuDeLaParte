@@ -92,7 +92,7 @@ public class Blast : MonoBehaviour
     {
         if (isPlayer)
         {
-            other.gameObject.GetComponent<ZeppelinObjective>().DamageCharacter(damage);
+            other.gameObject.GetComponent<Zeppelin>().DamageCharacter(damage);
         }
 
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);

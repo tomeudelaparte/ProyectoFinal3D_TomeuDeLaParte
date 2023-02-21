@@ -299,7 +299,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50827861}
-  - component: {fileID: 50827862}
   m_Layer: 0
   m_Name: Storm Crows
   m_TagString: Untagged
@@ -326,18 +325,6 @@ Transform:
   m_Father: {fileID: 14814457}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &50827862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50827860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f7f6ef81a82a641a349a439d7175f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &81631263
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +824,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7672e7e93aedf7f45b701611cb0612ff, type: 3}
+--- !u!114 &196922763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3850248833931649568, guid: 3ce2933261c6e054294ff3517fe80db6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8815937281089631216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fda15dcf92880a45bb9c5b69000c89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203025356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1305, z: -3018}
+  m_LocalPosition: {x: 0, y: 1305, z: -4018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8735,6 +8734,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353623986}
   m_CullTransparentMesh: 1
+--- !u!114 &1358672314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3484472993687213540, guid: 3ce2933261c6e054294ff3517fe80db6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8815937281089631216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fda15dcf92880a45bb9c5b69000c89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1360766038
 GameObject:
   m_ObjectHideFlags: 0
@@ -11904,7 +11915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738492432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1305, z: -3018}
+  m_LocalPosition: {x: 0, y: 1305, z: -4018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14009,7 +14020,7 @@ PrefabInstance:
     - target: {fileID: 793337027675365881, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3000
+      value: -4000
       objectReference: {fileID: 0}
     - target: {fileID: 793337027675365881, guid: 2042032eaea12fd44a7baf52a0848f45,
         type: 3}
@@ -14136,6 +14147,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 14814457}
     m_Modifications:
+    - target: {fileID: 1012043514, guid: 3ce2933261c6e054294ff3517fe80db6, type: 3}
+      propertyPath: healthTurret
+      value: 
+      objectReference: {fileID: 196922763}
+    - target: {fileID: 1694713561, guid: 3ce2933261c6e054294ff3517fe80db6, type: 3}
+      propertyPath: healthTurret
+      value: 
+      objectReference: {fileID: 1358672314}
     - target: {fileID: 8546118978135304048, guid: 3ce2933261c6e054294ff3517fe80db6,
         type: 3}
       propertyPath: m_Name
@@ -14196,5 +14215,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8815937281064409635, guid: 3ce2933261c6e054294ff3517fe80db6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ce2933261c6e054294ff3517fe80db6, type: 3}

@@ -30,9 +30,9 @@ public class CanonBall : MonoBehaviour
         float distance = Vector3.Distance(player.planeCore.position, transform.position);
         timer = distance / 1200;
 
-        if (timer > 5)
+        if (timer > 3)
         {
-            timer = 5;
+            timer = 3;
         }
 
         StartCoroutine(ExplosionTimer());

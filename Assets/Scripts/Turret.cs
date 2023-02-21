@@ -6,6 +6,8 @@ public class Turret : MonoBehaviour
 {
     public LayerMask layerMask;
 
+    public Zeppelin healthTurret;
+
     public GameObject blastPrefab;
     public GameObject[] weaponPosition;
 
@@ -27,8 +29,11 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        LookAtPlayer();
-        ShootAtPlayer();
+        if (!healthTurret.isDestroyed)
+        {
+            LookAtPlayer();
+            ShootAtPlayer();
+        }
     }
 
     private void LookAtPlayer()

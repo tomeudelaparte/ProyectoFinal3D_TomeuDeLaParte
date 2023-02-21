@@ -14,8 +14,11 @@ public class HealthManager : MonoBehaviour
 
     private VisualEffects visualEffects;
 
+    private GameManager gameManager;
+
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         visualEffects = FindObjectOfType<VisualEffects>();
 
         UpdateMaxHealth(maxHealth);
@@ -83,8 +86,15 @@ public class HealthManager : MonoBehaviour
     {
         Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
 
+        if (isPlayer)
+        {
+            gameManager.MissionFailed();
+        }
+
         if (!isPlayer)
         {
+            gameManager.StormCrowDestroyed();
+
             FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
         }
 

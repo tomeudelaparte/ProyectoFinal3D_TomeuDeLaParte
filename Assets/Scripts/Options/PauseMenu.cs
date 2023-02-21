@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.actions["Pause"].IsPressed())
+        if (playerInput.actions["Pause"].triggered)
         {
             if (!gameManager.isPaused)
             {
@@ -34,7 +34,6 @@ public class PauseMenu : MonoBehaviour
                 UnpauseGame();
             }
         }
-        
     }
 
     private void PauseGame()
