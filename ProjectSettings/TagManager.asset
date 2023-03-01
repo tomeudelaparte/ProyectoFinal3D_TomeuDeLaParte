@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Blast
   - Zeppelin
+  - HealthTrigger
   layers:
   - Default
   - TransparentFX

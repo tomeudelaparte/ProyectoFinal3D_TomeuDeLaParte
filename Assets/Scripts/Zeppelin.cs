@@ -5,8 +5,8 @@ using UnityEngine;
 public class Zeppelin : MonoBehaviour
 {
     [SerializeField] private int id;
+    [SerializeField] private string objectiveName;
     [SerializeField] private int maxHealth = 200;
-
     [SerializeField] private int currentHealth;
 
     public GameObject explosion;
@@ -25,9 +25,19 @@ public class Zeppelin : MonoBehaviour
         UpdateMaxHealth(maxHealth);
     }
 
+    public string GetName()
+    {
+        return objectiveName;
+    }
+
     public int GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public void AddToCurrentHealth(int value)

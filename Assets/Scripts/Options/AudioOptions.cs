@@ -21,7 +21,7 @@ public class AudioOptions : MonoBehaviour
     [Header("DEFAULT AUDIO SETTINGS")]
     private float DefaultMasterVolume = 1f;
     private float DefaultMusicVolume = 1f;
-    private float DefaultEffectsVolume = 1f;
+    private float DefaultEffectsVolume = 0.7f;
 
     void Start()
     {

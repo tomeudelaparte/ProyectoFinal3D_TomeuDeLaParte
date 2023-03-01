@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         ThrustSystem();
         RepairSystem();
         ReloadingSystem();
+        GetObjectiveHealth();
     }
 
     private void FixedUpdate()
@@ -172,5 +173,32 @@ public class PlayerController : MonoBehaviour
     public float GetCurrentThrust()
     {
         return thrust;
+    }
+
+    private void GetObjectiveHealth()
+    {
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, 3000);
+        Debug.DrawRay(transform.position, transform.forward * 3000, Color.cyan);
+
+        if (hitData.collider != null)
+        {
+            if (hitData.collider.CompareTag("HealthTrigger"))
+            {
+                HealthManager enemyHealthManager = hitData.collider.GetComponentInParent<HealthManager>();
+
+                playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
+            }
+
+            if (hitData.collider.CompareTag("Zeppelin"))
+            {
+                Zeppelin enemyHealthManager = hitData.collider.GetComponent<Zeppelin>();
+
+                playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
+            }
+        }
+        else
+        {
+            playerInterface.HideEnemyHealth();
+        }
     }
 }

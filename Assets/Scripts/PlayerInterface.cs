@@ -15,6 +15,9 @@ public class PlayerInterface : MonoBehaviour
     public Image reloadingImage;
     public TextMeshProUGUI repairingMessage;
 
+    public Slider sliderObjectiveHealth;
+    public TextMeshProUGUI TextObjectiveHealth;
+
     public GameObject enemyIndicatorPrefab;
 
     public GameObject objective01Text, objective02Text;
@@ -141,5 +144,20 @@ public class PlayerInterface : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GetEnemyHealth(string name, float currentHealth, float totalHealth)
+    {
+        sliderObjectiveHealth.gameObject.SetActive(true);
+
+        sliderObjectiveHealth.maxValue = totalHealth;
+        sliderObjectiveHealth.value = currentHealth;
+
+        TextObjectiveHealth.text = name + " " + currentHealth + "/" + totalHealth;
+    }
+
+    public void HideEnemyHealth()
+    {
+        sliderObjectiveHealth.gameObject.SetActive(false);
     }
 }

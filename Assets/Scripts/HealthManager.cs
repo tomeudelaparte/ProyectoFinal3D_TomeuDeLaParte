@@ -6,6 +6,8 @@ public class HealthManager : MonoBehaviour
 {
     public bool isPlayer;
 
+    public string objectiveName;
+
     [SerializeField] private int maxHealth = 100;
 
     [SerializeField] private int currentHealth;
@@ -22,6 +24,11 @@ public class HealthManager : MonoBehaviour
         visualEffects = FindObjectOfType<VisualEffects>();
 
         UpdateMaxHealth(maxHealth);
+    }
+
+    public string GetName()
+    {
+        return objectiveName;
     }
 
     public int GetMaxHealth()
