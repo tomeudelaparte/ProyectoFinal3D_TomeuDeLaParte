@@ -188,12 +188,15 @@ public class PlayerController : MonoBehaviour
 
                 playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
             }
-
-            if (hitData.collider.CompareTag("Zeppelin"))
+            else if (hitData.collider.CompareTag("Zeppelin"))
             {
                 Zeppelin enemyHealthManager = hitData.collider.GetComponent<Zeppelin>();
 
                 playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
+            }
+            else
+            {
+                playerInterface.HideEnemyHealth();
             }
         }
         else
