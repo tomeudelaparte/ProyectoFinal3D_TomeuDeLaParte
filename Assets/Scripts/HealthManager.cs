@@ -83,7 +83,7 @@ public class HealthManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground") && IsGroundInFront())
         {
             DestroyPlane();
         }
@@ -118,5 +118,22 @@ public class HealthManager : MonoBehaviour
         smoke.transform.parent = null;
 
         Destroy(smoke, 20f);
+    }
+
+    private bool IsGroundInFront()
+    {
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, 5f);
+
+        if (hitData.collider != null)
+        {
+            if (hitData.collider.CompareTag("Ground"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
     }
 }

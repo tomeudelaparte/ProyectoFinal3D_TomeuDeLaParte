@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 844354350950451240}
   m_Layer: 0
   m_Name: Canon
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4919,6 +4919,74 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &201101425404480194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1727619593477041440}
+  - component: {fileID: 6037401804607187734}
+  - component: {fileID: 1129376630348618788}
+  m_Layer: 0
+  m_Name: Turret02
+  m_TagString: Zeppelin
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1727619593477041440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201101425404480194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 752.7, z: -330.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7315566311656916597}
+  m_Father: {fileID: 881868465448832737}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6037401804607187734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201101425404480194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 80, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1129376630348618788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201101425404480194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fda15dcf92880a45bb9c5b69000c89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  objectiveName: Turret
+  maxHealth: 200
+  currentHealth: 0
+  explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
+    type: 3}
+  smoke01: {fileID: 1746252743430450766}
+  smoke02: {fileID: 0}
+  isDestroyed: 0
 --- !u!1 &244976644035726690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,7 +5035,7 @@ GameObject:
   - component: {fileID: 844354350998130484}
   m_Layer: 0
   m_Name: polySurface14
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5063,11 +5131,9 @@ GameObject:
   - component: {fileID: 3099021936704126034}
   - component: {fileID: 3946160983507887561}
   - component: {fileID: 844354350976598284}
-  - component: {fileID: 844354350976598275}
-  - component: {fileID: 4734525972031973071}
   m_Layer: 0
-  m_Name: Turret02
-  m_TagString: Zeppelin
+  m_Name: Turret
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5079,14 +5145,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469319698996628300}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 749.4848, z: -297.87125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.215149, z: 32.928772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1139220083329957891}
-  m_Father: {fileID: 881868465448832737}
-  m_RootOrder: 2
+  m_Father: {fileID: 1727619593477041440}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3099021936704126034
 MeshFilter:
@@ -5152,39 +5218,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6248538174791368554, guid: f69400c943c0d1b4a876fa5867d00f3f, type: 3}
---- !u!65 &844354350976598275
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469319698996628300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 100, y: 50, z: 100}
-  m_Center: {x: 0, y: 10, z: -34.711533}
---- !u!114 &4734525972031973071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469319698996628300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fda15dcf92880a45bb9c5b69000c89f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 2
-  maxHealth: 200
-  currentHealth: 0
-  explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
-    type: 3}
-  smoke01: {fileID: 1746252743430450766}
-  smoke02: {fileID: 0}
-  isDestroyed: 0
 --- !u!1 &537852633998824539
 GameObject:
   m_ObjectHideFlags: 0
@@ -5195,6 +5228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881868465448832737}
   - component: {fileID: 844354351254153487}
+  - component: {fileID: 2208982338845516584}
   m_Layer: 0
   m_Name: Zeppelin
   m_TagString: Untagged
@@ -5216,7 +5250,7 @@ Transform:
   m_Children:
   - {fileID: 3630631439106614064}
   - {fileID: 6990308836913365173}
-  - {fileID: 7315566311656916597}
+  - {fileID: 1727619593477041440}
   - {fileID: 7236580364157405949}
   - {fileID: 6540650280639234577}
   m_Father: {fileID: 0}
@@ -5319,6 +5353,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2208982338845516584
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537852633998824539}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fb9aaf461cc7c44795db568bda8f364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &674941603021381642
 GameObject:
   m_ObjectHideFlags: 0
@@ -10331,6 +10385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
+  objectiveName: Motor
   maxHealth: 200
   currentHealth: 0
   explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
@@ -10352,7 +10407,7 @@ GameObject:
   - component: {fileID: 844354352553725751}
   m_Layer: 0
   m_Name: Canon
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10450,7 +10505,7 @@ GameObject:
   - component: {fileID: 844354352766041387}
   m_Layer: 0
   m_Name: Canon
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10548,7 +10603,7 @@ GameObject:
   - component: {fileID: 844354352910722246}
   m_Layer: 0
   m_Name: polySurface18
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15464,7 +15519,7 @@ GameObject:
   - component: {fileID: 2889358644669593404}
   m_Layer: 0
   m_Name: polySurface10
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15501,7 +15556,7 @@ GameObject:
   - component: {fileID: 8209850949938443762}
   m_Layer: 0
   m_Name: Gunner
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15602,7 +15657,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  healthTurret: {fileID: 4734525972031973071}
+  healthTurret: {fileID: 1129376630348618788}
   blastPrefab: {fileID: 8394655113297379209, guid: 63d07650e03181e479e238b3e70b401a,
     type: 3}
   weaponPosition:
@@ -15623,7 +15678,7 @@ GameObject:
   - component: {fileID: 844354351581889876}
   m_Layer: 0
   m_Name: polySurface16
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15721,7 +15776,7 @@ GameObject:
   - component: {fileID: 844354352504849824}
   m_Layer: 0
   m_Name: Canon
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15914,7 +15969,7 @@ GameObject:
   - component: {fileID: 4904195553381427428}
   m_Layer: 0
   m_Name: polySurface5
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15951,7 +16006,7 @@ GameObject:
   - component: {fileID: 844354351254153478}
   m_Layer: 0
   m_Name: polySurface9
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16072,7 +16127,7 @@ GameObject:
   - component: {fileID: 8209850948439915985}
   m_Layer: 0
   m_Name: Gunner
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16194,7 +16249,7 @@ GameObject:
   - component: {fileID: 844354352188959096}
   m_Layer: 0
   m_Name: polySurface17
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30938,7 +30993,7 @@ GameObject:
   - component: {fileID: 844354352686437256}
   m_Layer: 0
   m_Name: polySurface20
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31037,7 +31092,7 @@ GameObject:
   - component: {fileID: 844354351254153531}
   m_Layer: 0
   m_Name: polySurface6
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31277,8 +31332,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 80, y: 50, z: 80}
-  m_Center: {x: 0, y: -70, z: 45}
+  m_Size: {x: 100, y: 80, z: 100}
+  m_Center: {x: 0, y: -60, z: 45}
 --- !u!114 &4936485166288933131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31292,6 +31347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+  objectiveName: Turret
   maxHealth: 200
   currentHealth: 0
   explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
@@ -31313,7 +31369,7 @@ GameObject:
   - component: {fileID: 844354352145692734}
   m_Layer: 0
   m_Name: polySurface19
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31411,7 +31467,7 @@ GameObject:
   - component: {fileID: 844354352028968323}
   m_Layer: 0
   m_Name: polySurface15
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31706,6 +31762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
+  objectiveName: Motor
   maxHealth: 200
   currentHealth: 0
   explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
@@ -31727,7 +31784,7 @@ GameObject:
   - component: {fileID: 844354352209430840}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
