@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class EnemyIndicator : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class EnemyIndicator : MonoBehaviour
 
     void Start()
     {
-        mainCamera = GameObject.Find("==== VIRTUAL CAMERA ====");
+        mainCamera = FindObjectOfType<CinemachineVirtualCamera>().gameObject;
     }
 
     void Update()
@@ -25,11 +26,14 @@ public class EnemyIndicator : MonoBehaviour
 
     private void LookAtCamera()
     {
-        transform.position = enemy.transform.position;
+        if (enemy != null)
+        {
+            transform.position = enemy.transform.position;
 
-        transform.LookAt(mainCamera.transform.position);
+            transform.LookAt(mainCamera.transform.position);
 
-        transform.rotation = mainCamera.transform.rotation;
+            transform.rotation = mainCamera.transform.rotation;
+        }
     }
 
     private void ResizeToDistance()

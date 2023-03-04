@@ -6,25 +6,41 @@ using TMPro;
 
 public class PlayerInterface : MonoBehaviour
 {
+    [Header("Player Health")]
     public Slider sliderHealth;
     public TextMeshProUGUI textHealth;
 
+    [Header("Player Thrust")]
     public Slider sliderThrust;
+
+    [Header("Player Ammo")]
     public Slider sliderAmmo;
     public TextMeshProUGUI textAmmo;
+
+    [Header("Player Reload")]
     public Image reloadingImage;
+
+    [Header("Player Repair")]
     public TextMeshProUGUI repairingMessage;
 
+    [Header("Objective Healthbar")]
     public Slider sliderObjectiveHealth;
     public TextMeshProUGUI TextObjectiveHealth;
 
-    public GameObject enemyIndicatorPrefab;
+    [Header("Objective Indicator")]
+    public GameObject objectiveIndicatorPrefab;
+    public GameObject objectiveIndicatorPrefabVariant;
 
+    [Header("Objectives Text")]
     public GameObject objective01Text, objective02Text;
 
-    private GameObject[] enemyIndicators = new GameObject[4];
+    [Header("Enemies")]
     private GameObject[] enemies = new GameObject[4];
 
+    [Header("Enemies Indicators")]
+    private GameObject[] enemiesIndicators = new GameObject[4];
+
+    [Header("SCRIPTS")]
     private PlayerController playerController;
     private HealthManager playerHealthManager;
     private Gunner playerGunner;
@@ -53,7 +69,7 @@ public class PlayerInterface : MonoBehaviour
         UpdateAcceleration();
         UpdateAmmunation();
 
-        CheckEnemyIndicators();
+        CheckObjectivesIndicators();
     }
 
     public void UpdateHealth()
@@ -123,24 +139,24 @@ public class PlayerInterface : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             {
-                GameObject d = Instantiate(enemyIndicatorPrefab);
+                GameObject d = Instantiate(objectiveIndicatorPrefab);
 
                 d.GetComponent<EnemyIndicator>().enemy = enemies[i];
 
-                enemyIndicators[i] = d;
+                enemiesIndicators[i] = d;
             }
         }
     }
 
-    private void CheckEnemyIndicators()
+    private void CheckObjectivesIndicators()
     {
-        for (int i = 0; i < enemyIndicators.Length; i++)
+        for (int i = 0; i < enemiesIndicators.Length; i++)
         {
-            if (enemyIndicators[i] != null)
+            if (enemiesIndicators[i] != null)
             {
-                if (enemyIndicators[i].GetComponent<EnemyIndicator>().enemy == null)
+                if (enemiesIndicators[i].GetComponent<EnemyIndicator>().enemy == null)
                 {
-                    Destroy(enemyIndicators[i]);
+                    Destroy(enemiesIndicators[i]);
                 }
             }
         }

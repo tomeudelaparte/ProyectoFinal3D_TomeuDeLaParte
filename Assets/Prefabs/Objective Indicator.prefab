@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4161343936785976069}
   - component: {fileID: 4161343936785976065}
   m_Layer: 5
-  m_Name: Enemy Indicator
+  m_Name: Objective Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

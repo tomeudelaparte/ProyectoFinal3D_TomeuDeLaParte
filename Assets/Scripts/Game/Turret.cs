@@ -38,21 +38,24 @@ public class Turret : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        transform.LookAt(player.transform.position);
-
-        if (!negativeRotation)
+        if (player != null)
         {
-            rotationClampX = (transform.localEulerAngles.x <= 0) ? 0 : transform.localEulerAngles.x;
-            rotationClampX = (transform.localEulerAngles.x >= 65) ? 65 : transform.localEulerAngles.x;
-        }
+            transform.LookAt(player.transform.position);
 
-        if (negativeRotation)
-        {
-            rotationClampX = (transform.localEulerAngles.x >= 360) ? 360 : transform.localEulerAngles.x;
-            rotationClampX = (transform.localEulerAngles.x <= 305) ? 305 : transform.localEulerAngles.x;
-        }
+            if (!negativeRotation)
+            {
+                rotationClampX = (transform.localEulerAngles.x <= 0) ? 0 : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x >= 65) ? 65 : transform.localEulerAngles.x;
+            }
 
-        transform.localEulerAngles = new Vector3(rotationClampX, transform.localEulerAngles.y, 0);
+            if (negativeRotation)
+            {
+                rotationClampX = (transform.localEulerAngles.x >= 360) ? 360 : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x <= 305) ? 305 : transform.localEulerAngles.x;
+            }
+
+            transform.localEulerAngles = new Vector3(rotationClampX, transform.localEulerAngles.y, 0);
+        }
     }
 
     private void ShootAtPlayer()

@@ -46,8 +46,13 @@ public class PlayerController : MonoBehaviour
     [Header("Interface")]
     private PlayerInterface playerInterface;
 
+    [Header("GameManager")]
+    private GameManager gameManager;
+
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         playerInput = FindObjectOfType<PlayerInput>();
 
         playerRigidbody = GetComponent<Rigidbody>();
@@ -61,16 +66,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Shoot();
-        ThrustSystem();
-        RepairSystem();
-        ReloadingSystem();
-        GetObjectiveHealth();
+        if (!gameManager.isPaused)
+        {
+            Shoot();
+            ThrustSystem();
+            RepairSystem();
+            ReloadingSystem();
+            GetObjectiveHealth();
+        }
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        if (!gameManager.isPaused)
+        {
+            Movement();
+        }
     }
 
     private void Shoot()

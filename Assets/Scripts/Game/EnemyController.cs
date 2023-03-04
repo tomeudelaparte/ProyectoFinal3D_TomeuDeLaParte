@@ -49,21 +49,22 @@ public class EnemyController : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 targetDir = playerCore.position - planeCore.position;
-
-        float xyAngle = Vector3AngleOnPlane(playerCore.position, planeCore.position, planeCore.forward, planeCore.up);
-        float yzAngle = Vector3AngleOnPlane(playerCore.position, planeCore.position, planeCore.right, planeCore.forward);
-
-        if (Mathf.Abs(xyAngle) >= 1f && Mathf.Abs(yzAngle) >= 1f)
+        if (playerCore)
         {
-            enemyRigidbody.AddRelativeTorque(Vector3.forward * -torque * (xyAngle / Mathf.Abs(xyAngle)));
-        }
-        else if (yzAngle >= 1f)
-        {
-            enemyRigidbody.AddRelativeTorque(Vector3.right * -torque);
-        }
+            float xyAngle = Vector3AngleOnPlane(playerCore.position, planeCore.position, planeCore.forward, planeCore.up);
+            float yzAngle = Vector3AngleOnPlane(playerCore.position, planeCore.position, planeCore.right, planeCore.forward);
 
-        enemyRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult);
+            if (Mathf.Abs(xyAngle) >= 1f && Mathf.Abs(yzAngle) >= 1f)
+            {
+                enemyRigidbody.AddRelativeTorque(Vector3.forward * -torque * (xyAngle / Mathf.Abs(xyAngle)));
+            }
+            else if (yzAngle >= 1f)
+            {
+                enemyRigidbody.AddRelativeTorque(Vector3.right * -torque);
+            }
+
+            enemyRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult);
+        }
     }
 
     private float Vector3AngleOnPlane(Vector3 from, Vector3 to, Vector3 planeNormal, Vector3 toOrientation)
