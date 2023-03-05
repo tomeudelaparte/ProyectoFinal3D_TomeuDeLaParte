@@ -6,20 +6,32 @@ public class Turret : MonoBehaviour
 {
     public LayerMask layerMask;
 
-    public Zeppelin healthTurret;
-
     public GameObject blastPrefab;
     public GameObject[] weaponPosition;
 
-    public bool negativeRotation = false;
+    public Zeppelin healthTurret;
 
+    [Header("Shoot")]
     private bool shootTrigger = true;
     private float shootCooldown = 2f;
 
     private bool sequence = true;
 
+    [Header("Detection")]
+    private int distanceDetection = 10000;
+
+    [Header("Rotation")]
     private float rotationClampX = 0;
 
+    private int rotationMin = 0;
+    private int rotationMax = 65;
+
+    private int rotationMinAlt = 360;
+    private int rotationMaxAlt = 305;
+
+    public bool altRotation = false;
+
+    [Header("Player")]
     private PlayerController player;
 
     void Start()
@@ -42,16 +54,16 @@ public class Turret : MonoBehaviour
         {
             transform.LookAt(player.transform.position);
 
-            if (!negativeRotation)
+            if (!altRotation)
             {
-                rotationClampX = (transform.localEulerAngles.x <= 0) ? 0 : transform.localEulerAngles.x;
-                rotationClampX = (transform.localEulerAngles.x >= 65) ? 65 : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x <= rotationMin) ? rotationMin : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x >= rotationMax) ? rotationMax : transform.localEulerAngles.x;
             }
 
-            if (negativeRotation)
+            if (altRotation)
             {
-                rotationClampX = (transform.localEulerAngles.x >= 360) ? 360 : transform.localEulerAngles.x;
-                rotationClampX = (transform.localEulerAngles.x <= 305) ? 305 : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x >= rotationMinAlt) ? rotationMinAlt : transform.localEulerAngles.x;
+                rotationClampX = (transform.localEulerAngles.x <= rotationMaxAlt) ? rotationMaxAlt : transform.localEulerAngles.x;
             }
 
             transform.localEulerAngles = new Vector3(rotationClampX, transform.localEulerAngles.y, 0);
@@ -66,17 +78,13 @@ public class Turret : MonoBehaviour
             {
                 if (sequence)
                 {
-                    Instantiate(blastPrefab, weaponPosition[0].transform.position, weaponPosition[0].transform.rotation);
-
-                    weaponPosition[0].GetComponentInParent<Animator>().Play("CanonShoot");
+                    ShootCanon(weaponPosition[0]);
 
                     sequence = false;
                 }
                 else
                 {
-                    Instantiate(blastPrefab, weaponPosition[1].transform.position, weaponPosition[1].transform.rotation);
-
-                    weaponPosition[1].GetComponentInParent<Animator>().Play("CanonShoot");
+                    ShootCanon(weaponPosition[1]);
 
                     sequence = true;
                 }
@@ -84,6 +92,13 @@ public class Turret : MonoBehaviour
                 StartCoroutine(Cooldown());
             }
         }
+    }
+
+    private void ShootCanon(GameObject weaponPos)
+    {
+        Instantiate(blastPrefab, weaponPos.transform.position, weaponPos.transform.rotation);
+
+        weaponPos.GetComponentInParent<Animator>().Play("CanonShoot");
     }
 
     private IEnumerator Cooldown()
@@ -95,9 +110,9 @@ public class Turret : MonoBehaviour
 
     private bool IsPlayerOnSight()
     {
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, 10000f, layerMask);
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, distanceDetection, layerMask);
 
-        Debug.DrawRay(transform.position, transform.forward * 10000, Color.cyan);
+        Debug.DrawRay(transform.position, transform.forward * distanceDetection, Color.cyan);
 
         return hitData.collider != null;
     }

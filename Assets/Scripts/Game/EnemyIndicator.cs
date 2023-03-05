@@ -11,7 +11,14 @@ public class EnemyIndicator : MonoBehaviour
     private GameObject mainCamera;
     private GameObject pointIndicator;
 
-    private float distanceFromCamera, valueFromDistance;
+    private float distanceFromCamera;
+    private float distance;
+
+    private float maxDistance = 60f;
+    private float minDistance = 20f;
+
+    private int maxScale = 60;
+    private int minScale = 20;
 
     void Start()
     {
@@ -42,30 +49,30 @@ public class EnemyIndicator : MonoBehaviour
 
         pointIndicator = transform.GetChild(0).gameObject;
 
-        valueFromDistance = 0.1f * distanceFromCamera;
+        distance = 0.1f * distanceFromCamera;
 
-        if (valueFromDistance >= 60)
+        if (distance >= maxDistance)
         {
-            pointIndicator.transform.localScale = new Vector3(60, 60, 0);
+            pointIndicator.transform.localScale = new Vector3(maxScale, maxScale, 0);
         }
-        else if (valueFromDistance <= 20)
+        else if (distance <= minDistance)
         {
-            pointIndicator.transform.localScale = new Vector3(20, 20, 0);
+            pointIndicator.transform.localScale = new Vector3(minScale, minScale, 0);
         }
         else
         {
-            pointIndicator.transform.localScale = new Vector3(valueFromDistance, valueFromDistance, 0);
+            pointIndicator.transform.localScale = new Vector3(distance, distance, 0);
         }
 
-        ChangeTransparency(valueFromDistance / 200);
+        ChangeTransparency(distance / 200);
     }
 
     private void ChangeTransparency(float value)
     {
         pointIndicator.GetComponent<Image>().color = new Vector4(
-       pointIndicator.GetComponent<Image>().color.r,
-       pointIndicator.GetComponent<Image>().color.g,
-       pointIndicator.GetComponent<Image>().color.b, value);
+        pointIndicator.GetComponent<Image>().color.r,
+        pointIndicator.GetComponent<Image>().color.g,
+        pointIndicator.GetComponent<Image>().color.b, value);
     }
 }
 

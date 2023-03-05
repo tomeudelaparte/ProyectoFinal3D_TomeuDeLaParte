@@ -6,24 +6,27 @@ public class Blast : MonoBehaviour
 {
     public bool isPlayer = false;
 
+    [Header("Prefabs")]
     public GameObject blastPlaneExplosion;
     public GameObject blastGroundExplosion;
     public GameObject hitmarkerAudio;
 
-    private VisualEffects visualEffects;
-
+    [Header("Values")]
     private float lifeTime = 5f;
     private int damage = 0;
     private float speed = 800f;
+
+    [Header("DestroyActive")]
+    private IEnumerator destroyAfterTime;
+
+    [Header("Visuals")]
+    private VisualEffects visualEffects;
 
     [Header("Sounds")]
     private SoundEffects soundEffects;
 
     [Header("Feedback")]
     private PlayerInterface playerInterface;
-
-    [Header("Destroy")]
-    private IEnumerator coroutine;
 
     private void Start()
     {
@@ -34,8 +37,9 @@ public class Blast : MonoBehaviour
 
     private void OnEnable()
     {
-        coroutine = DestroyAfterTime();
-        StartCoroutine(coroutine);
+        destroyAfterTime = DestroyAfterTime();
+
+        StartCoroutine(destroyAfterTime);
     }
 
     void Update()
@@ -49,35 +53,30 @@ public class Blast : MonoBehaviour
         {
             Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
-            StopCoroutine(coroutine);
-            gameObject.SetActive(false);
+            DesactivateBlast();
         }
 
         if (isPlayer)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Instantiate(hitmarkerAudio, transform.position, transform.rotation);
-
-                playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
-
                 damage = 5;
 
                 DamagePlane(other);
+
+                Hitmarker();
             }
 
             if (other.gameObject.CompareTag("Zeppelin"))
             {
                 if (!other.gameObject.GetComponent<Zeppelin>().isDestroyed)
                 {
-                    Instantiate(hitmarkerAudio, transform.position, transform.rotation);
-
-                    playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
-
                     damage = 1;
-                }
 
-                DamageZeppelin(other);
+                    DamageZeppelin(other);
+
+                    Hitmarker();
+                }
             }
         }
 
@@ -107,8 +106,7 @@ public class Blast : MonoBehaviour
 
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 
-        StopCoroutine(coroutine);
-        gameObject.SetActive(false);
+        DesactivateBlast();
     }
 
     private void DamageZeppelin(Collider other)
@@ -120,7 +118,19 @@ public class Blast : MonoBehaviour
 
         Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
-        StopCoroutine(coroutine);
+        DesactivateBlast();
+    }
+
+    private void Hitmarker()
+    {
+        Instantiate(hitmarkerAudio, transform.position, transform.rotation);
+
+        playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
+    }
+
+    private void DesactivateBlast()
+    {
+        StopCoroutine(destroyAfterTime);
         gameObject.SetActive(false);
     }
 
@@ -128,7 +138,6 @@ public class Blast : MonoBehaviour
     {
         yield return new WaitForSeconds(lifeTime);
 
-        StopCoroutine(coroutine);
-        gameObject.SetActive(false);
+        DesactivateBlast();
     }
 }

@@ -9,11 +9,13 @@ public class Zeppelin : MonoBehaviour
     [SerializeField] private int maxHealth = 200;
     [SerializeField] private int currentHealth;
 
+    [Header("GameObjects")]
     public GameObject explosion;
 
     public GameObject smoke01;
     public GameObject smoke02;
 
+    [Header("Destroyed")]
     public bool isDestroyed = false;
 
     private GameManager gameManager;

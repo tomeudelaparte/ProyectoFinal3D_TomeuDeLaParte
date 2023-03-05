@@ -4167,9 +4167,6 @@ MonoBehaviour:
   thrust: 150
   turnTorque: {x: 30, y: 10, z: 25}
   forceMult: 100
-  pitch: 0
-  yaw: 0
-  roll: 0
 --- !u!114 &8100780138197919067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4183,7 +4180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  objectiveName: 
+  objectiveName: Player
   maxHealth: 100
   currentHealth: 0
   planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,

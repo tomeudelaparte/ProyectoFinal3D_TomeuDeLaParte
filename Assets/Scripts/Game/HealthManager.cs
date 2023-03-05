@@ -12,10 +12,13 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private int currentHealth;
 
+    [Header("Prefabs")]
     public GameObject planeExplosion;
 
+    [Header("Visuals")]
     private VisualEffects visualEffects;
 
+    [Header("GameManager")]
     private GameManager gameManager;
 
     private void Start()

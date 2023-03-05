@@ -7,19 +7,25 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI textObjective01, textObjective02;
 
-    [SerializeField] private bool isObjective01Completed = false;
-    [SerializeField] private bool isObjective02Completed = false;
+    [Header("Objectives")]
+    private bool isObjective01Completed = false;
+    private bool isObjective02Completed = false;
 
+    [Header("Storm Crows")]
     private int totalStormCrows;
     private int destroyedStowmCrows = 0;
 
+    [Header("Zeppelin")]
     private int totalZeppelingObjectives;
     private int destroyedZeppelingObjectives = 0;
 
+    [Header("Pause")]
     public bool isPaused = false;
 
+    [Header("Player Interface")]
     private PlayerInterface playerInterface;
 
+    [Header("Scene Management")]
     private SceneManagement sceneManagement;
 
     private void Start()
@@ -81,19 +87,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void MissionComplete()
-    {
-        if (isObjective01Completed & isObjective02Completed)
-        {
-            sceneManagement.LoadScene("Mission Complete");
-        }
-    }
-
-    public void MissionFailed()
-    {
-        sceneManagement.LoadScene("Mission Failed");
-    }
-
     public void CompleteObjective01()
     {
         if (!isObjective01Completed)
@@ -112,5 +105,17 @@ public class GameManager : MonoBehaviour
 
             CheckMission();
         }
+    }
+    private void MissionComplete()
+    {
+        if (isObjective01Completed & isObjective02Completed)
+        {
+            sceneManagement.LoadScene("Mission Complete");
+        }
+    }
+
+    public void MissionFailed()
+    {
+        sceneManagement.LoadScene("Mission Failed");
     }
 }

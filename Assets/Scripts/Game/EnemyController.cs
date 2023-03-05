@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Physics Core")]
     public Transform planeCore;
+
+    [Header("Raycast")]
     public GameObject enemyRaycast;
 
     [Header("Physics Values")]
     public float torque = 10f;
     public float thrust = 100f;
-    private float forceMult = 100f;
+    public float forceMult = 100f;
 
-    [Header("Gunner System")]
-    private Gunner gunnerSystem;
+    [Header("Rigidbody")]
+    private Rigidbody _enemyRigidbody;
+
+    [Header("Gunner")]
+    private Gunner _gunner;
 
     [Header("Player Position")]
     private Transform playerCore;
 
-    [Header("Rigidbody")]
-    private Rigidbody enemyRigidbody;
-
     private void Start()
     {
-        enemyRigidbody = GetComponent<Rigidbody>();
-        gunnerSystem = GetComponent<Gunner>();
+        _enemyRigidbody = GetComponent<Rigidbody>();
+        _gunner = GetComponent<Gunner>();
 
         playerCore = FindObjectOfType<PlayerController>().planeCore;
     }
@@ -41,9 +44,9 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
-        if (gunnerSystem.shootTrigger && enemyRaycast.GetComponent<RaycastCustom>().isColliding)
+        if (_gunner.shootTrigger && enemyRaycast.GetComponent<RaycastCustom>().isColliding)
         {
-            gunnerSystem.Shoot();
+            _gunner.Shoot();
         }
     }
 
@@ -56,14 +59,14 @@ public class EnemyController : MonoBehaviour
 
             if (Mathf.Abs(xyAngle) >= 1f && Mathf.Abs(yzAngle) >= 1f)
             {
-                enemyRigidbody.AddRelativeTorque(Vector3.forward * -torque * (xyAngle / Mathf.Abs(xyAngle)));
+                _enemyRigidbody.AddRelativeTorque(Vector3.forward * -torque * (xyAngle / Mathf.Abs(xyAngle)));
             }
             else if (yzAngle >= 1f)
             {
-                enemyRigidbody.AddRelativeTorque(Vector3.right * -torque);
+                _enemyRigidbody.AddRelativeTorque(Vector3.right * -torque);
             }
 
-            enemyRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult);
+            _enemyRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult);
         }
     }
 

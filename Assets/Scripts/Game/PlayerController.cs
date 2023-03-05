@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Physics Core")]
     public Transform planeCore;
 
     [Header("Physics Values")]
@@ -13,21 +14,9 @@ public class PlayerController : MonoBehaviour
     public float forceMult = 100f;
 
     [Header("Rotation Values")]
-    [SerializeField] [Range(-1f, 1f)] private float pitch = 0f;
-    [SerializeField] [Range(-1f, 1f)] private float yaw = 0f;
-    [SerializeField] [Range(-1f, 1f)] private float roll = 0f;
-
-    [Header("Gunner System")]
-    private Gunner gunnerSystem;
-
-    [Header("Rigidbody")]
-    private Rigidbody playerRigidbody;
-
-    [Header("HealthManager")]
-    private HealthManager healthManager;
-
-    [Header("Control Inputs")]
-    private PlayerInput playerInput;
+    private float pitch = 0f;
+    private float yaw = 0f;
+    private float roll = 0f;
 
     [Header("Thrust")]
     private bool accelerateTrigger = true;
@@ -36,6 +25,15 @@ public class PlayerController : MonoBehaviour
     [Header("Repair")]
     private bool repairTrigger = true;
     private float repairCooldownTime = 1f;
+
+    [Header("Rigidbody")]
+    private Rigidbody _playerRigidbody;
+
+    [Header("HealthManager")]
+    private HealthManager _healthManager;
+
+    [Header("Gunner")]
+    private Gunner _gunner;
 
     [Header("Visuals")]
     private VisualEffects visualEffects;
@@ -49,15 +47,17 @@ public class PlayerController : MonoBehaviour
     [Header("GameManager")]
     private GameManager gameManager;
 
+    [Header("Control Inputs")]
+    private PlayerInput playerInput;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-
         playerInput = FindObjectOfType<PlayerInput>();
 
-        playerRigidbody = GetComponent<Rigidbody>();
-        gunnerSystem = GetComponent<Gunner>();
-        healthManager = GetComponent<HealthManager>();
+        _playerRigidbody = GetComponent<Rigidbody>();
+        _gunner = GetComponent<Gunner>();
+        _healthManager = GetComponent<HealthManager>();
 
         visualEffects = FindObjectOfType<VisualEffects>();
         soundEffects = FindObjectOfType<SoundEffects>();
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.actions["Shoot"].IsPressed() && repairTrigger)
         {
-            gunnerSystem.Shoot();
+            _gunner.Shoot();
         }
     }
 
@@ -98,12 +98,12 @@ public class PlayerController : MonoBehaviour
         {
             roll = playerInput.actions["Horizontal"].ReadValue<float>();
             pitch = playerInput.actions["Vertical"].ReadValue<float>();
-            yaw = playerInput.actions["Yaw"].ReadValue<float>();;
+            yaw = playerInput.actions["Yaw"].ReadValue<float>(); ;
 
-            playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
+            _playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
         }
 
-        playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
+        _playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
     }
 
     private void ThrustSystem()
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         if (playerInput.actions["Repair"].IsPressed() && repairTrigger)
         {
 
-            if (healthManager.GetCurrentHealth() < 100)
+            if (_healthManager.GetCurrentHealth() < 100)
             {
                 StartCoroutine(co);
             }
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.actions["Reload"].triggered)
         {
-            gunnerSystem.Reload();
+            _gunner.Reload();
         }
     }
 
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(repairCooldownTime);
         repairTrigger = true;
 
-        healthManager.AddToCurrentHealth(5);
+        _healthManager.AddToCurrentHealth(5);
 
         soundEffects.StopReapairing();
         playerInterface.StopRepairing();

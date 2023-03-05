@@ -7,11 +7,13 @@ public class SelectedOption : MonoBehaviour
 {
     private GameObject selected;
 
+    [Header("VIDEO OPTIONS")]
     public GameObject dropdownDisplay;
     public GameObject dropdownResolution;
     public GameObject toggleVSync;
     public GameObject sliderFPSLimit;
 
+    [Header("AUDIO OPTIONS")]
     public GameObject sliderMasterVolume;
     public GameObject sliderMusicVolume;
     public GameObject sliderEffectsVolume;
@@ -20,17 +22,17 @@ public class SelectedOption : MonoBehaviour
     {
         selected = EventSystem.current.currentSelectedGameObject.gameObject;
 
-        checkIsSelected(dropdownDisplay);
-        checkIsSelected(dropdownResolution);
-        checkIsSelected(toggleVSync);
-        checkIsSelected(sliderFPSLimit);
+        checkIfSelected(dropdownDisplay);
+        checkIfSelected(dropdownResolution);
+        checkIfSelected(toggleVSync);
+        checkIfSelected(sliderFPSLimit);
 
-        checkIsSelected(sliderMasterVolume);
-        checkIsSelected(sliderMusicVolume);
-        checkIsSelected(sliderEffectsVolume);
+        checkIfSelected(sliderMasterVolume);
+        checkIfSelected(sliderMusicVolume);
+        checkIfSelected(sliderEffectsVolume);
     }
 
-    private void checkIsSelected(GameObject obj)
+    private void checkIfSelected(GameObject obj)
     {
         if (selected.name == obj.name)
         {

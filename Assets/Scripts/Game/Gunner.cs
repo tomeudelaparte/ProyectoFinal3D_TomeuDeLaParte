@@ -8,15 +8,18 @@ public class Gunner : MonoBehaviour
 
     public GameObject[] weaponPosition;
 
+    [Header("Shoot")]
     public bool shootTrigger = true;
     private float shootCooldown = 0.05f;
+    private bool sequence = true;
 
+    [Header("Ammo")]
     private int maxAmmo = 200;
     private int currentAmmo = 200;
+
+    [Header("Reload")]
     private float reloadingTime = 5;
     public bool isReloading = false;
-
-    private bool sequence = true;
 
     [Header("Sounds")]
     private SoundEffects soundEffects;
@@ -25,15 +28,14 @@ public class Gunner : MonoBehaviour
     private PlayerInterface playerInterface;
 
     [Header("Pool")]
-    private BlastObjectPool blastObjectPool;
-
+    private BlastObjectPool _blastObjectPool;
 
     private void Start()
     {
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
 
-        blastObjectPool = GetComponent<BlastObjectPool>();
+        _blastObjectPool = GetComponent<BlastObjectPool>();
     }
 
     public void Shoot()
@@ -42,27 +44,14 @@ public class Gunner : MonoBehaviour
         {
             if (sequence)
             {
-                GameObject bullet = blastObjectPool.GetPooledObject();
-
-                if (bullet != null)
-                {
-                    bullet.transform.position = weaponPosition[0].transform.position;
-                    bullet.transform.rotation = weaponPosition[0].transform.rotation;
-                    bullet.SetActive(true);
-                }
+                ShootBlast(weaponPosition[0]);
 
                 sequence = false;
             }
             else
             {
-                GameObject bullet = blastObjectPool.GetPooledObject();
+                ShootBlast(weaponPosition[1]);
 
-                if (bullet != null)
-                {
-                    bullet.transform.position = weaponPosition[1].transform.position;
-                    bullet.transform.rotation = weaponPosition[1].transform.rotation;
-                    bullet.SetActive(true);
-                }
                 sequence = true;
             }
 
@@ -75,34 +64,47 @@ public class Gunner : MonoBehaviour
     private IEnumerator Cooldown()
     {
         shootTrigger = false;
+
         yield return new WaitForSeconds(shootCooldown);
+
         shootTrigger = true;
+    }
+
+    private void ShootBlast(GameObject weaponPos)
+    {
+        GameObject blast = _blastObjectPool.GetPooledObject();
+
+        if (blast != null)
+        {
+            blast.transform.position = weaponPos.transform.position;
+            blast.transform.rotation = weaponPos.transform.rotation;
+            blast.SetActive(true);
+        }
     }
 
     private IEnumerator Reloading()
     {
-
         if (!isReloading)
         {
+            isReloading = true;
+
             if (isPlayer)
             {
                 soundEffects.StartReloading();
-
                 playerInterface.StartReloading();
             }
 
-            isReloading = true;
             yield return new WaitForSeconds(reloadingTime);
+
             isReloading = false;
+
+            currentAmmo = maxAmmo;
 
             if (isPlayer)
             {
                 soundEffects.StopReloading();
-
                 playerInterface.StopReloading();
             }
-
-            currentAmmo = maxAmmo;
         }
     }
 

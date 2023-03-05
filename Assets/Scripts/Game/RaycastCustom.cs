@@ -8,7 +8,6 @@ public class RaycastCustom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Si colisiona con Enemy
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = true;
@@ -17,7 +16,6 @@ public class RaycastCustom : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Si colisiona con Enemy
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = false;

@@ -12,7 +12,6 @@ public class VisualEffects : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
 
     private Volume postProcessing;
-
     private Vignette vignetteTMP;
     private ColorAdjustments colorAdjustmentsTMP;
 

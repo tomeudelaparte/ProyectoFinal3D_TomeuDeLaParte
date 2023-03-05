@@ -40,16 +40,18 @@ public class PlayerInterface : MonoBehaviour
     [Header("Enemies Indicators")]
     private GameObject[] enemiesIndicators = new GameObject[4];
 
-    [Header("SCRIPTS")]
+    [Header("Player")]
     private PlayerController playerController;
-    private HealthManager playerHealthManager;
-    private Gunner playerGunner;
+
+    private HealthManager _playerHealthManager;
+    private Gunner _playerGunner;
 
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
-        playerHealthManager = playerController.GetComponent<HealthManager>();
-        playerGunner = playerController.GetComponent<Gunner>();
+
+        _playerHealthManager = playerController.GetComponent<HealthManager>();
+        _playerGunner = playerController.GetComponent<Gunner>();
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -74,9 +76,9 @@ public class PlayerInterface : MonoBehaviour
 
     public void UpdateHealth()
     {
-        sliderHealth.value = playerHealthManager.GetCurrentHealth();
+        sliderHealth.value = _playerHealthManager.GetCurrentHealth();
 
-        textHealth.text = playerHealthManager.GetCurrentHealth() + "%";
+        textHealth.text = _playerHealthManager.GetCurrentHealth() + "%";
     }
 
     public void UpdateAcceleration()
@@ -86,9 +88,9 @@ public class PlayerInterface : MonoBehaviour
 
     public void UpdateAmmunation()
     {
-        sliderAmmo.value = playerGunner.GetCurrentAmmo();
+        sliderAmmo.value = _playerGunner.GetCurrentAmmo();
 
-        textAmmo.text = playerGunner.GetCurrentAmmo().ToString();
+        textAmmo.text = _playerGunner.GetCurrentAmmo().ToString();
     }
 
     public void StartReloading()

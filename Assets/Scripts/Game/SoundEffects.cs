@@ -6,12 +6,10 @@ public class SoundEffects : MonoBehaviour
 {
     private AudioSource[] soundEffects; 
 
-
     void Start()
     {
         soundEffects = GetComponents<AudioSource>();
     }
-
 
     public void StartReloading()
     {
@@ -23,9 +21,7 @@ public class SoundEffects : MonoBehaviour
         soundEffects[0].Stop();
     }
 
-
     ////////////////////////////////////////////////////
-    
 
     public void StartReapairing()
     {
@@ -37,9 +33,7 @@ public class SoundEffects : MonoBehaviour
         soundEffects[1].Stop();
     }
 
-
     ////////////////////////////////////////////////////
-
 
     public void PlayImpact()
     {
