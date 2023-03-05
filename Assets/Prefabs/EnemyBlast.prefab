@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3425775583419513667}
   - component: {fileID: 3425775583419513666}
   - component: {fileID: 3425775583419513665}
-  - component: {fileID: 3522516621106287146}
   - component: {fileID: 2563918375388046486}
   - component: {fileID: 3800946567404827037}
   - component: {fileID: 5181356171488369161}
@@ -105,18 +104,7 @@ MonoBehaviour:
     type: 3}
   blastGroundExplosion: {fileID: 2827983410564270571, guid: f4cff4f2bbdd2a84589fba3b4aa71923,
     type: 3}
---- !u!114 &3522516621106287146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425775583419513724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48afd1619c17c7448976322c829b28d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  hitmarkerAudio: {fileID: 0}
 --- !u!54 &2563918375388046486
 Rigidbody:
   m_ObjectHideFlags: 0

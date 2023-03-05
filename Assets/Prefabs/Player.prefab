@@ -4094,6 +4094,7 @@ GameObject:
   - component: {fileID: 8100780138197919142}
   - component: {fileID: 8100780138197919067}
   - component: {fileID: 1754345092}
+  - component: {fileID: 7387619119886030176}
   - component: {fileID: 1974591516}
   m_Layer: 6
   m_Name: Player
@@ -4182,6 +4183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+  objectiveName: 
   maxHealth: 100
   currentHealth: 0
   planeExplosion: {fileID: 9156087220855034239, guid: e35400690aef1274bae0a2793cf67443,
@@ -4199,13 +4201,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  blastPrefab: {fileID: 3425775583419513724, guid: 9b8248f081769c84dbb9bd90e8823c47,
-    type: 3}
   weaponPosition:
   - {fileID: 912771078737706577}
   - {fileID: 912771079394172486}
   shootTrigger: 1
   isReloading: 0
+--- !u!114 &7387619119886030176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100780138197919136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fc70d906fb82948a02f58fcb282cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 3425775583419513724, guid: 9b8248f081769c84dbb9bd90e8823c47,
+    type: 3}
+  amountToPool: 205
 --- !u!82 &1974591516
 AudioSource:
   m_ObjectHideFlags: 0

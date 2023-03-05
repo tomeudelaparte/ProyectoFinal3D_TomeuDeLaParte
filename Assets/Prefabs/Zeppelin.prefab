@@ -10336,7 +10336,7 @@ GameObject:
   - component: {fileID: 844354351292986528}
   - component: {fileID: 7498150141349830401}
   m_Layer: 0
-  m_Name: Motor01
+  m_Name: Engine01
   m_TagString: Zeppelin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10385,7 +10385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  objectiveName: Motor
+  objectiveName: Engine
   maxHealth: 200
   currentHealth: 0
   explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,
@@ -31713,7 +31713,7 @@ GameObject:
   - component: {fileID: 844354352812730329}
   - component: {fileID: 3579903060208853644}
   m_Layer: 0
-  m_Name: Motor02
+  m_Name: Engine02
   m_TagString: Zeppelin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31762,7 +31762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
-  objectiveName: Motor
+  objectiveName: Engine
   maxHealth: 200
   currentHealth: 0
   explosion: {fileID: 9156087220855034239, guid: 9bed519dd1ec69248920887a0779abff,

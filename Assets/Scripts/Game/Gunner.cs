@@ -6,7 +6,6 @@ public class Gunner : MonoBehaviour
 {
     public bool isPlayer = false;
 
-    public GameObject blastPrefab;
     public GameObject[] weaponPosition;
 
     public bool shootTrigger = true;
@@ -25,10 +24,16 @@ public class Gunner : MonoBehaviour
     [Header("Interface")]
     private PlayerInterface playerInterface;
 
+    [Header("Pool")]
+    private BlastObjectPool blastObjectPool;
+
+
     private void Start()
     {
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
+
+        blastObjectPool = GetComponent<BlastObjectPool>();
     }
 
     public void Shoot()
@@ -37,12 +42,27 @@ public class Gunner : MonoBehaviour
         {
             if (sequence)
             {
-                Instantiate(blastPrefab, weaponPosition[0].transform.position, weaponPosition[0].transform.rotation);
+                GameObject bullet = blastObjectPool.GetPooledObject();
+
+                if (bullet != null)
+                {
+                    bullet.transform.position = weaponPosition[0].transform.position;
+                    bullet.transform.rotation = weaponPosition[0].transform.rotation;
+                    bullet.SetActive(true);
+                }
+
                 sequence = false;
             }
             else
             {
-                Instantiate(blastPrefab, weaponPosition[1].transform.position, weaponPosition[1].transform.rotation);
+                GameObject bullet = blastObjectPool.GetPooledObject();
+
+                if (bullet != null)
+                {
+                    bullet.transform.position = weaponPosition[1].transform.position;
+                    bullet.transform.rotation = weaponPosition[1].transform.rotation;
+                    bullet.SetActive(true);
+                }
                 sequence = true;
             }
 

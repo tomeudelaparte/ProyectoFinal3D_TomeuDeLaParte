@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
         if (!gameManager.isPaused)
         {
             Shoot();
-            ThrustSystem();
             RepairSystem();
             ReloadingSystem();
             GetObjectiveHealth();
@@ -81,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (!gameManager.isPaused)
         {
             Movement();
+            ThrustSystem();
         }
     }
 

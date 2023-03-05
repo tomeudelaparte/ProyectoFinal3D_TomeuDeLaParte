@@ -12,6 +12,7 @@ public class Blast : MonoBehaviour
 
     private VisualEffects visualEffects;
 
+    private float lifeTime = 5f;
     private int damage = 0;
     private float speed = 800f;
 
@@ -21,11 +22,20 @@ public class Blast : MonoBehaviour
     [Header("Feedback")]
     private PlayerInterface playerInterface;
 
+    [Header("Destroy")]
+    private IEnumerator coroutine;
+
     private void Start()
     {
         visualEffects = FindObjectOfType<VisualEffects>();
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
+    }
+
+    private void OnEnable()
+    {
+        coroutine = DestroyAfterTime();
+        StartCoroutine(coroutine);
     }
 
     void Update()
@@ -37,9 +47,10 @@ public class Blast : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
+            Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
-            Destroy(gameObject);
+            StopCoroutine(coroutine);
+            gameObject.SetActive(false);
         }
 
         if (isPlayer)
@@ -96,7 +107,8 @@ public class Blast : MonoBehaviour
 
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 
-        Destroy(gameObject);
+        StopCoroutine(coroutine);
+        gameObject.SetActive(false);
     }
 
     private void DamageZeppelin(Collider other)
@@ -106,8 +118,17 @@ public class Blast : MonoBehaviour
             other.gameObject.GetComponent<Zeppelin>().DamageCharacter(damage);
         }
 
-        Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
+        Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
-        Destroy(gameObject);
+        StopCoroutine(coroutine);
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+
+        StopCoroutine(coroutine);
+        gameObject.SetActive(false);
     }
 }
