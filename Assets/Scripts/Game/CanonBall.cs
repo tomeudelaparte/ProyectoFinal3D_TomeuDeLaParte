@@ -76,7 +76,7 @@ public class CanonBall : MonoBehaviour
 
             soundEffects.PlayImpact();
 
-            other.GetComponent<HealthManager>().DamageThis(damage);
+            other.GetComponent<HealthManager>().Damage(damage);
         }
     }
 

@@ -23,80 +23,101 @@ public class Zeppelin : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        
+
         UpdateMaxHealth(maxHealth);
     }
 
-    public string GetName()
+    // Add damage
+    public void AddDamage(int value)
     {
-        return objectiveName;
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public void AddToCurrentHealth(int value)
-    {
-        currentHealth += value;
-    }
-
-    public void DamageThis(int damage)
-    {
+        // If current health is more than 0
         if (currentHealth > 0)
         {
-            currentHealth -= damage;
+            // Current health -value
+            currentHealth -= value;
         }
 
+        // If current health is minor than or equals 0
         if (currentHealth <= 0)
         {
-            DestroyPlane();
+            // Destroy
+            DestroyObjective();
         }
     }
 
+    // Change current health to max health
     public void UpdateMaxHealth(int newMaxHealth)
     {
         maxHealth = newMaxHealth;
         currentHealth = maxHealth;
     }
 
-    private void DestroyPlane()
+    private void DestroyObjective()
     {
+        // If not destroyed
         if (!isDestroyed)
         {
-            Instantiate(explosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
-
-            SmokeActive();
+            // Destroy
             IsDestroyed();
 
+            // Instance explosion
+            Instantiate(explosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+
+            // Plays smoke
+            SmokeActive();
+
+            // Plays slow motion
             FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
         }
     }
 
     private void SmokeActive()
     {
+        // If not null
         if (smoke01 != null)
         {
+            // Active
             smoke01.gameObject.SetActive(true);
         }
 
+        // If not null
         if (smoke02 != null)
         {
+            // Active
             smoke02.gameObject.SetActive(true);
         }
     }
 
+    // Destroy
     private void IsDestroyed()
     {
         isDestroyed = true;
 
         gameManager.ZeppelinObjectiveDestroyed();
+    }
+
+    // Return name
+    public string GetName()
+    {
+        return objectiveName;
+    }
+
+    // Return current health
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    // Return max health
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    // Add current health
+    public void AddToCurrentHealth(int value)
+    {
+        currentHealth += value;
     }
 }
 

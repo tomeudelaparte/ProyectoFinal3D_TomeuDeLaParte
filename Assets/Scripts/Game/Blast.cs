@@ -134,7 +134,7 @@ public class Blast : MonoBehaviour
     private void DamagePlane(Collider other)
     {
         // Damage
-        other.gameObject.GetComponent<HealthManager>().DamageThis(damage);
+        other.gameObject.GetComponent<HealthManager>().Damage(damage);
 
         // Instantiate explosion
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
@@ -150,7 +150,7 @@ public class Blast : MonoBehaviour
         if (isPlayer)
         {
             // Damage
-            other.gameObject.GetComponent<Zeppelin>().DamageThis(damage);
+            other.gameObject.GetComponent<Zeppelin>().AddDamage(damage);
         }
 
         // Instantiate explosion

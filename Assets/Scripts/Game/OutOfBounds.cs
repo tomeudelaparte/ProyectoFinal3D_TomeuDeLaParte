@@ -14,7 +14,7 @@ public class OutOfBounds : MonoBehaviour
             //// Not working (Fade in)
             transition.Play("Opening");
 
-            // Respawn player
+            // Respawn player to position
             other.gameObject.transform.position = transform.position;
             other.gameObject.transform.rotation = transform.rotation;
         }

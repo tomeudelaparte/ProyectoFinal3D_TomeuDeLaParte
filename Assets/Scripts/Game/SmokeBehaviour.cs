@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SmokeBehaviour : MonoBehaviour
 {
-    public GameObject smokeParticles;
+    public GameObject smoke;
 
-    private ParticleSystem smokePs;
+    private ParticleSystem smokeParticle;
 
     private HealthManager healthManager;
 
@@ -14,20 +14,25 @@ public class SmokeBehaviour : MonoBehaviour
     {
         healthManager = GetComponent<HealthManager>();
 
-        smokePs = smokeParticles.GetComponent<ParticleSystem>();
+        smokeParticle = smoke.GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
+        // Current health to value between 0 and 1
         float value = float.Parse(healthManager.GetCurrentHealth().ToString()) / 100f;
 
-        var main = smokePs.main;
+        // Gets particle system main
+        var main = smokeParticle.main;
 
+        // If value is less than 1
         if (value < 1)
         {
-            smokeParticles.SetActive(true);
+            // Play smoke trail
+            smoke.SetActive(true);
         }
 
+        // Changes color according to health
         main.startColor = new Color(value, value, value);
     }
 }

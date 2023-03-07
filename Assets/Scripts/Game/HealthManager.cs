@@ -26,109 +26,130 @@ public class HealthManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         visualEffects = FindObjectOfType<VisualEffects>();
 
+        // Update max health
         UpdateMaxHealth(maxHealth);
     }
 
-    public string GetName()
-    {
-        return objectiveName;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
+    // Add current health
     public void AddToCurrentHealth(int value)
     {
         currentHealth += value;
 
+        // Change post-processing saturation
         UpdateSaturation();
     }
 
-    public void DamageThis(int damage)
+    // Add damage
+    public void Damage(int value)
     {
+        // If current health is more than 0
         if (currentHealth > 0)
         {
-            currentHealth -= damage;
+            // Current health -value
+            currentHealth -= value;
 
+            // Change post-processing saturation
             UpdateSaturation();
         }
 
+        // If current health is minor than or equals 0
         if (currentHealth <= 0)
         {
+            // Current health to zero
             currentHealth = 0;
 
+            // Destroy
             DestroyPlane();
         }
     }
 
-    public void UpdateMaxHealth(int newMaxHealth)
+    // Change current health to max health
+    public void UpdateMaxHealth(int value)
     {
-        maxHealth = newMaxHealth;
+        maxHealth = value;
         currentHealth = maxHealth;
     }
 
+    // Change post-processing saturation
     private void UpdateSaturation()
     {
+        // If is Player
         if (isPlayer)
         {
+            // Get negative value from current health
             int tmp = (100 - currentHealth) * -1;
 
+            // Change saturation
             visualEffects.UpdateSaturation(tmp / 2);
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        // If collision is GROUND and is in front
         if (other.gameObject.CompareTag("Ground") && IsGroundInFront())
         {
+            // Destroy this GameObject
             DestroyPlane();
         }
     }
 
+    // Destroy this GameObject
     private void DestroyPlane()
     {
-        Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
-
+        // If is player
         if (isPlayer)
         {
+            // Mission failed
             gameManager.MissionFailed();
         }
 
+        // If not player
         if (!isPlayer)
         {
+            // Enemy destroyed
             gameManager.StormCrowDestroyed();
 
-            UnparentSmoke();
+            // Unparent the trail smoke GameObject
+            UnparentTrailSmoke();
 
+            // Play slow motion
             FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
         }
 
+        // Instance explosion
+        Instantiate(planeExplosion, transform.GetChild(0).position, transform.GetChild(0).rotation);
+
+        // Destroy
         Destroy(gameObject);
     }
 
-    private void UnparentSmoke()
+    // Unparent the trail smoke GameObject
+    private void UnparentTrailSmoke()
     {
+        // Get smoke object
         GameObject smoke = gameObject.transform.Find("Smoke").gameObject;
 
+        // Stop emmiting smoke
         smoke.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
+        // Unparent smoke
         smoke.transform.parent = null;
 
+        // Destroy after time
         Destroy(smoke, 20f);
     }
 
+    // Check ground in front
     private bool IsGroundInFront()
     {
+        // Raycast
         Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, 5f);
 
+        // If collider not null
         if (hitData.collider != null)
         {
+            // If collider is GROUND
             if (hitData.collider.CompareTag("Ground"))
             {
                 return true;
@@ -138,5 +159,23 @@ public class HealthManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    // Return name
+    public string GetName()
+    {
+        return objectiveName;
+    }
+
+    // Return max health
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    // Get current health
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

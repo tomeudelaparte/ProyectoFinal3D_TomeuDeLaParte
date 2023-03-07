@@ -6740,6 +6740,7 @@ MonoBehaviour:
   enemyRaycast: {fileID: 7020976609825628495}
   torque: 2000
   thrust: 150
+  forceMult: 100
 --- !u!114 &7020976610269647788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6804,7 +6805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c7997f1cba3b048bddad9b29461287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeParticles: {fileID: 2264084442849436277}
+  smoke: {fileID: 2264084442849436277}
 --- !u!1 &7020976610275120134
 GameObject:
   m_ObjectHideFlags: 0

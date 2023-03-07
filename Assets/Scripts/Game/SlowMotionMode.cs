@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SlowMotionMode : MonoBehaviour
 {
+    [Header("Animation Value")]
     [SerializeField] private float timeValue = 1;
 
+    [Header("GameManager")]
     private GameManager gameManager;
 
     private void Start()
@@ -15,8 +17,10 @@ public class SlowMotionMode : MonoBehaviour
 
     void Update()
     {
+        // If game not paused
         if (!gameManager.isPaused)
         {
+            // Change time scale
             Time.timeScale = timeValue;
         }
     }

@@ -33,87 +33,119 @@ public class GameManager : MonoBehaviour
         sceneManagement = FindObjectOfType<SceneManagement>();
         playerInterface = FindObjectOfType<PlayerInterface>();
 
-        totalZeppelingObjectives = FindObjectsOfType<EnemyController>().Length;
+        // Get total enemies count
         totalStormCrows = FindObjectsOfType<Zeppelin>().Length;
+
+        // Get total zeppelin objectives count
+        totalZeppelingObjectives = FindObjectsOfType<EnemyController>().Length;
     }
 
+    // Count one enemy destroyed
     public void StormCrowDestroyed()
     {
+        // Enemy destroyed +1
         destroyedStowmCrows++;
 
-        playerInterface.Objective01();
+        // Play animation
+        playerInterface.EnemyObjective();
 
+        // Check enemies alive
         CheckStormCrows();
     }
 
+    // Count one zeppelin's objective destroyed
     public void ZeppelinObjectiveDestroyed()
     {
+        // Objective destroyed +1
         destroyedZeppelingObjectives++;
 
-        playerInterface.Objective02();
+        // Play animation
+        playerInterface.ZeppelinObjective();
 
+        // Check zeppelin's objectives alive
         CheckZeppelinObjectives();
     }
 
+    // Check enemies alive
     private void CheckStormCrows()
     {
+        // Update text objective
         textObjective01.text = "Eliminate the Storm Crows " + destroyedStowmCrows + "/" + totalStormCrows;
 
+        // If all enemies are destroyed
         if (totalStormCrows == destroyedStowmCrows)
         {
+            // Play animation
             playerInterface.Objective01Complete();
 
+            // Complete Objective
             CompleteObjective01();
         }
     }
 
+    // Check zeppelin's objectives
     private void CheckZeppelinObjectives()
     {
+        // Update text objective
         textObjective02.text = "Destroy the Baron's Zeppelin " + destroyedZeppelingObjectives + "/" + totalZeppelingObjectives;
 
+        // If all objectives are destroyed
         if (totalZeppelingObjectives == destroyedZeppelingObjectives)
         {
+            // Play animation
             playerInterface.Objective02Complete();
 
+            // Complete Objective
             CompleteObjective02();
         }
     }
 
-    private void CheckMission()
-    {
-        if (isObjective01Completed && isObjective02Completed)
-        {
-            MissionComplete();
-        }
-    }
-
+    // COMPLETE OBJECTIVE 01
     public void CompleteObjective01()
     {
+        // If not completed
         if (!isObjective01Completed)
         {
+            // Complete objective is true
             isObjective01Completed = true;
 
+            // Check mission objectives
             CheckMission();
         }
     }
 
+    // COMPLETE OBJECTIVE 02
     public void CompleteObjective02()
     {
+        // If not completed
         if (!isObjective02Completed)
         {
+            // Complete objective is true
             isObjective02Completed = true;
 
+            // Check mission objectives
             CheckMission();
         }
     }
-    private void MissionComplete()
+
+    // CHECK MISSION OBJECTIVES
+    private void CheckMission()
     {
-        if (isObjective01Completed & isObjective02Completed)
+        // If all objectives are completed
+        if (isObjective01Completed && isObjective02Completed)
         {
-            sceneManagement.LoadScene("Mission Complete");
+            // Mission completed
+            MissionCompleted();
         }
     }
 
+    // LOAD MISSION COMPLETE
+    private void MissionCompleted()
+    {
+        sceneManagement.LoadScene("Mission Complete");
+    }
+
+    // LOAD MISSION FAILED
     public void MissionFailed()
     {
         sceneManagement.LoadScene("Mission Failed");
