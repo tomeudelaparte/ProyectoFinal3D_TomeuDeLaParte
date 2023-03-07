@@ -66,8 +66,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // If the game is not paused
         if (!gameManager.isPaused)
         {
+            // Player can shoot, repair, reload and get enemy health
             Shoot();
             RepairSystem();
             ReloadingSystem();
@@ -77,142 +79,195 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // If the game is not paused
         if (!gameManager.isPaused)
         {
+            // Player can move and accelerate
             Movement();
             ThrustSystem();
         }
     }
 
+    // MOVEMENT
+    private void Movement()
+    {
+        // If not repairing
+        if (repairTrigger)
+        {
+            // Values (X, Y, Z)
+            yaw = playerInput.actions["Yaw"].ReadValue<float>(); ;
+            pitch = playerInput.actions["Vertical"].ReadValue<float>();
+            roll = playerInput.actions["Horizontal"].ReadValue<float>();
+
+            // Torque force (X, Y, Z)
+            _playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
+        }
+
+        // Forward force
+        _playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
+    }
+
+    // SHOOT
     private void Shoot()
     {
+        // If button is pressed (hold) and Player not repairing
         if (playerInput.actions["Shoot"].IsPressed() && repairTrigger)
         {
+            // SHOOT
             _gunner.Shoot();
         }
     }
 
-    private void Movement()
-    {
-        if (repairTrigger)
-        {
-            roll = playerInput.actions["Horizontal"].ReadValue<float>();
-            pitch = playerInput.actions["Vertical"].ReadValue<float>();
-            yaw = playerInput.actions["Yaw"].ReadValue<float>(); ;
-
-            _playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
-        }
-
-        _playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
-    }
-
+    // ACCELERATION
     private void ThrustSystem()
     {
+        // If button is pressed (hold) and Player not accelerating
         if (playerInput.actions["Thrust"].IsPressed() && accelerateTrigger)
         {
+            // Acceleration is less than 300
             if (thrust < 300)
             {
+                // Acceleration +1
                 thrust += 1;
 
+                // Increase FOV
                 visualEffects.IncreaseFOV(0.08f);
 
+                // Acceleration Cooldown
                 StartCoroutine(ThrustCooldown());
             }
         }
         else
         {
+            // Acceleration is greater than 150
             if (thrust > 150)
             {
+                // Acceleration -1
                 thrust -= 1;
 
+                // Decrease FOV
                 visualEffects.DecreaseFOV(0.08f);
 
+                // Acceleration Cooldown
                 StartCoroutine(ThrustCooldown());
             }
         }
     }
 
+    // REPAIR
     private void RepairSystem()
     {
+        // Save coroutine
         IEnumerator co = ReapairCooldown();
 
+        // If button is pressed (hold) and Player not repairing
         if (playerInput.actions["Repair"].IsPressed() && repairTrigger)
         {
-
+            // If health is less than 100
             if (_healthManager.GetCurrentHealth() < 100)
             {
+                // Start repairing
                 StartCoroutine(co);
             }
         }
 
+        // If button is not pressed (hold) and Player not repairing
         if (!playerInput.actions["Repair"].IsPressed() && repairTrigger)
         {
+            // Stop repairing
             StopCoroutine(co);
         }
     }
 
+    // RELOADING
     private void ReloadingSystem()
     {
+        // If button is pressed and Player not repairing
         if (playerInput.actions["Reload"].triggered)
         {
+            // RELOAD
             _gunner.Reload();
         }
     }
 
+    // THRUST COOLDOWN
     private IEnumerator ThrustCooldown()
     {
+        // False to True
         accelerateTrigger = false;
         yield return new WaitForSeconds(thrustCooldownTime);
         accelerateTrigger = true;
     }
 
+    // REPAIR COOLDOWN
     private IEnumerator ReapairCooldown()
     {
+        // Play sound
         soundEffects.StartReapairing();
+
+        // Play messages
         playerInterface.StartRepairing();
 
+        // False to True
         repairTrigger = false;
         yield return new WaitForSeconds(repairCooldownTime);
         repairTrigger = true;
 
+        // Add health
         _healthManager.AddToCurrentHealth(5);
 
+        // Stop sound
         soundEffects.StopReapairing();
+
+        // Stop message
         playerInterface.StopRepairing();
     }
 
-    public float GetCurrentThrust()
-    {
-        return thrust;
-    }
-
+    // GET ENEMY HEALTH
     private void GetObjectiveHealth()
     {
+        // Raycast forward
         Physics.Raycast(transform.position, transform.forward, out RaycastHit hitData, 3000);
         Debug.DrawRay(transform.position, transform.forward * 3000, Color.cyan);
 
+        // If collider is not null
         if (hitData.collider != null)
         {
+            // If collider is HealthTrigger
             if (hitData.collider.CompareTag("HealthTrigger"))
             {
+                // Get health data from enemy
                 HealthManager enemyHealthManager = hitData.collider.GetComponentInParent<HealthManager>();
 
+                // Get Name, Current Health, Max Health
                 playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
             }
+
+            // If collider is HealthTrigger
             else if (hitData.collider.CompareTag("Zeppelin"))
             {
+                // Get health data from Zeppelin
                 Zeppelin enemyHealthManager = hitData.collider.GetComponent<Zeppelin>();
 
+                // Get Name, Current Health, Max Health
                 playerInterface.GetEnemyHealth(enemyHealthManager.GetName(), enemyHealthManager.GetCurrentHealth(), enemyHealthManager.GetMaxHealth());
             }
             else
             {
+                // Hide enemy healthbar
                 playerInterface.HideEnemyHealth();
             }
         }
         else
         {
+            // Hide enemy healthbar
             playerInterface.HideEnemyHealth();
         }
+    }
+
+    // Return thrust value
+    public float GetCurrentThrust()
+    {
+        return thrust;
     }
 }

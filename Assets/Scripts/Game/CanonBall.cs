@@ -72,11 +72,11 @@ public class CanonBall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            visualEffects.GetComponent<Animator>().Play("Hit");
+            visualEffects.GetComponent<Animator>().Play("Impact");
 
             soundEffects.PlayImpact();
 
-            other.GetComponent<HealthManager>().DamageCharacter(damage);
+            other.GetComponent<HealthManager>().DamageThis(damage);
         }
     }
 

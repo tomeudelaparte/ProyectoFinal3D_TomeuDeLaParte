@@ -51,7 +51,7 @@ public class HealthManager : MonoBehaviour
         UpdateSaturation();
     }
 
-    public void DamageCharacter(int damage)
+    public void DamageThis(int damage)
     {
         if (currentHealth > 0)
         {

@@ -34,24 +34,31 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        // SHOOT
         Shoot();
     }
 
     private void FixedUpdate()
     {
+        // MOVEMENT
         Movement();
     }
 
+    // SHOOT
     private void Shoot()
     {
+        // If canShoot and player is on sight
         if (_gunner.shootTrigger && enemyRaycast.GetComponent<RaycastCustom>().isColliding)
         {
+            // Shoot
             _gunner.Shoot();
         }
     }
 
+    // MOVEMENT
     private void Movement()
     {
+        // 
         if (playerCore)
         {
             float xyAngle = Vector3AngleOnPlane(playerCore.position, planeCore.position, planeCore.forward, planeCore.up);

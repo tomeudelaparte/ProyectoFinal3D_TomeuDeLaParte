@@ -47,7 +47,7 @@ public class Zeppelin : MonoBehaviour
         currentHealth += value;
     }
 
-    public void DamageCharacter(int damage)
+    public void DamageThis(int damage)
     {
         if (currentHealth > 0)
         {

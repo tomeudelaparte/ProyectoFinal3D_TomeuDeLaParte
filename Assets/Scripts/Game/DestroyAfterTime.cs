@@ -8,6 +8,7 @@ public class DestroyAfterTime : MonoBehaviour
 
     void Start()
     {
+        // Destroy after time
         Destroy(gameObject, lifeTime);
     }
 }
