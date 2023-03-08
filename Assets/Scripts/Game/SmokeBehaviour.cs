@@ -25,7 +25,7 @@ public class SmokeBehaviour : MonoBehaviour
         // Gets particle system main
         var main = smokeParticle.main;
 
-        // If value is less than 1
+        // If health is less than 1.0
         if (value < 1)
         {
             // Play smoke trail

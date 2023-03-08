@@ -34,17 +34,14 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        // SHOOT
         Shoot();
     }
 
     private void FixedUpdate()
     {
-        // MOVEMENT
         Movement();
     }
 
-    // SHOOT
     private void Shoot()
     {
         // If canShoot and player is on sight
@@ -55,7 +52,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // MOVEMENT
     private void Movement()
     {
         // If player is alive

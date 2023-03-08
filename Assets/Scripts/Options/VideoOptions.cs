@@ -29,117 +29,109 @@ public class VideoOptions : MonoBehaviour
         dataPersistence = FindObjectOfType<DataPersistence>();
         settingsManager = FindObjectOfType<OptionsManager>();
 
-        // Obtiene la lista de resolucion disponibles
+        // Gets the list of available resolutions
         settingsManager.GetResolutionsAvailable(dropdownResolutionsUI);
 
-        // Carga las opciones
+        // Loads saved options values
         LoadSavedSettings();
     }
 
-    // Carga las opciones
     private void LoadSavedSettings()
     {
+        // Gets all video saved settings
         GetDisplayModeList();
         GetResolutionsList();
         GetVerticalSync();
         GetFramerateLimit();
     }
 
-    // Obtiene la opcion DisplayMode
     private void GetDisplayModeList()
     {
-        // Si no existe, guarda un valor predeterminado
+        // If it does not exist, save a default value
         if (!dataPersistence.HasKey("DISPLAY MODE"))
         {
             SetDisplayModeList(displayModeIndex);
         }
 
-        // Obtiene el valor guardado
+        // Gets the saved value
         dropdownDisplayModeUI.value = dataPersistence.GetInt("DISPLAY MODE");
     }
 
-    // Obtiene la opcion ResolutionList
     private void GetResolutionsList()
     {
-        // Si no existe, guarda un valor predeterminado
+        // If it does not exist, save a default value
         if (!dataPersistence.HasKey("RESOLUTION"))
         {
             SetResolutionsList(resolutionIndex);
         }
 
-        // Obtiene el valor guardado
+        // Get the saved value
         dropdownResolutionsUI.value = dataPersistence.GetInt("RESOLUTION");
     }
 
-    // Obtiene la opcion VerticalSync
     private void GetVerticalSync()
     {
-        // Si no existe, guarda un valor predeterminado
+        // If it does not exist, save a default value
         if (!dataPersistence.HasKey("VERTICAL SYNC"))
         {
             SetVerticalSync(verticalSyncOn);
         }
 
-        // Obtiene el valor guardado
+        // Gets the saved value
         toggleVerticalSyncUI.isOn = dataPersistence.GetBool("VERTICAL SYNC");
     }
 
-    // Obtiene la opcion FramerateLimit
     private void GetFramerateLimit()
     {
-        // Si no existe, guarda un valor predeterminado
+        // If it does not exist, save a default value
         if (!dataPersistence.HasKey("FPS LIMIT"))
         {
             SetFramerateLimit(framesLimitSize);
         }
 
-        // Obtiene el valor guardado
+        // Gets the saved value
         sliderFramerateLimitUI.value = dataPersistence.GetInt("FPS LIMIT");
     }
 
-    // Setea la opcion DisplayMode
     public void SetDisplayModeList(int index)
     {
-        // Obtiene la opcion guardada
+        // Gets the saved resolution option
         int resolution = dataPersistence.GetInt("RESOLUTION");
 
-        // Activa la opcion
+        // Activates the option
         settingsManager.setDisplayModeAndResolution(index, resolution);
 
-        // Guarda la opcion
+        // Saves the option
         dataPersistence.SetInt("DISPLAY MODE", index);
     }
 
-    // Setea la opcion ResolutionList
     public void SetResolutionsList(int index)
     {
-        // Obtiene la opcion guardada
+        // Gets the saved option
         int display = dataPersistence.GetInt("DISPLAY MODE");
 
-        // Activa la opcion
+        // Activates the option
         settingsManager.setDisplayModeAndResolution(display, index);
 
-        // Guarda la opcion
+        // Saves the option
         dataPersistence.SetInt("RESOLUTION", index);
     }
 
-    // Setea la opcion VerticalSync
     public void SetVerticalSync(bool isOn)
     {
-        // Activa la opcion
+        // Activates the option
         settingsManager.SetVerticalSync(isOn);
 
-        // Guarda la opcion
+        // Saves the option
         dataPersistence.SetBool("VERTICAL SYNC", isOn);
     }
 
-    // Setea la opcion FramerateLimit
     public void SetFramerateLimit(float size)
     {
-        // Activa la opcion
+        // Activates the option
         settingsManager.SetFramerateLimit((int)size);
 
-        // Guarda la opcion
+        // Saves the option
         dataPersistence.SetInt("FPS LIMIT", (int)size);
     }
 }

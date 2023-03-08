@@ -81,30 +81,30 @@ public class AudioOptions : MonoBehaviour
     // Sets the General Volume option.
     public void SetMasterVolume(float volume)
     {
-        // Change the volume in the AudioMixer
+        // Changes the volume in the AudioMixer
         audioMixer.SetFloat("Master Volume", Mathf.Log10(volume) * 20);
 
-        // Save the option
+        // Saves the option
         dataPersistence.SetFloat("Master Volume", volume);
     }
 
-    // Set the Music Volume option.
+    // Sets the Music Volume option.
     public void SetMusicVolume(float volume)
     {
-        // Change the volume in the AudioMixer
+        // Changes the volume in the AudioMixer
         audioMixer.SetFloat("Music Volume", Mathf.Log10(volume) * 20);
 
-        // Save the option
+        // Saves the option
         dataPersistence.SetFloat("Music Volume", volume);
     }
 
-    // Set the Effects Volume option.
+    // Sets the Effects Volume option.
     public void SetEffectsVolume(float volume)
     {
-        // Change the volume in the AudioMixer
+        // Changes the volume in the AudioMixer
         audioMixer.SetFloat("Effects Volume", Mathf.Log10(volume) * 20);
 
-        // Save the option
+        // Saves the option
         dataPersistence.SetFloat("Effects Volume", volume);
     }
 }

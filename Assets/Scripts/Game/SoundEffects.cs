@@ -8,40 +8,38 @@ public class SoundEffects : MonoBehaviour
 
     void Start()
     {
+        // Gets audiosource
         soundEffects = GetComponents<AudioSource>();
     }
 
-    // Plays reload sound
     public void StartReloading()
     {
+        // Plays sound from audiosource 0
         soundEffects[0].Play();
     }
 
-    // Stops reload sound
     public void StopReloading()
     {
+        // Stops sound from audiosource 0
         soundEffects[0].Stop();
     }
 
-    ////////////////////////////////////////////////////
-
-    // Plays repair sound
     public void StartReapairing()
     {
+        // Plays sound from audiosource 1
         soundEffects[1].Play();
     }
 
-    // Stops repair sound
     public void StopReapairing()
     {
+        // Plays sound from audiosource 1
         soundEffects[1].Stop();
     }
-
-    ////////////////////////////////////////////////////
 
     // Plays impact sound
     public void PlayImpact()
     {
+        // Plays sound from audiosource 2
         soundEffects[2].Play();
     }
 }

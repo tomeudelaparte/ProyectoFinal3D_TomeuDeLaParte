@@ -69,10 +69,16 @@ public class PlayerController : MonoBehaviour
         // If the game is not paused
         if (!gameManager.isPaused)
         {
-            // Player can shoot, repair, reload and get enemy health
+            // Player can shoot
             Shoot();
+
+            // Player can repair
             RepairSystem();
+
+            // Player can reload
             ReloadingSystem();
+
+            // Player can get enemy healthbar
             GetObjectiveHealth();
         }
     }
@@ -82,32 +88,32 @@ public class PlayerController : MonoBehaviour
         // If the game is not paused
         if (!gameManager.isPaused)
         {
-            // Player can move and accelerate
+            // Player can move
             Movement();
+
+            // Player can accelerate
             ThrustSystem();
         }
     }
 
-    // MOVEMENT
     private void Movement()
     {
         // If not repairing
         if (repairTrigger)
         {
-            // Values (X, Y, Z)
-            yaw = playerInput.actions["Yaw"].ReadValue<float>(); ;
-            pitch = playerInput.actions["Vertical"].ReadValue<float>();
+            // Get values from buttons
             roll = playerInput.actions["Horizontal"].ReadValue<float>();
+            pitch = playerInput.actions["Vertical"].ReadValue<float>();
+            yaw = playerInput.actions["Yaw"].ReadValue<float>(); ;
 
-            // Torque force (X, Y, Z)
+            // Relative torque force (X, Y, Z)
             _playerRigidbody.AddRelativeTorque(new Vector3(turnTorque.x * pitch, turnTorque.y * yaw, -turnTorque.z * roll) * forceMult, ForceMode.Force);
         }
 
-        // Forward force
+        // Relative forward force
         _playerRigidbody.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
     }
 
-    // SHOOT
     private void Shoot()
     {
         // If button is pressed (hold) and Player not repairing
@@ -118,13 +124,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ACCELERATION
     private void ThrustSystem()
     {
         // If button is pressed (hold) and Player not accelerating
         if (playerInput.actions["Thrust"].IsPressed() && accelerateTrigger)
         {
-            // Acceleration is less than 300
+            // If acceleration is less than 300
             if (thrust < 300)
             {
                 // Acceleration +1
@@ -139,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Acceleration is greater than 150
+            // If acceleration is greater than 150
             if (thrust > 150)
             {
                 // Acceleration -1
@@ -154,7 +159,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // REPAIR
     private void RepairSystem()
     {
         // Save coroutine
@@ -179,18 +183,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // RELOADING
     private void ReloadingSystem()
     {
-        // If button is pressed and Player not repairing
+        // If button is pressed
         if (playerInput.actions["Reload"].triggered)
         {
-            // RELOAD
+            // Reload
             _gunner.Reload();
         }
     }
 
-    // THRUST COOLDOWN
     private IEnumerator ThrustCooldown()
     {
         // False to True
@@ -199,7 +201,6 @@ public class PlayerController : MonoBehaviour
         accelerateTrigger = true;
     }
 
-    // REPAIR COOLDOWN
     private IEnumerator ReapairCooldown()
     {
         // Play sound
@@ -214,7 +215,7 @@ public class PlayerController : MonoBehaviour
         repairTrigger = true;
 
         // Add health
-        _healthManager.AddToCurrentHealth(5);
+        _healthManager.AddHealth(5);
 
         // Stop sound
         soundEffects.StopReapairing();
@@ -223,7 +224,6 @@ public class PlayerController : MonoBehaviour
         playerInterface.StopRepairing();
     }
 
-    // GET ENEMY HEALTH
     private void GetObjectiveHealth()
     {
         // Raycast forward

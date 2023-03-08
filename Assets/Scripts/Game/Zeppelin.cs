@@ -9,25 +9,27 @@ public class Zeppelin : MonoBehaviour
     [SerializeField] private int maxHealth = 200;
     [SerializeField] private int currentHealth;
 
-    [Header("GameObjects")]
+    [Header("Prefabs")]
     public GameObject explosion;
 
+    [Header("GameObjects")]
     public GameObject smoke01;
     public GameObject smoke02;
 
     [Header("Destroyed")]
     public bool isDestroyed = false;
 
+    [Header("GameManager")]
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
 
-        UpdateMaxHealth(maxHealth);
+        // Updates current health
+        UpdateCurrentHealth();
     }
 
-    // Add damage
     public void AddDamage(int value)
     {
         // If current health is more than 0
@@ -37,7 +39,7 @@ public class Zeppelin : MonoBehaviour
             currentHealth -= value;
         }
 
-        // If current health is minor than or equals 0
+        // If current health is less than or equals 0
         if (currentHealth <= 0)
         {
             // Destroy
@@ -45,10 +47,9 @@ public class Zeppelin : MonoBehaviour
         }
     }
 
-    // Change current health to max health
-    public void UpdateMaxHealth(int newMaxHealth)
+    public void UpdateCurrentHealth()
     {
-        maxHealth = newMaxHealth;
+        // Gets max health
         currentHealth = maxHealth;
     }
 
@@ -73,24 +74,24 @@ public class Zeppelin : MonoBehaviour
 
     private void SmokeActive()
     {
-        // If not null
+        // If smoke01 not null
         if (smoke01 != null)
         {
-            // Active
+            // Smoke 01 active
             smoke01.gameObject.SetActive(true);
         }
 
-        // If not null
+        // If smoke02 not null
         if (smoke02 != null)
         {
-            // Active
+            // Smoke 02 active
             smoke02.gameObject.SetActive(true);
         }
     }
 
-    // Destroy
     private void IsDestroyed()
     {
+        // Destroy
         isDestroyed = true;
 
         gameManager.ZeppelinObjectiveDestroyed();

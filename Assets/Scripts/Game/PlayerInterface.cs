@@ -54,95 +54,100 @@ public class PlayerInterface : MonoBehaviour
         _playerGunner = playerController.GetComponent<Gunner>();
 
 
+        // Adds UI to enemies
         AddIndicatorToEnemies();
     }
 
     private void Update()
     {
+        // Updating healthbar
         UpdateHealth();
+
+        // Updating thrustbar
         UpdateAcceleration();
+
+        // Updating ammobar
         UpdateAmmunation();
 
+        // Checking enemy UI
         CheckIndicators();
     }
 
-    // Change healthbar value and text
     public void UpdateHealth()
     {
+        // Changes healthbar value
         sliderHealth.value = _playerHealthManager.GetCurrentHealth();
 
+        // Changes healthbar text
         textHealth.text = _playerHealthManager.GetCurrentHealth() + "%";
     }
 
-    // Change acceleration bar value
     public void UpdateAcceleration()
     {
+        // Changes thrust bar value
         sliderThrust.value = playerController.GetCurrentThrust();
     }
 
-    // Change ammo value and text
     public void UpdateAmmunation()
     {
+        // Changes ammo value
         sliderAmmo.value = _playerGunner.GetCurrentAmmo();
 
+        // Changes ammo text
         textAmmo.text = _playerGunner.GetCurrentAmmo().ToString();
     }
 
-    // Start reloading
     public void StartReloading()
     {
-        // Hide ammo text
+        // Hides ammo text
         textAmmo.gameObject.SetActive(false);
 
-        // Show reloading image
+        // Shows reloading image
         reloadingImage.gameObject.SetActive(true);
     }
 
-    // Stop reloading
     public void StopReloading()
     {
-        // Show ammo text
+        // Shows ammo text
         textAmmo.gameObject.SetActive(true);
 
-        // Hide reloading image
+        // Hides reloading image
         reloadingImage.gameObject.SetActive(false);
     }
 
-    // Start repairing
     public void StartRepairing()
     {
-        // Show message
+        // Shows message
         repairingMessage.gameObject.SetActive(true);
     }
 
-    // Stop repairing
     public void StopRepairing()
     {
-        // Hide message
+        // Hides message
         repairingMessage.gameObject.SetActive(false);
     }
 
-    // Play animation enemy objective
     public void EnemyObjective()
     {
+        // Plays animation
         objective01Text.GetComponent<Animator>().Play("Objective", -1, 0.0f);
     }
 
-    // Play animation zeppelin objective
     public void ZeppelinObjective()
     {
+        // Plays animation
         objective02Text.GetComponent<Animator>().Play("Objective", -1, 0.0f);
     }
 
-    // Play animation Objective 01
     public void Objective01Complete()
     {
+        // Plays animation
         objective01Text.GetComponent<Animator>().Play("ObjectiveComplete");
     }
 
-    // Play animation Objective 02
     public void Objective02Complete()
     {
+        // Plays animation
         objective02Text.GetComponent<Animator>().Play("ObjectiveComplete");
     }
 
@@ -185,21 +190,21 @@ public class PlayerInterface : MonoBehaviour
         }
     }
 
-    // Get enemy healthbar
+    // Shows enemy healthbar
     public void GetEnemyHealth(string name, float currentHealth, float totalHealth)
     {
-        // Show healtbar
+        // Shows healtbar
         sliderObjectiveHealth.gameObject.SetActive(true);
 
-        // Change values
+        // Changes values
         sliderObjectiveHealth.maxValue = totalHealth;
         sliderObjectiveHealth.value = currentHealth;
 
-        // Change healtbar text
+        // Changes healtbar text
         TextObjectiveHealth.text = name + " " + currentHealth + "/" + totalHealth;
     }
 
-    // Hide enemy healthbar
+    // Hides enemy healthbar
     public void HideEnemyHealth()
     {
         sliderObjectiveHealth.gameObject.SetActive(false);

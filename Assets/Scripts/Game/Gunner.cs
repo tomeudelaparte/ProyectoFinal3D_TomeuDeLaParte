@@ -35,19 +35,19 @@ public class Gunner : MonoBehaviour
         soundEffects = FindObjectOfType<SoundEffects>();
         playerInterface = FindObjectOfType<PlayerInterface>();
 
+        // Gets pool
         _blastObjectPool = GetComponent<BlastObjectPool>();
     }
 
-    // SHOOT
     public void Shoot()
     {
         // If can shoot and not reloading
         if (shootTrigger && !isReloading)
         {
-            // SEQUENCE TRUE, FALSE
+            // Sequence true false
             if (sequence)
             {
-                // Shoot from position 0
+                // Shoots from position 0
                 ShootBlast(weaponPosition[0]);
 
                 // Change to false
@@ -55,14 +55,14 @@ public class Gunner : MonoBehaviour
             }
             else
             {
-                // Shoot from position 1
+                // Shoots from position 1
                 ShootBlast(weaponPosition[1]);
 
-                // Change to true
+                // Changes to true
                 sequence = true;
             }
 
-            // Waste ammo
+            // Wastes ammo
             WastingAmmo();
 
             // Cooldown
@@ -70,7 +70,6 @@ public class Gunner : MonoBehaviour
         }
     }
 
-    // COOLDOWN
     private IEnumerator Cooldown()
     {
         // False to true
@@ -81,25 +80,23 @@ public class Gunner : MonoBehaviour
         shootTrigger = true;
     }
 
-    // SHOOT BLAST FROM POOL
     private void ShootBlast(GameObject weaponPos)
     {
-        // Save GameObject in pool
+        // Saves blast in pool
         GameObject blast = _blastObjectPool.GetPooledObject();
 
-        // If not null
+        // If blast not null
         if (blast != null)
         {
-            // Move to position, rotation
+            // Move to weaponPos position, rotation
             blast.transform.position = weaponPos.transform.position;
             blast.transform.rotation = weaponPos.transform.rotation;
 
-            // Active GameObject
+            // Active blast
             blast.SetActive(true);
         }
     }
 
-    // RELOADING
     private IEnumerator Reloading()
     {
         // If not reloading
@@ -138,13 +135,12 @@ public class Gunner : MonoBehaviour
         }
     }
 
-    // RETURN CURRENT AMMO
+    // Return current ammo
     public int GetCurrentAmmo()
     {
         return currentAmmo;
     }
 
-    // WASTE AMMO
     private void WastingAmmo()
     {
         // Current ammo -1
@@ -153,12 +149,11 @@ public class Gunner : MonoBehaviour
         // If current ammo is less than or equals 0
         if (currentAmmo <= 0)
         {
-            // RELOAD
+            // Reload
             Reload();
         }
     }
 
-    // RELOAD
     public void Reload()
     {
         // If current ammo is less than max ammo

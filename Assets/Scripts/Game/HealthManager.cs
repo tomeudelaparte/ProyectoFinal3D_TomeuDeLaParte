@@ -26,21 +26,19 @@ public class HealthManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         visualEffects = FindObjectOfType<VisualEffects>();
 
-        // Update max health
-        UpdateMaxHealth(maxHealth);
+        // Updates current health
+        UpdateCurrentHealth();
     }
 
-    // Add current health
-    public void AddToCurrentHealth(int value)
+    public void AddHealth(int value)
     {
         currentHealth += value;
 
-        // Change post-processing saturation
+        // Changes post-processing saturation
         UpdateSaturation();
     }
 
-    // Add damage
-    public void Damage(int value)
+    public void AddDamage(int value)
     {
         // If current health is more than 0
         if (currentHealth > 0)
@@ -52,7 +50,7 @@ public class HealthManager : MonoBehaviour
             UpdateSaturation();
         }
 
-        // If current health is minor than or equals 0
+        // If current health is less than or equals 0
         if (currentHealth <= 0)
         {
             // Current health to zero
@@ -63,23 +61,21 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    // Change current health to max health
-    public void UpdateMaxHealth(int value)
+    public void UpdateCurrentHealth()
     {
-        maxHealth = value;
+        // Gets max health
         currentHealth = maxHealth;
     }
 
-    // Change post-processing saturation
     private void UpdateSaturation()
     {
         // If is Player
         if (isPlayer)
         {
-            // Get negative value from current health
+            // Gets negative value from current health
             int tmp = (100 - currentHealth) * -1;
 
-            // Change saturation
+            // Changes saturation
             visualEffects.UpdateSaturation(tmp / 2);
         }
     }
@@ -94,7 +90,6 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    // Destroy this GameObject
     private void DestroyPlane()
     {
         // If is player
@@ -113,7 +108,7 @@ public class HealthManager : MonoBehaviour
             // Unparent the trail smoke GameObject
             UnparentTrailSmoke();
 
-            // Play slow motion
+            // Plays slow motion
             FindObjectOfType<SlowMotionMode>().GetComponent<Animator>().Play("SlowMotion");
         }
 
@@ -124,13 +119,12 @@ public class HealthManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Unparent the trail smoke GameObject
     private void UnparentTrailSmoke()
     {
-        // Get smoke object
+        // Gets smoke object
         GameObject smoke = gameObject.transform.Find("Smoke").gameObject;
 
-        // Stop emmiting smoke
+        // Stops emmiting smoke
         smoke.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
         // Unparent smoke
@@ -140,7 +134,6 @@ public class HealthManager : MonoBehaviour
         Destroy(smoke, 20f);
     }
 
-    // Check ground in front
     private bool IsGroundInFront()
     {
         // Raycast

@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         totalZeppelingObjectives = FindObjectsOfType<EnemyController>().Length;
     }
 
-    // Count one enemy destroyed
     public void StormCrowDestroyed()
     {
         // Enemy destroyed +1
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
         CheckStormCrows();
     }
 
-    // Count one zeppelin's objective destroyed
     public void ZeppelinObjectiveDestroyed()
     {
         // Objective destroyed +1
@@ -66,7 +64,6 @@ public class GameManager : MonoBehaviour
         CheckZeppelinObjectives();
     }
 
-    // Check enemies alive
     private void CheckStormCrows()
     {
         // Update text objective
@@ -83,7 +80,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Check zeppelin's objectives
     private void CheckZeppelinObjectives()
     {
         // Update text objective
@@ -100,7 +96,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // COMPLETE OBJECTIVE 01
     public void CompleteObjective01()
     {
         // If not completed
@@ -114,7 +109,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // COMPLETE OBJECTIVE 02
     public void CompleteObjective02()
     {
         // If not completed
@@ -128,7 +122,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // CHECK MISSION OBJECTIVES
     private void CheckMission()
     {
         // If all objectives are completed
@@ -139,15 +132,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // LOAD MISSION COMPLETE
     private void MissionCompleted()
     {
+        // Loads scene
         sceneManagement.LoadScene("Mission Complete");
     }
 
-    // LOAD MISSION FAILED
     public void MissionFailed()
     {
+        // Loads scene
         sceneManagement.LoadScene("Mission Failed");
     }
 }

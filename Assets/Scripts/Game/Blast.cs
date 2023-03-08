@@ -39,7 +39,6 @@ public class Blast : MonoBehaviour
         playerInterface = FindObjectOfType<PlayerInterface>();
     }
 
-    // ON ENABLE
     private void OnEnable()
     {
         // Save coroutine
@@ -55,13 +54,12 @@ public class Blast : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    // ON TRIGGER ENTER
     private void OnTriggerEnter(Collider other)
     {
         // If collider is GROUND
         if (other.gameObject.CompareTag("Ground"))
         {
-            // Instantiate explosion
+            // Instance explosion
             Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
             // Desactivate this blast
@@ -130,20 +128,18 @@ public class Blast : MonoBehaviour
         }
     }
 
-    // DAMAGE PLANE
     private void DamagePlane(Collider other)
     {
         // Damage
-        other.gameObject.GetComponent<HealthManager>().Damage(damage);
+        other.gameObject.GetComponent<HealthManager>().AddDamage(damage);
 
-        // Instantiate explosion
+        // Instance explosion
         Instantiate(blastPlaneExplosion, transform.position, transform.rotation);
 
         // Desactivate this blast
         DesactivateBlast();
     }
 
-    // DAMAGE ZEPPELIN
     private void DamageZeppelin(Collider other)
     {
         // If this Blast is Player
@@ -153,24 +149,22 @@ public class Blast : MonoBehaviour
             other.gameObject.GetComponent<Zeppelin>().AddDamage(damage);
         }
 
-        // Instantiate explosion
+        // Instance explosion
         Instantiate(blastGroundExplosion, transform.position, transform.rotation);
 
         // Desactivate this blast
         DesactivateBlast();
     }
 
-    // HITMARKER
     private void Hitmarker()
     {
-        // Instantiate audio
+        // Instance audio
         Instantiate(hitmarkerAudio, transform.position, transform.rotation);
 
         // Play animation
         playerInterface.GetComponent<Animator>().Play("Hitmarker", -1, 0.0f);
     }
 
-    // DESACTIVATE
     private void DesactivateBlast()
     {
         // Stop coroutine
@@ -180,7 +174,6 @@ public class Blast : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // DESACTIVATE AFTER TIME
     private IEnumerator DesactivateAfterTime()
     {
         yield return new WaitForSeconds(lifeTime);

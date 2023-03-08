@@ -23,14 +23,18 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        // If button pressed
         if (playerInput.actions["Pause"].triggered)
         {
+            // If game not paused
             if (!gameManager.isPaused)
             {
+                // Pause game
                 PauseGame();
             }
             else
             {
+                // Unpause game
                 UnpauseGame();
             }
         }
@@ -38,42 +42,47 @@ public class PauseMenu : MonoBehaviour
 
     private void PauseGame()
     {
+        // Pauses all sounds
         AllSoundsPaused();
 
+        // Hides game UI and shows pause menu
         playerInterface.SetActive(false);
         pauseMenu.SetActive(true);
 
+        // Shows only the first child
         pauseMenu.transform.GetChild(0).gameObject.SetActive(true);
         pauseMenu.transform.GetChild(1).gameObject.SetActive(false);
         pauseMenu.transform.GetChild(2).gameObject.SetActive(false);
 
+        // Selects button return to game
         returnButtonPause.Select();
 
+        // Pause game time scale
         Time.timeScale = 0;
 
+        // Pause is True
         gameManager.isPaused = true;
     }
 
     public void UnpauseGame()
     {
+        // Unpauses all sounds
         AllSoundsUnpaused();
 
+        // Shows game UI and hide pause menu
         playerInterface.SetActive(true);
         pauseMenu.SetActive(false);
 
-        pauseMenu.transform.GetChild(0).gameObject.SetActive(true);
-        pauseMenu.transform.GetChild(1).gameObject.SetActive(false);
-        pauseMenu.transform.GetChild(2).gameObject.SetActive(false);
-
-        returnButtonPause.Select();
-
+        // Unpauses game time scale
         Time.timeScale = 1;
 
+        // Pause is False
         gameManager.isPaused = false;
     }
 
     private void AllSoundsPaused()
     {
+        // Find and pause all audiosources
         audioSources = FindObjectsOfType<AudioSource>();
 
         foreach (AudioSource audio in audioSources)
@@ -84,6 +93,7 @@ public class PauseMenu : MonoBehaviour
 
     private void AllSoundsUnpaused()
     {
+        // Find and unpause all audiosources
         audioSources = FindObjectsOfType<AudioSource>();
 
         foreach (AudioSource audio in audioSources)

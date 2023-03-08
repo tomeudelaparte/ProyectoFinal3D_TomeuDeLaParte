@@ -12,80 +12,80 @@ public class OptionsManager : MonoBehaviour
 
     public void GetResolutionsAvailable(TMP_Dropdown dropdown)
     {
-        // Obtiene las resoluciones de 60Hz
+        // Gets 60Hz resolutions
         resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToArray();
 
-        // Invierte el orden del array
+        // Inverts the array order
         System.Array.Reverse(resolutions);
 
-        // Limpia todas las opciones del dropdown
+        // Clears all dropdown options
         dropdown.ClearOptions();
 
-        // Index de la resolucion actual
+        // Index of the current resolution
         int currentResolutionIndex = 0;
 
-        // Lista para obtener las opciones disponibles
+        // List to obtain the available options
         List<string> options = new List<string>();
 
-        // Recorre todas las resoluciones menos las 3 ultimas
+        // Scrolls through all but the last 3 resolutions
         for (int i = 0; i < resolutions.Length - 3; i++)
         {
-            // Crea y agrega una opcion con este formato en String
+            // Creates and adds an option with this format to String
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            // Si la resolucion actual es igual a la resolucion del array
+            // If the current resolution is equal to the resolution of the array
             if (resolutions[i].width == Screen.currentResolution.width
                 && resolutions[i].height == Screen.currentResolution.height)
             {
-                // Guarda el Index de la resolucion
+                // Saves the resolution index
                 currentResolutionIndex = i;
             }
         }
 
-        // Añade las opciones a la lista
+        // Adds the options to the list
         dropdown.AddOptions(options);
 
-        // Selecciona la resolución actual en la lista
+        // Selects the current resolution in the list
         dropdown.value = currentResolutionIndex;
 
-        // Refresca el valor seleccionado
+        // Refresh the selected value
         dropdown.RefreshShownValue();
     }
 
-    // Aplica los ajustes de resolucion y modo de pantalla
+    // Applies resolution and display mode settings
     public void setDisplayModeAndResolution(int displayIndex, int resolutionIndex)
     {
-        // Valor default de displayMode
+        // Display mode default value
         FullScreenMode displayMode = FullScreenMode.ExclusiveFullScreen;
 
-        // Seleccion segun el index obtenido
+        // Selection according to the index obtained
         switch (displayIndex)
         {
             case 0:
 
-                // Guarda en la variable y para la ejecucion del Switch
+                // Saves display mode
                 displayMode = FullScreenMode.ExclusiveFullScreen;
                 break;
 
             case 1:
 
-                // Guarda en la variable y para la ejecucion del Switch
+                // Saves display mode
                 displayMode = FullScreenMode.FullScreenWindow;
                 break;
 
             case 2:
 
-                // Guarda en la variable y para la ejecucion del Switch
+                // Saves display mode
                 displayMode = FullScreenMode.Windowed;
                 break;
         }
 
-        // Setea la resolución y el modo de pantalla
+        // Sets resolution and display mode
         Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, displayMode);
     }
 
-    // Activa la sincronizacion vertical segun el valor obtenido
+    // Activates vertical synchronization
     public void SetVerticalSync(bool isOn)
     {
         if (isOn)
@@ -98,13 +98,13 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
-    // Activa el limite de frames
+    // Enables the frame limit
     public void SetFramerateLimit(int frames)
     {
         Application.targetFrameRate = frames;
     }
 
-    // Actualiza el número de frames límite del slider
+    // Changes frames number text from slider
     public void UpdateFrameSliderText(float frames)
     {
         frameLimitText.text = frames.ToString();

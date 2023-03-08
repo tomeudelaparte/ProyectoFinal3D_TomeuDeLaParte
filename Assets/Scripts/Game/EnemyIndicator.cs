@@ -33,7 +33,6 @@ public class EnemyIndicator : MonoBehaviour
         ChangeOnDistance();
     }
 
-    // LOOK AT CAMERA
     private void LookAtCamera()
     {
         // If enemy not null
@@ -50,7 +49,6 @@ public class EnemyIndicator : MonoBehaviour
         }
     }
 
-    // Change image on distnace
     private void ChangeOnDistance()
     {
         // Get distance from camera
